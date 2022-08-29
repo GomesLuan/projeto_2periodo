@@ -36,3 +36,20 @@ char tela_orientacoes(void) {
     scanf("%c", &resposta);
     return resposta;
 }
+
+char tela_informacoes(void) {
+    char resposta;
+    printf("\n");
+    printf("###############################################################################\n");
+    printf("#                                   Informacoes                               #\n");
+    printf("###############################################################################\n");
+    printf("# Programa de locadora de roupas e fantasias, desenvolvido inteiramente em C  #\n");
+    printf("# Com o intuito de facilitar a administracao e gerencia desse estabelecimento #\n");
+    printf("# Identificando as roupas ou fantasias disponiveis, os valores dos alugueis   #\n");
+    printf("# O tempo, a identificacao de quem alugou e quantas vezes determinada peca foi#\n");
+    printf("# alugada, sendo uma ferramenta util e eficaz.                                #\n");
+    printf("###############################################################################\n\n");
+    printf("Escolha sua opcao: ");
+    scanf("%c", &resposta);
+    return resposta;
+}
