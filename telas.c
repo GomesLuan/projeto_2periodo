@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 char tela_principal(void) {
+    system("cls");
     char resposta;
     printf("\n");
     printf("#########################################\n");
@@ -11,7 +12,7 @@ char tela_principal(void) {
     printf("#       3 - Locacoes                    #\n");
     printf("#       4 - Relatorios                  #\n");
     printf("#       5 - Informacoes do Projeto      #\n");
-    printf("#       6 - Orientações                 #\n");
+    printf("#       6 - Orientacoes                 #\n");
     printf("#       0 - Sair do Programa            #\n");
     printf("#########################################\n\n");
     printf("Escolha sua opcao: ");
@@ -19,8 +20,31 @@ char tela_principal(void) {
     return resposta;
 }
 
-char tela_orientacoes(void) {
-    char resposta;
+void tela_informacoes(void) {
+    system("cls");
+    printf("\n");
+    printf("###############################################################################\n");
+    printf("#                                   Informacoes                               #\n");
+    printf("###############################################################################\n");
+    printf("# Programa desenvolvido inteiramente em C com o intuito de facilitar a        #\n");
+    printf("# administracao e gerencia de uma locadora de roupas e fantasias.             #\n");
+    printf("# Identificando os produtos disponiveis, os valores dos alugueis, o tempo, a  #\n");
+    printf("# identidade de quem alugou e quantas vezes determinada peca foi alugada,     #\n");
+    printf("# sendo uma ferramenta util e eficaz.                                         #\n");
+    printf("#                                                                             #\n");
+    printf("# Programa desenvolvido por:                                                  #\n");
+    printf("#                                                                             #\n");
+    printf("# Laety Maniery de Araujo Batista                                             #\n");
+    printf("# E-mail: powermaniere@gmail.com                                              #\n");
+    printf("#                                                                             #\n");
+    printf("# Luan Victor de Araujo Gomes                                                 #\n");
+    printf("# E-mail: luan.araujo.gom@gmail.com                                           #\n");
+    printf("###############################################################################\n\n");
+    system("pause");
+}
+
+void tela_orientacoes(void) {
+    system("cls");
     printf("\n");
     printf("###################################################################################################\n");
     printf("#                                            Orientacoes                                          #\n");
@@ -30,34 +54,8 @@ char tela_orientacoes(void) {
     printf("# Menu Locacoes: Agendamento, verificacao e cancelamento de locacoes.                             #\n");
     printf("# Menu Relatorio: Informacoes de todos os clientes e vestimentas, alem do historico de locacoes.  #\n");
     printf("# Menu Informacoes do projeto: Exibe informacoes gerais do projeto e a equipe de desenvolvedores. #\n");
-    printf("#                                       0 - Menu Principal                                        #\n");
     printf("###################################################################################################\n\n");
-    printf("Escolha sua opcao: ");
-    scanf("%c", &resposta);
-    return resposta;
+    system("pause");
 }
 
-char tela_informacoes(void) {
-    char resposta;
-    printf("\n");
-    printf("###############################################################################\n");
-    printf("#                                   Informacoes                               #\n");
-    printf("###############################################################################\n");
-    printf("# Programa desenvolvido inteiramente em C com o intuito de facilitar a        #\n");
-    printf("# administracao e gerencia de uma locadora de roupas e fantasias.             #\n");
-    printf("# Identificando os produtos disponiveis, os valores dos alugueis, o tempo, a  #\n");
-    printf("# identidade de quem alugou e quantas vezes determinada peça foi alugada,     #\n");
-    printf("# sendo uma ferramenta util e eficaz.                                         #\n");
-    printf("#                                                                             #\n");
-    printf("# Programa desenvolvido por:                                                  #\n");
-    printf("#                                                                             #\n");
-    printf("# Laety Maniery de Araújo Batista                                             #\n");
-    printf("# E-mail: powermaniere@gmail.com                                              #\n");
-    printf("#                                                                             #\n");
-    printf("# Luan Victor de Araujo Gomes                                                 #\n");
-    printf("# E-mail: luan.araujo.gom@gmail.com                                           #\n");
-    printf("###############################################################################\n\n");
-    printf("Escolha sua opcao: ");
-    scanf("%c", &resposta);
-    return resposta;
-}
+
