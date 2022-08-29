@@ -4,5 +4,5 @@ Projeto realizado por alunos do 2º período do curso de Bacharelado em Sistemas
 O projeto se trata de um programa escrito na linguagem C capaz de simular os dados de uma locadora de roupas, como clientes, produtos e locações.
 
 Equipe:
-Luan Victor de Araujo Gomes
+Luan Victor de Araujo Gomes,
 Laety Maniery de Araújo Batista
