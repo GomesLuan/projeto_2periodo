@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include "op_sistema.c"
 
 char tela_principal(void) {
-    system("cls");
+    limpar_tela();
     char resposta;
     printf("\n");
     printf("#########################################\n");
@@ -21,7 +22,7 @@ char tela_principal(void) {
 }
 
 void tela_informacoes(void) {
-    system("cls");
+    limpar_tela();
     printf("\n");
     printf("###############################################################################\n");
     printf("#                                   Informacoes                               #\n");
@@ -40,11 +41,11 @@ void tela_informacoes(void) {
     printf("# Luan Victor de Araujo Gomes                                                 #\n");
     printf("# E-mail: luan.araujo.gom@gmail.com                                           #\n");
     printf("###############################################################################\n\n");
-    system("pause");
+    pausar_sistema();
 }
 
 void tela_orientacoes(void) {
-    system("cls");
+    limpar_tela();
     printf("\n");
     printf("###################################################################################################\n");
     printf("#                                            Orientacoes                                          #\n");
@@ -55,7 +56,7 @@ void tela_orientacoes(void) {
     printf("# Menu Relatorio: Informacoes de todos os clientes e vestimentas, alem do historico de locacoes.  #\n");
     printf("# Menu Informacoes do projeto: Exibe informacoes gerais do projeto e a equipe de desenvolvedores. #\n");
     printf("###################################################################################################\n\n");
-    system("pause");
+    pausar_sistema();
 }
 
 
