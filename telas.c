@@ -18,6 +18,7 @@ char tela_principal(void) {
     printf("#########################################\n\n");
     printf("Escolha sua opcao: ");
     scanf("%c", &resposta);
+    getchar();
     return resposta;
 }
 
