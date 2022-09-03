@@ -22,6 +22,25 @@ char tela_principal(void) {
     return resposta;
 }
 
+char tela_clientes(void) {
+    limpar_tela();
+    char resposta;
+    printf("\n");
+    printf("#########################################\n");
+    printf("#    M E N U   D E   C L I E N T E S    #\n");
+    printf("#########################################\n");
+    printf("#       1 - Cadastrar cliente           #\n");
+    printf("#       2 - Informacoes de cliente      #\n");
+    printf("#       3 - Alterar dados de cliente    #\n");
+    printf("#       4 - Remover cliente             #\n");
+    printf("#       0 - Retornar ao menu principal  #\n");
+    printf("#########################################\n\n");
+    printf("Escolha sua opcao: ");
+    scanf("%c", &resposta);
+    getchar();
+    return resposta;
+}
+
 void tela_informacoes(void) {
     limpar_tela();
     printf("\n");
