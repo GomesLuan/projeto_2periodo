@@ -1,10 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "op_sistema.c"
 
 char tela_principal(void) {
     limpar_tela();
     char resposta;
-    printf("\n");
     printf("#########################################\n");
     printf("#      M E N U   P R I N C I P A L      #\n");
     printf("#########################################\n");
@@ -25,7 +25,6 @@ char tela_principal(void) {
 char tela_clientes(void) {
     limpar_tela();
     char resposta;
-    printf("\n");
     printf("#########################################\n");
     printf("#    M E N U   D E   C L I E N T E S    #\n");
     printf("#########################################\n");
@@ -41,11 +40,35 @@ char tela_clientes(void) {
     return resposta;
 }
 
+char **tela_cadastro_cliente() {
+    limpar_tela();
+    //Alocando espaço para a variável
+    char **informacoes = malloc(5* sizeof(char*));
+    for (int i=0; i < 10; ++i) {
+        informacoes[i] = malloc(50* sizeof(char));
+    }
+    printf("####################################################\n");
+    printf("#     C A D A S T R O   D E   C L I E N T E S      #\n");
+    printf("####################################################\n\n");
+    printf("Por favor, informe os dados solicitados:\n\n");
+    printf("Nome: ");
+    scanf("%s", informacoes[0]);
+    printf("CPF (apenas numeros): ");
+    scanf("%s", informacoes[1]);
+    printf("Data de nascimento (dd/mm/aaaa): ");
+    scanf("%s", informacoes[2]);
+    printf("Telefone para contato: ");
+    scanf("%s", informacoes[3]);
+    printf("E-mail para contato: ");
+    scanf("%s", informacoes[4]);
+    printf("\n####################################################\n\n");
+    return informacoes;
+}
+
 void tela_informacoes(void) {
     limpar_tela();
-    printf("\n");
     printf("###############################################################################\n");
-    printf("#                                   Informacoes                               #\n");
+    printf("#                            I N F O R M A C O E S                            #\n");
     printf("###############################################################################\n");
     printf("# Programa desenvolvido inteiramente em C com o intuito de facilitar a        #\n");
     printf("# administracao e gerencia de uma locadora de roupas e fantasias.             #\n");
@@ -66,9 +89,8 @@ void tela_informacoes(void) {
 
 void tela_orientacoes(void) {
     limpar_tela();
-    printf("\n");
     printf("###################################################################################################\n");
-    printf("#                                            Orientacoes                                          #\n");
+    printf("#                                      O R I E N T A C O E S                                      #\n");
     printf("###################################################################################################\n");
     printf("# Menu Clientes: Cadastro, consulta e remocao de clientes.                                        #\n");
     printf("# Menu Roupas e Fantasias: Adicao, informacoes e remocao de vestimentas.                          #\n");
