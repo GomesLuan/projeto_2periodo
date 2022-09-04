@@ -62,6 +62,7 @@ char **tela_cadastro_cliente() {
     printf("E-mail para contato: ");
     scanf("%s", informacoes[4]);
     printf("\n####################################################\n\n");
+    getchar();
     return informacoes;
 }
 
