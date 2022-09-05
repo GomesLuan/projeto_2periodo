@@ -16,6 +16,15 @@ int main(void) {
                 if (resposta_clientes == '1') {
                     cadastrar_cliente();
                 }
+                else if (resposta_clientes == '2') {
+                    info_cliente();
+                }
+                else if (resposta_clientes == '3') {
+                    alterar_cliente();
+                }
+                else if (resposta_clientes == '4') {
+                    remover_cliente();
+                } 
             }
         }
         if (resposta_principal == '5') {

@@ -40,7 +40,7 @@ char tela_clientes(void) {
     return resposta;
 }
 
-char **tela_cadastro_cliente() {
+char **tela_cadastro_cliente(void) {
     limpar_tela();
     //Alocando espaço para a variável
     char **informacoes = malloc(5* sizeof(char*));
@@ -49,87 +49,78 @@ char **tela_cadastro_cliente() {
     }
     printf("####################################################\n");
     printf("#     C A D A S T R O   D E   C L I E N T E S      #\n");
-    printf("####################################################\n\n");
-    printf("Por favor, informe os dados solicitados:\n\n");
-    printf("Nome: ");
-    scanf("%s", informacoes[0]);
-    printf("CPF (apenas numeros): ");
-    scanf("%s", informacoes[1]);
-    printf("Data de nascimento (dd/mm/aaaa): ");
-    scanf("%s", informacoes[2]);
-    printf("Telefone para contato: ");
-    scanf("%s", informacoes[3]);
-    printf("E-mail para contato: ");
-    scanf("%s", informacoes[4]);
-    printf("\n####################################################\n\n");
-    getchar();
-    return informacoes;
-}
-char tela_clientes_info(void) {
-    limpar_tela();
-    char resposta;
-    printf("#########################################\n");
-    printf("#       INFORMACOES DOS CLIENTES        #\n");
-    printf("#########################################\n");
-    printf("#       Nome:informacoes[0]             #\n");
-    printf("#       CPF:informacoes[1]              #\n");
-    printf("#       Nascimento:informacoes[2]       #\n");
-    printf("#       Telefone:informacoes[3]         #\n");
-    printf("#       E-Mail: informacoes[4]          #\n");
-    printf("#                                       #\n");
-    printf("#       0 - Voltar ao menu              #\n");
-    printf("#########################################\n\n");
-    printf("Escolha sua opcao: ");
-    scanf("%c", &resposta);
-    getchar();
-    return informacoes;
-}
-
-char **tela_alterar_dados_dos_clientes() {
-    limpar_tela();
-    //Alocando espaço para a variável
-    char **informacoes = malloc(5* sizeof(char*));
-    for (int i=0; i < 10; ++i) {
-        informacoes[i] = malloc(50* sizeof(char));
-    }
     printf("####################################################\n");
-    printf("#         ALTERAR INFORMACOES DOS CLIENTES         #\n");
-    printf("####################################################\n\n");
-    printf("Por favor, informe os dados solicitados:\n\n");
-    printf("Nome: ");
+    printf("# Por favor, informe os dados solicitados:\n");
+    printf("# Nome: ");
     scanf("%s", informacoes[0]);
-    printf("CPF (apenas numeros): ");
+    getchar();
+    printf("# CPF (apenas numeros): ");
     scanf("%s", informacoes[1]);
-    printf("Data de nascimento (dd/mm/aaaa): ");
+    getchar();
+    printf("# Data de nascimento (dd/mm/aaaa): ");
     scanf("%s", informacoes[2]);
-    printf("Telefone para contato: ");
+    getchar();
+    printf("# Telefone para contato: ");
     scanf("%s", informacoes[3]);
-    printf("E-mail para contato: ");
+    getchar();
+    printf("# E-mail para contato: ");
     scanf("%s", informacoes[4]);
-    printf("\n####################################################\n\n");
     getchar();
     return informacoes;
+}
+void tela_info_cliente(/*char *nome, char *cpf, char *nascimento, char *telefone, char *email*/) {
+    limpar_tela();
+    printf("###########################################################\n");
+    printf("#       I N F O R M A C O E S   D E   C L I E N T E       #\n");
+    printf("###########################################################\n");
+    printf("#       Nome:                                             #\n");
+    printf("#       CPF:                                              #\n");
+    printf("#       Data de nascimento:                               #\n");
+    printf("#       Telefone:                                         #\n");
+    printf("#       E-Mail:                                           #\n");
+    printf("###########################################################\n\n");
+    pausar_sistema();
+}
 
-char tela_remover_cliente(void) {
+char tela_alterar_cliente(/*char *nome, char *cpf, char *nascimento, char *telefone, char *email*/) {
     limpar_tela();
     char resposta;
-    printf("#########################################\n");
-    printf("#         EXCLUSAO DE CLIENTES          #\n");
-    printf("#########################################\n");
-    printf("#       INFORME O CPF DO CLIENTE        #\n");
-    printf("#                                       #\n");
-    printf("#              CPF:                     #\n");
-    printf("#                                       #\n");
-    printf("#                                       #\n");
-    printf("#                                       #\n");
-    printf("#       0 - Voltar ao menu              #\n");
-    printf("#########################################\n\n");
+    printf("#########################################################\n");
+    printf("#    A L T E R A R   D A D O S   D E   C L I E N T E    #\n");
+    printf("#########################################################\n");
+    printf("#       Qual informacao gostaria de alterar?            #\n");
+    printf("#       1 - Nome ()                                     #\n");
+    printf("#       2 - Data de nascimento ()                       #\n");
+    printf("#       3 - Telefone ()                                 #\n");
+    printf("#       4 - E-mail ()                                   #\n");
+    printf("#       0 - Retornar ao menu de clientes                #\n");
+    printf("#########################################################\n\n");
     printf("Escolha sua opcao: ");
-    scanf("%s", informacoes[0]);
-    printf("CPF (apenas numeros): ");
     scanf("%c", &resposta);
     getchar();
-    return informacoes[1];
+    return resposta;
+}
+
+char tela_remover_cliente(/*char *nome, char *cpf, char *nascimento, char *telefone, char *email*/) {
+    limpar_tela();
+    char resposta;
+    printf("#############################################################\n");
+    printf("#            R E M O C A O   D E   C L I E N T E            #\n");
+    printf("#############################################################\n");
+    printf("#       Nome:                                               #\n");
+    printf("#       CPF:                                                #\n");
+    printf("#       Data de nascimento:                                 #\n");
+    printf("#       Telefone:                                           #\n");
+    printf("#       E-Mail:                                             #\n");
+    printf("#                                                           #\n");
+    printf("#       Tem certeza que deseja remover este cliente?        #\n");
+    printf("#       1 - Sim                                             #\n");
+    printf("#       2 - Nao                                             #\n");
+    printf("#############################################################\n\n");
+    printf("Escolha sua opcao: ");
+    scanf("%c", &resposta);
+    getchar();
+    return resposta;
 }
 
 void tela_informacoes(void) {
