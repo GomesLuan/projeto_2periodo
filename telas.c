@@ -44,7 +44,7 @@ char **tela_cadastro_cliente(void) {
     limpar_tela();
     //Alocando espaço para a variável
     char **informacoes = malloc(5* sizeof(char*));
-    for (int i=0; i < 10; ++i) {
+    for (int i=0; i < 5; ++i) {
         informacoes[i] = malloc(50* sizeof(char));
     }
     printf("####################################################\n");
