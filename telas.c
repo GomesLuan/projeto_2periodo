@@ -68,32 +68,32 @@ char **tela_cadastro_cliente(void) {
     getchar();
     return informacoes;
 }
-void tela_info_cliente(/*char *nome, char *cpf, char *nascimento, char *telefone, char *email*/) {
+void tela_info_cliente(char *nome, char *cpf, char *nascimento, char *telefone, char *email) {
     limpar_tela();
     printf("###########################################################\n");
     printf("#       I N F O R M A C O E S   D E   C L I E N T E       #\n");
     printf("###########################################################\n");
-    printf("#       Nome:                                             #\n");
-    printf("#       CPF:                                              #\n");
-    printf("#       Data de nascimento:                               #\n");
-    printf("#       Telefone:                                         #\n");
-    printf("#       E-Mail:                                           #\n");
+    printf("#       Nome: %s\n", nome);
+    printf("#       CPF: %s\n", cpf);
+    printf("#       Data de nascimento: %s\n", nascimento);
+    printf("#       Telefone: %s\n", telefone);
+    printf("#       E-Mail: %s\n", email);
     printf("###########################################################\n\n");
     pausar_sistema();
 }
 
-char tela_alterar_cliente(/*char *nome, char *cpf, char *nascimento, char *telefone, char *email*/) {
+char tela_alterar_cliente(char *nome, char *nascimento, char *telefone, char *email) {
     limpar_tela();
     char resposta;
     printf("#########################################################\n");
     printf("#    A L T E R A R   D A D O S   D E   C L I E N T E    #\n");
     printf("#########################################################\n");
-    printf("#       Qual informacao gostaria de alterar?            #\n");
-    printf("#       1 - Nome ()                                     #\n");
-    printf("#       2 - Data de nascimento ()                       #\n");
-    printf("#       3 - Telefone ()                                 #\n");
-    printf("#       4 - E-mail ()                                   #\n");
-    printf("#       0 - Retornar ao menu de clientes                #\n");
+    printf("#       Qual informacao gostaria de alterar?\n");
+    printf("#       1 - Nome (%s)\n", nome);
+    printf("#       2 - Data de nascimento (%s)\n", nascimento);
+    printf("#       3 - Telefone (%s)\n", telefone);
+    printf("#       4 - E-mail (%s)\n", email);
+    printf("#       0 - Retornar ao menu de clientes\n");
     printf("#########################################################\n\n");
     printf("Escolha sua opcao: ");
     scanf("%c", &resposta);
@@ -101,21 +101,21 @@ char tela_alterar_cliente(/*char *nome, char *cpf, char *nascimento, char *telef
     return resposta;
 }
 
-char tela_remover_cliente(/*char *nome, char *cpf, char *nascimento, char *telefone, char *email*/) {
+char tela_remover_cliente(char *nome, char *cpf, char *nascimento, char *telefone, char *email) {
     limpar_tela();
     char resposta;
     printf("#############################################################\n");
     printf("#            R E M O C A O   D E   C L I E N T E            #\n");
     printf("#############################################################\n");
-    printf("#       Nome:                                               #\n");
-    printf("#       CPF:                                                #\n");
-    printf("#       Data de nascimento:                                 #\n");
-    printf("#       Telefone:                                           #\n");
-    printf("#       E-Mail:                                             #\n");
-    printf("#                                                           #\n");
-    printf("#       Tem certeza que deseja remover este cliente?        #\n");
-    printf("#       1 - Sim                                             #\n");
-    printf("#       2 - Nao                                             #\n");
+    printf("#       Nome: %s\n", nome);
+    printf("#       CPF: %s\n", cpf);
+    printf("#       Data de nascimento: %s\n", nascimento);
+    printf("#       Telefone: %s\n", telefone);
+    printf("#       E-Mail: %s\n", email);
+    printf("#\n");
+    printf("#       Tem certeza que deseja remover este cliente?\n");
+    printf("#       1 - Sim\n");
+    printf("#       2 - Nao \n");
     printf("#############################################################\n\n");
     printf("Escolha sua opcao: ");
     scanf("%c", &resposta);
