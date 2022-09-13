@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "operacoes.c"
+#include "operacoes.h"
 
 int main(void) {
     //Inicio do programa

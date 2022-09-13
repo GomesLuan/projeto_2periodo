@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "op_sistema.c"
+#include "op_sistema.h"
 
 char tela_principal(void) {
     limpar_tela();
