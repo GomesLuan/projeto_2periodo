@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "op_sistema.h"
 
 char tela_principal(void) {
-    limpar_tela();
+    system("clear||cls");
     char resposta;
     printf("#########################################\n");
     printf("#      M E N U   P R I N C I P A L      #\n");
@@ -23,7 +22,7 @@ char tela_principal(void) {
 }
 
 char tela_clientes(void) {
-    limpar_tela();
+    system("clear||cls");
     char resposta;
     printf("#########################################\n");
     printf("#    M E N U   D E   C L I E N T E S    #\n");
@@ -41,7 +40,7 @@ char tela_clientes(void) {
 }
 
 char **tela_cadastro_cliente(void) {
-    limpar_tela();
+    system("clear||cls");
     //Alocando espaço para a variável
     char **informacoes = malloc(5* sizeof(char*));
     for (int i=0; i < 5; ++i) {
@@ -69,7 +68,7 @@ char **tela_cadastro_cliente(void) {
     return informacoes;
 }
 void tela_info_cliente(char *nome, char *cpf, char *nascimento, char *telefone, char *email) {
-    limpar_tela();
+    system("clear||cls");
     printf("###########################################################\n");
     printf("#       I N F O R M A C O E S   D E   C L I E N T E       #\n");
     printf("###########################################################\n");
@@ -79,11 +78,11 @@ void tela_info_cliente(char *nome, char *cpf, char *nascimento, char *telefone, 
     printf("#       Telefone: %s\n", telefone);
     printf("#       E-Mail: %s\n", email);
     printf("###########################################################\n\n");
-    pausar_sistema();
+    system("pause||read -p \"Pressione ENTER para continuar \" saindo");
 }
 
 char tela_alterar_cliente(char *nome, char *nascimento, char *telefone, char *email) {
-    limpar_tela();
+    system("clear||cls");
     char resposta;
     printf("#########################################################\n");
     printf("#    A L T E R A R   D A D O S   D E   C L I E N T E    #\n");
@@ -102,7 +101,7 @@ char tela_alterar_cliente(char *nome, char *nascimento, char *telefone, char *em
 }
 
 char tela_remover_cliente(char *nome, char *cpf, char *nascimento, char *telefone, char *email) {
-    limpar_tela();
+    system("clear||cls");
     char resposta;
     printf("#############################################################\n");
     printf("#            R E M O C A O   D E   C L I E N T E            #\n");
@@ -124,7 +123,7 @@ char tela_remover_cliente(char *nome, char *cpf, char *nascimento, char *telefon
 }
 
 void tela_informacoes(void) {
-    limpar_tela();
+    system("clear||cls");
     printf("###############################################################################\n");
     printf("#                            I N F O R M A C O E S                            #\n");
     printf("###############################################################################\n");
@@ -142,11 +141,11 @@ void tela_informacoes(void) {
     printf("# Luan Victor de Araujo Gomes                                                 #\n");
     printf("# E-mail: luan.araujo.gom@gmail.com                                           #\n");
     printf("###############################################################################\n\n");
-    pausar_sistema();
+    system("pause||read -p \"Pressione ENTER para continuar \" saindo");
 }
 
 void tela_orientacoes(void) {
-    limpar_tela();
+    system("clear||cls");
     printf("###################################################################################################\n");
     printf("#                                      O R I E N T A C O E S                                      #\n");
     printf("###################################################################################################\n");
@@ -156,7 +155,7 @@ void tela_orientacoes(void) {
     printf("# Menu Relatorio: Informacoes de todos os clientes e vestimentas, alem do historico de locacoes.  #\n");
     printf("# Menu Informacoes do projeto: Exibe informacoes gerais do projeto e a equipe de desenvolvedores. #\n");
     printf("###################################################################################################\n\n");
-    pausar_sistema();
+    system("pause||read -p \"Pressione ENTER para continuar \" saindo");
 }
 
 
