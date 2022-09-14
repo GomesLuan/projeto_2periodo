@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "operacoes.h"
+#include "telas.h"
 
 int main(void) {
     //Inicio do programa
@@ -27,7 +28,7 @@ int main(void) {
                 } 
             }
         }
-        if (resposta_principal == '5') {
+        else if (resposta_principal == '5') {
             tela_informacoes();
         }
         else if (resposta_principal == '6') {

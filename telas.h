@@ -1,5 +1,3 @@
-#include "telas.c"
-
 char tela_principal(void);
 char tela_clientes(void);
 char **tela_cadastro_cliente(void);

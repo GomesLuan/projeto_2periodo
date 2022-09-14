@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "telas.h"
+#include "op_sistema.h"
 
 //Variável provisória
 char cliente[5][50] = {"Fulano da Silva", "12345678909", "01/01/2000", "99999-9999", "fulano@gmail.com"};
