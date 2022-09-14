@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include "operacoes.h"
-#include "telas.h"
+#include "operacoes_cliente.h"
+#include "telas_cliente.h"
+#include "telas_gerais.h"
 
 int main(void) {
     //Inicio do programa
