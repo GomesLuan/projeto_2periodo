@@ -45,6 +45,7 @@ char **tela_cadastro_cliente(void) {
     printf("# E-mail para contato: ");
     scanf("%s", informacoes[4]);
     getchar();
+    printf("####################################################\n");
     return informacoes;
 }
 void tela_info_cliente(char *nome, char *cpf, char *nascimento, char *telefone, char *email) {
@@ -58,7 +59,8 @@ void tela_info_cliente(char *nome, char *cpf, char *nascimento, char *telefone, 
     printf("#       Telefone: %s\n", telefone);
     printf("#       E-Mail: %s\n", email);
     printf("###########################################################\n\n");
-    system("pause||read -p \"Pressione ENTER para continuar \" saindo");
+    printf("Pressione ENTER para continuar ");
+    getchar();
 }
 
 char tela_alterar_cliente(char *nome, char *nascimento, char *telefone, char *email) {

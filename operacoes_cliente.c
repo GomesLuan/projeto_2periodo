@@ -13,7 +13,8 @@ void cadastrar_cliente(void) {
     info = tela_cadastro_cliente(); 
     //Adição dos dados à lista
     printf("\nCadastro realizado com sucesso!\n\n");
-    system("pause||read -p \"Pressione ENTER para continuar \" saindo");
+    printf("Pressione ENTER para continuar ");
+    getchar();
 }
 
 void info_cliente(void) {
@@ -37,7 +38,8 @@ void alterar_cliente() {
             getchar();
             //Alteração do nome na lista
             printf("\nAlteracao realizada com sucesso!\n\n");
-            system("pause||read -p \"Pressione ENTER para continuar \" saindo");
+            printf("Pressione ENTER para continuar ");
+            getchar();
         }
         else if (resp == '2') {
             printf("\nPor favor informe a nova data de nascimento: ");
@@ -45,7 +47,8 @@ void alterar_cliente() {
             getchar();
             //Alteração da data de nascimento na lista
             printf("\nAlteracao realizada com sucesso!\n\n");
-            system("pause||read -p \"Pressione ENTER para continuar \" saindo");
+            printf("Pressione ENTER para continuar ");
+            getchar();
         }
         else if (resp == '3') {
             printf("\nPor favor informe o novo telefone: ");
@@ -53,7 +56,8 @@ void alterar_cliente() {
             getchar();
             //Alteração do telefone na lista
             printf("\nAlteracao realizada com sucesso!\n\n");
-            system("pause||read -p \"Pressione ENTER para continuar \" saindo");
+            printf("Pressione ENTER para continuar ");
+            getchar();
         }
         else if (resp == '4') {
             printf("\nPor favor informe o novo e-mail: ");
@@ -61,11 +65,13 @@ void alterar_cliente() {
             getchar();
             //Alteração do e-mail na lista
             printf("\nAlteracao realizada com sucesso!\n\n");
-            system("pause||read -p \"Pressione ENTER para continuar \" saindo");
+            printf("Pressione ENTER para continuar ");
+            getchar();
         }
         else if (resp != '0') {
             printf("\nValor invalido!\n\n");
-            system("pause||read -p \"Pressione ENTER para continuar \" saindo");
+            printf("Pressione ENTER para continuar ");
+            getchar();
         }
     }
 }
@@ -86,5 +92,6 @@ void remover_cliente() {
     else {
         printf("\nValor invalido!\n\n");
     }
-    system("pause||read -p \"Pressione ENTER para continuar \" saindo");
+    printf("Pressione ENTER para continuar ");
+    getchar();
 }

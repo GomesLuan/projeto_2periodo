@@ -27,6 +27,11 @@ int main(void) {
                 else if (resposta_clientes == '4') {
                     remover_cliente();
                 } 
+                else if (resposta_clientes != '0') {
+                    printf("\nResposta invalida!\n\n");
+                    printf("Pressione ENTER para continuar ");
+                    getchar();
+                }
             }
         }
         else if (resposta_principal == '5') {
@@ -35,6 +40,11 @@ int main(void) {
         else if (resposta_principal == '6') {
             tela_orientacoes();
         }  
+        else if (resposta_principal != '0') {
+            printf("\nResposta invalida!\n\n");
+            printf("Pressione ENTER para continuar ");
+            getchar();
+        }
     }
     return 0;
 }

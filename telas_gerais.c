@@ -40,7 +40,8 @@ void tela_informacoes(void) {
     printf("# Luan Victor de Araujo Gomes                                                 #\n");
     printf("# E-mail: luan.araujo.gom@gmail.com                                           #\n");
     printf("###############################################################################\n\n");
-    system("pause||read -p \"Pressione ENTER para continuar \" saindo");
+    printf("Pressione ENTER para continuar ");
+    getchar();
 }
 
 void tela_orientacoes(void) {
@@ -54,5 +55,6 @@ void tela_orientacoes(void) {
     printf("# Menu Relatorio: Informacoes de todos os clientes e vestimentas, alem do historico de locacoes.  #\n");
     printf("# Menu Informacoes do projeto: Exibe informacoes gerais do projeto e a equipe de desenvolvedores. #\n");
     printf("###################################################################################################\n\n");
-    system("pause||read -p \"Pressione ENTER para continuar \" saindo");
+    printf("Pressione ENTER para continuar ");
+    getchar();
 }
