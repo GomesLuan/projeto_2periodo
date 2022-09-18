@@ -48,3 +48,18 @@ char **tela_cadastro_vestimenta(void) {
     printf("####################################################\n");
     return informacoes;
 }
+
+void tela_info_vestimenta(char *nome, char *num_p, char *num_m, char *num_g, char *preco) {
+    system("clear||cls");
+    printf("#################################################################\n");
+    printf("#       I N F O R M A C O E S   D E   V E S T I M E N T A       #\n");
+    printf("#################################################################\n");
+    printf("#       Nome de identificacao: %s\n", nome);
+    printf("#       Numero de unidades de tamanho P: %s\n", num_p);
+    printf("#       Numero de unidades de tamanho M: %s\n", num_m);
+    printf("#       Numero de unidades de tamanho G: %s\n", num_g);
+    printf("#       Preco da locacao diaria (R$): %s\n", preco);
+    printf("#################################################################\n\n");
+    printf("Pressione ENTER para continuar ");
+    getchar();
+}

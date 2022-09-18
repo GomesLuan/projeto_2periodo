@@ -42,6 +42,9 @@ int main(void) {
                 if (resposta_vestimentas == '1') {
                     cadastrar_vestimenta();
                 }
+                else if (resposta_vestimentas == '2') {
+                    info_vestimenta();
+                }
         }
         }
         else if (resposta_principal == '5') {
