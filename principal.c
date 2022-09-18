@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include "operacoes_cliente.h"
+#include "operacoes_vestimenta.h"
 #include "telas_cliente.h"
 #include "telas_gerais.h"
-#include "telas_vestimentas.h"
+#include "telas_vestimenta.h"
 
 int main(void) {
     //Inicio do programa
@@ -10,7 +11,7 @@ int main(void) {
     while (resposta_principal != '0') {
         resposta_principal = tela_principal();
         char resposta_clientes = '1';
-        char resposta_vestimentas;
+        char resposta_vestimentas = '1';
         //char resposta_locacoes;
         //char resposta_relatorios;
         if (resposta_principal == '1') {
@@ -38,6 +39,9 @@ int main(void) {
         else if (resposta_principal == '2') {
             while (resposta_vestimentas != '0') {
                 resposta_vestimentas = tela_vestimentas();
+                if (resposta_vestimentas == '1') {
+                    cadastrar_vestimenta();
+                }
         }
         }
         else if (resposta_principal == '5') {

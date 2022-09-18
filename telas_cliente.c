@@ -48,6 +48,7 @@ char **tela_cadastro_cliente(void) {
     printf("####################################################\n");
     return informacoes;
 }
+
 void tela_info_cliente(char *nome, char *cpf, char *nascimento, char *telefone, char *email) {
     system("clear||cls");
     printf("###########################################################\n");

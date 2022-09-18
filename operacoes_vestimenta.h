@@ -1,0 +1,1 @@
+void cadastrar_vestimenta(void);
