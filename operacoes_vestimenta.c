@@ -75,3 +75,23 @@ void alterar_vestimenta(void) {
         }
     }
 }
+
+void remover_vestimenta(void) {
+    //char *nome;
+    char resp = '2';
+    //Input com o nome de identificação da vestimenta
+    //Busca das informações da vestimenta solicitada
+    resp = tela_remover_vestimenta(vestimenta[0], vestimenta[1], vestimenta[2], vestimenta[3], vestimenta[4]);
+    if (resp == '1') {
+        printf("\nVestimenta removida.\n\n");
+        //remove vestimenta da lista
+    }
+    else if (resp == '2') {
+        printf("\nRetornando...\n\n");
+    }
+    else {
+        printf("\nValor invalido!\n\n");
+    }
+    printf("Pressione ENTER para continuar ");
+    getchar();
+}

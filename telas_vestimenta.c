@@ -74,9 +74,31 @@ char tela_alterar_vestimenta(char *num_p, char *num_m, char *num_g, char *preco)
     printf("#       1 - Numero de unidades de tamanho P: (%s)\n", num_p);
     printf("#       2 - Numero de unidades de tamanho M: (%s)\n", num_m);
     printf("#       3 - Numero de unidades de tamanho G: (%s)\n", num_g);
-    printf("#       4 - Preco da locacao diaria (R$):(%s)\n", preco);
+    printf("#       4 - Preco da locacao diaria (R$): (%s)\n", preco);
     printf("#       0 - Retornar ao menu de vestimentas\n");
     printf("#########################################################\n\n");
+    printf("Escolha sua opcao: ");
+    scanf("%c", &resposta);
+    getchar();
+    return resposta;
+}
+
+char tela_remover_vestimenta(char *nome, char *num_p, char *num_m, char *num_g, char *preco) {
+    system("clear||cls");
+    char resposta;
+    printf("###################################################################\n");
+    printf("#            R E M O C A O   D E   V E S T I M E N T A            #\n");
+    printf("###################################################################\n");
+    printf("#       Nome de identificação: %s\n", nome);
+    printf("#       Numero de unidades de tamanho P: %s\n", num_p);
+    printf("#       Numero de unidades de tamanho M: %s\n", num_m);
+    printf("#       Numero de unidades de tamanho G: %s\n", num_g);
+    printf("#       Preco da locacao diaria (R$): %s\n", preco);
+    printf("#\n");
+    printf("#       Tem certeza que deseja remover esta vestimenta?\n");
+    printf("#       1 - Sim\n");
+    printf("#       2 - Nao \n");
+    printf("#############################################################\n\n");
     printf("Escolha sua opcao: ");
     scanf("%c", &resposta);
     getchar();

@@ -48,6 +48,14 @@ int main(void) {
                 else if (resposta_vestimentas == '3') {
                     alterar_vestimenta();
                 }
+                else if (resposta_vestimentas == '4') {
+                    remover_vestimenta();
+                } 
+                else if (resposta_vestimentas != '0') {
+                    printf("\nResposta invalida!\n\n");
+                    printf("Pressione ENTER para continuar ");
+                    getchar();
+                }
         }
         }
         else if (resposta_principal == '5') {
