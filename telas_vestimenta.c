@@ -63,3 +63,22 @@ void tela_info_vestimenta(char *nome, char *num_p, char *num_m, char *num_g, cha
     printf("Pressione ENTER para continuar ");
     getchar();
 }
+
+char tela_alterar_vestimenta(char *num_p, char *num_m, char *num_g, char *preco) {
+    system("clear||cls");
+    char resposta;
+    printf("##############################################################\n");
+    printf("#    A L T E R A R   D A D O S   D E   V E S T I M E N T A   #\n");
+    printf("##############################################################\n");
+    printf("#       Qual informacao gostaria de alterar?\n");
+    printf("#       1 - Numero de unidades de tamanho P: (%s)\n", num_p);
+    printf("#       2 - Numero de unidades de tamanho M: (%s)\n", num_m);
+    printf("#       3 - Numero de unidades de tamanho G: (%s)\n", num_g);
+    printf("#       4 - Preco da locacao diaria (R$):(%s)\n", preco);
+    printf("#       0 - Retornar ao menu de vestimentas\n");
+    printf("#########################################################\n\n");
+    printf("Escolha sua opcao: ");
+    scanf("%c", &resposta);
+    getchar();
+    return resposta;
+}

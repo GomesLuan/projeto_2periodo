@@ -45,6 +45,9 @@ int main(void) {
                 else if (resposta_vestimentas == '2') {
                     info_vestimenta();
                 }
+                else if (resposta_vestimentas == '3') {
+                    alterar_vestimenta();
+                }
         }
         }
         else if (resposta_principal == '5') {

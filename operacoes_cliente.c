@@ -24,7 +24,7 @@ void info_cliente(void) {
     tela_info_cliente(cliente[0], cliente[1], cliente[2], cliente[3], cliente[4]);
 }
 
-void alterar_cliente() {
+void alterar_cliente(void) {
     //char *cpf;
     char *novo_valor = malloc(50* sizeof(char));
     char resp = '1';
@@ -76,7 +76,7 @@ void alterar_cliente() {
     }
 }
 
-void remover_cliente() {
+void remover_cliente(void) {
     //char *cpf;
     char resp = '2';
     //Input com o cpf do cliente
