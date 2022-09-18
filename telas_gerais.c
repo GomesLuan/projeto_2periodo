@@ -8,7 +8,7 @@ char tela_principal(void) {
     printf("#      M E N U   P R I N C I P A L      #\n");
     printf("#########################################\n");
     printf("#       1 - Clientes                    #\n");
-    printf("#       2 - Roupas e Fantasias          #\n");
+    printf("#       2 - Vestimentas                 #\n");
     printf("#       3 - Locacoes                    #\n");
     printf("#       4 - Relatorios                  #\n");
     printf("#       5 - Informacoes do Projeto      #\n");

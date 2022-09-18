@@ -1,0 +1,1 @@
+char tela_vestimentas(void);

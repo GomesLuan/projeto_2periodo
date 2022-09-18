@@ -2,6 +2,7 @@
 #include "operacoes_cliente.h"
 #include "telas_cliente.h"
 #include "telas_gerais.h"
+#include "telas_vestimentas.h"
 
 int main(void) {
     //Inicio do programa
@@ -9,7 +10,7 @@ int main(void) {
     while (resposta_principal != '0') {
         resposta_principal = tela_principal();
         char resposta_clientes = '1';
-        //char resposta_roupas;
+        char resposta_vestimentas;
         //char resposta_locacoes;
         //char resposta_relatorios;
         if (resposta_principal == '1') {
@@ -33,6 +34,11 @@ int main(void) {
                     getchar();
                 }
             }
+        }
+        else if (resposta_principal == '2') {
+            while (resposta_vestimentas != '0') {
+                resposta_vestimentas = tela_vestimentas();
+        }
         }
         else if (resposta_principal == '5') {
             tela_informacoes();
