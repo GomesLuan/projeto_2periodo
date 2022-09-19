@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "operacoes_cliente.h"
 #include "operacoes_vestimenta.h"
-#include "operacoes_locacoes.h"
+#include "operacoes_locacao.h"
 #include "telas_cliente.h"
 #include "telas_gerais.h"
 #include "telas_vestimenta.h"
