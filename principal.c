@@ -2,10 +2,12 @@
 #include "operacoes_cliente.h"
 #include "operacoes_vestimenta.h"
 #include "operacoes_locacao.h"
+#include "operacoes_relatorio.h"
 #include "telas_cliente.h"
 #include "telas_gerais.h"
 #include "telas_vestimenta.h"
 #include "telas_locacoes.h"
+
 int main(void) {
     //Inicio do programa
     char resposta_principal = '1';
@@ -13,8 +15,8 @@ int main(void) {
         resposta_principal = tela_principal();
         char resposta_clientes = '1';
         char resposta_vestimentas = '1';
-        char resposta_locacoes= '1';
-        //char resposta_relatorios;
+        char resposta_locacoes = '1';
+        char resposta_relatorios = '1';
         if (resposta_principal == '1') {
             while (resposta_clientes != '0') {
                 resposta_clientes = tela_clientes();
@@ -57,7 +59,7 @@ int main(void) {
                     printf("Pressione ENTER para continuar ");
                     getchar();
                 }
-        }
+            }
         }
         else if (resposta_principal == '3') {
             while (resposta_locacoes != '0') {
@@ -79,7 +81,26 @@ int main(void) {
                     printf("Pressione ENTER para continuar ");
                     getchar();
                 }
+            }
         }
+        else if (resposta_principal == '4') {
+            while (resposta_relatorios != '0') {
+                resposta_relatorios = tela_relatorios();
+                if (resposta_relatorios == '1') {
+                    relatorio_clientes();
+                }
+                else if (resposta_relatorios == '2') {
+                    relatorio_vestimentas();
+                }
+                else if (resposta_relatorios == '3') {
+                    relatorio_locacoes();
+                }
+                else if (resposta_relatorios != '0') {
+                    printf("\nResposta invalida!\n\n");
+                    printf("Pressione ENTER para continuar ");
+                    getchar();
+                }
+            }
         }
         else if (resposta_principal == '5') {
             tela_informacoes();
