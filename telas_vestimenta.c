@@ -19,34 +19,29 @@ char tela_vestimentas(void) {
     return resposta;
 }
 
-char **tela_cadastro_vestimenta(void) {
+void tela_cadastro_vestimenta(char **nome, int *num_p, int *num_m, int *num_g, float *preco) {
     system("clear||cls");
     //Alocando espaço para a variável
-    char **informacoes = malloc(5* sizeof(char*));
-    for (int i=0; i < 5; ++i) {
-        informacoes[i] = malloc(50* sizeof(char));
-    }
     printf("########################################################\n");
     printf("#      C A D A S T R O   D E   V E S T I M E N T A     #\n");
     printf("########################################################\n");
     printf("# Por favor, informe os dados solicitados:\n");
     printf("# Nome de identificacao: ");
-    scanf("%s", informacoes[0]);
+    scanf("%s", *nome);
     getchar();
     printf("# Numero de unidades de tamanho P: ");
-    scanf("%s", informacoes[1]);
+    scanf("%d", num_p);
     getchar();
     printf("# Numero de unidades de tamanho M: ");
-    scanf("%s", informacoes[2]);
+    scanf("%d", num_m);
     getchar();
     printf("# Numero de unidades de tamanho G: ");
-    scanf("%s", informacoes[3]);
+    scanf("%d", num_g);
     getchar();
     printf("# Preco da locacao diaria (R$): ");
-    scanf("%s", informacoes[4]);
+    scanf("%f", preco);
     getchar();
     printf("####################################################\n");
-    return informacoes;
 }
 
 void tela_info_vestimenta(char *nome, char *num_p, char *num_m, char *num_g, char *preco) {

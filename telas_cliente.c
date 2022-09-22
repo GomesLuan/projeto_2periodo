@@ -19,43 +19,37 @@ char tela_clientes(void) {
     return resposta;
 }
 
-char **tela_cadastro_cliente(void) {
+void tela_cadastro_cliente(char **cpf, char **nome, char **nasc, char **tel, char **email) {
     system("clear||cls");
-    //Alocando espaço para a variável
-    char **informacoes = malloc(5* sizeof(char*));
-    for (int i=0; i < 5; ++i) {
-        informacoes[i] = malloc(50* sizeof(char));
-    }
     printf("####################################################\n");
     printf("#     C A D A S T R O   D E   C L I E N T E S      #\n");
     printf("####################################################\n");
     printf("# Por favor, informe os dados solicitados:\n");
-    printf("# Nome: ");
-    scanf("%s", informacoes[0]);
-    getchar();
     printf("# CPF (apenas numeros): ");
-    scanf("%s", informacoes[1]);
+    scanf("%s", *cpf);
+    getchar();
+    printf("# Nome: ");
+    scanf("%s", *nome);
     getchar();
     printf("# Data de nascimento (dd/mm/aaaa): ");
-    scanf("%s", informacoes[2]);
+    scanf("%s", *nasc);
     getchar();
     printf("# Telefone para contato: ");
-    scanf("%s", informacoes[3]);
+    scanf("%s", *tel);
     getchar();
     printf("# E-mail para contato: ");
-    scanf("%s", informacoes[4]);
+    scanf("%s", *email);
     getchar();
     printf("####################################################\n");
-    return informacoes;
 }
 
-void tela_info_cliente(char *nome, char *cpf, char *nascimento, char *telefone, char *email) {
+void tela_info_cliente(char *cpf, char *nome, char *nascimento, char *telefone, char *email) {
     system("clear||cls");
     printf("###########################################################\n");
     printf("#       I N F O R M A C O E S   D E   C L I E N T E       #\n");
     printf("###########################################################\n");
-    printf("#       Nome: %s\n", nome);
     printf("#       CPF: %s\n", cpf);
+    printf("#       Nome: %s\n", nome);
     printf("#       Data de nascimento: %s\n", nascimento);
     printf("#       Telefone: %s\n", telefone);
     printf("#       E-Mail: %s\n", email);
@@ -83,14 +77,14 @@ char tela_alterar_cliente(char *nome, char *nascimento, char *telefone, char *em
     return resposta;
 }
 
-char tela_remover_cliente(char *nome, char *cpf, char *nascimento, char *telefone, char *email) {
+char tela_remover_cliente(char *cpf, char *nome, char *nascimento, char *telefone, char *email) {
     system("clear||cls");
     char resposta;
     printf("#############################################################\n");
     printf("#            R E M O C A O   D E   C L I E N T E            #\n");
     printf("#############################################################\n");
-    printf("#       Nome: %s\n", nome);
     printf("#       CPF: %s\n", cpf);
+    printf("#       Nome: %s\n", nome);
     printf("#       Data de nascimento: %s\n", nascimento);
     printf("#       Telefone: %s\n", telefone);
     printf("#       E-Mail: %s\n", email);

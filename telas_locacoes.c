@@ -19,34 +19,28 @@ char tela_locacoes(void) {
     return resposta;
 }
 
-char **tela_cadastro_locacao(void) {
+void tela_cadastro_locacao(char **num_id, char **cpf, char **nome_vest, char **data_inicio, char **data_fim) {
     system("clear||cls");
-    //Alocando espaço para a variável
-    char **informacoes = malloc(5* sizeof(char*));
-    for (int i=0; i < 5; ++i) {
-        informacoes[i] = malloc(50* sizeof(char));
-    }
     printf("########################################################\n");
     printf("#          C O N T R A T O   D E   A L U G U E L       #\n");
     printf("########################################################\n");
     printf("# Por favor, informe os dados solicitados:\n");
     printf("# Numero de identificacao da locacao (6 digitos): ");
-    scanf("%s", informacoes[0]);
+    scanf("%s", *num_id);
     getchar();
     printf("# CPF do cliente responsavel: ");
-    scanf("%s", informacoes[1]);
+    scanf("%s", *cpf);
     getchar();
     printf("# Nome da vestimenta alugada: ");
-    scanf("%s", informacoes[2]);
+    scanf("%s", *nome_vest);
     getchar();
     printf("# Data de inicio da locacao (dd/mm/aaaa): ");
-    scanf("%s", informacoes[3]);
+    scanf("%s", *data_inicio);
     getchar();
     printf("# Data de fim da locacao (dd/mm/aaaa): ");
-    scanf("%s", informacoes[4]);
+    scanf("%s", *data_fim);
     getchar();
     printf("########################################################\n");
-    return informacoes;
 }
 
 void tela_info_locacao(char *num_id, char *cpf, char *nome_vest, char *data_inicio, char *data_fim) {

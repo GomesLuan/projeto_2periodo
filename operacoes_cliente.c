@@ -3,14 +3,15 @@
 #include "telas_cliente.h"
 
 //Variável provisória
-char cliente[5][50] = {"Fulano da Silva", "12345678909", "01/01/2000", "99999-9999", "fulano@gmail.com"};
+char cliente[5][50] = {"12345678909", "Fulano da Silva", "01/01/2000", "99999-9999", "fulano@gmail.com"};
 
 void cadastrar_cliente(void) {
-    char **info = malloc(5* sizeof(char*));
-    for (int i=0; i < 5; ++i) {
-        info[i] = malloc(50* sizeof(char));
-    }
-    info = tela_cadastro_cliente(); 
+    char *cpf = malloc(50* sizeof(char));
+    char *nome = malloc(50* sizeof(char));
+    char *nasc = malloc(50* sizeof(char));
+    char *tel = malloc(50* sizeof(char));
+    char *email = malloc(50* sizeof(char));
+    tela_cadastro_cliente(&cpf, &nome, &nasc, &tel, &email); 
     //Adição dos dados à lista
     printf("\nCadastro realizado com sucesso!\n\n");
     printf("Pressione ENTER para continuar ");
@@ -31,7 +32,7 @@ void alterar_cliente(void) {
     //Input com o cpf do cliente
     //Busca das informações do cliente solicitado
     while (resp != '0') {
-        resp = tela_alterar_cliente(cliente[0], cliente[2], cliente[3], cliente[4]);
+        resp = tela_alterar_cliente(cliente[1], cliente[2], cliente[3], cliente[4]);
         if (resp == '1') {
             printf("\nPor favor informe o novo nome: ");
             scanf("%s", novo_valor);

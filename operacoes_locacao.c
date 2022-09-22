@@ -6,11 +6,12 @@
 char locacao[5][50] = {"123456", "12345678909", "Fantasia do Batman", "01/01/2023", "03/01/2023"};
 
 void cadastrar_locacao(void) {
-    char **info = malloc(5* sizeof(char*));
-    for (int i=0; i < 5; ++i) {
-        info[i] = malloc(50* sizeof(char));
-    }
-    info = tela_cadastro_locacao(); 
+    char *num_id = malloc(50* sizeof(char));
+    char *cpf = malloc(50* sizeof(char));
+    char *nome_vest = malloc(50* sizeof(char));
+    char *data_inicio = malloc(50* sizeof(char));
+    char *data_fim = malloc(50* sizeof(char));
+    tela_cadastro_locacao(&num_id, &cpf, &nome_vest, &data_inicio, &data_fim); 
     //Adição dos dados à lista
     printf("\nContrato realizado com sucesso!\n\n");
     printf("Pressione ENTER para continuar ");
