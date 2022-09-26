@@ -21,23 +21,6 @@ char tela_principal(void) {
     return resposta;
 }
 
-char tela_relatorios(void) {
-    system("clear||cls");
-    char resposta;
-    printf("###############################################\n");
-    printf("#             R E L A T O R I O S             #\n");
-    printf("###############################################\n");
-    printf("#       1 - Relatorio de clientes             #\n");
-    printf("#       2 - Relatorio de vestimentas          #\n");
-    printf("#       3 - Relatorio de locacoes             #\n");
-    printf("#       0 - Retornar ao menu principal        #\n");
-    printf("###############################################\n\n");
-    printf("Escolha sua opcao: ");
-    scanf("%c", &resposta);
-    getchar();
-    return resposta;
-}
-
 void tela_informacoes(void) {
     system("clear||cls");
     printf("###############################################################################\n");

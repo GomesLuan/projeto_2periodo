@@ -2,7 +2,7 @@
 #include "operacoes_cliente.h"
 #include "operacoes_vestimenta.h"
 #include "operacoes_locacao.h"
-#include "operacoes_relatorio.h"
+#include "telas_relatorio.h"
 #include "telas_cliente.h"
 #include "telas_gerais.h"
 #include "telas_vestimenta.h"
@@ -87,13 +87,13 @@ int main(void) {
             while (resposta_relatorios != '0') {
                 resposta_relatorios = tela_relatorios();
                 if (resposta_relatorios == '1') {
-                    relatorio_clientes();
+                    tela_relatorio_clientes();
                 }
                 else if (resposta_relatorios == '2') {
-                    relatorio_vestimentas();
+                    tela_relatorio_vestimentas();
                 }
                 else if (resposta_relatorios == '3') {
-                    relatorio_locacoes();
+                    tela_relatorio_locacoes();
                 }
                 else if (resposta_relatorios != '0') {
                     printf("\nResposta invalida!\n\n");
