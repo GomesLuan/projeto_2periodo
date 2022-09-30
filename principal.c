@@ -76,6 +76,12 @@ int main(void) {
                 else if (resposta_locacoes== '4') {
                     remover_locacao();
                 } 
+                else if (resposta_locacoes== '5') {
+                    receber_produto_alugado();
+                } 
+                else if (resposta_locacoes== '6') {
+                    devolver_produto_alugado();
+                } 
                 else if (resposta_locacoes != '0') {
                     printf("\nResposta inválida!\n\n");
                     printf("Pressione ENTER para continuar ");

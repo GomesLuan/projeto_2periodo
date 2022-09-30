@@ -106,3 +106,47 @@ void remover_locacao(void) {
     printf("Pressione ENTER para continuar ");
     getchar();
 }
+
+void receber_produto_alugado(void) {
+    //char *num;
+    char resp = '2';
+    //Input com o numero de identificação do contrato
+    //Busca das informações do contrato solicitado
+    //Teste se o contrato está pendente
+    resp = tela_receber_produto(locacao[0], locacao[1], locacao[2], locacao[3], locacao[4], locacao[5]);
+    if (resp == '1') {
+        printf("\nProduto recebido!\n\n");
+        //muda o status da locação de pendente para ativa
+        //remove uma unidade da vestimenta
+    }
+    else if (resp == '2') {
+        printf("\nRetornando...\n\n");
+    }
+    else {
+        printf("\nValor inválido!\n\n");
+    }
+    printf("Pressione ENTER para continuar ");
+    getchar();
+}
+
+void devolver_produto_alugado(void) {
+    //char *num;
+    char resp = '2';
+    //Input com o numero de identificação do contrato
+    //Busca das informações do contrato solicitado
+    //Teste se o contrato está ativo
+    resp = tela_devolver_produto(locacao[0], locacao[1], locacao[2], locacao[3], locacao[4], locacao[5]);
+    if (resp == '1') {
+        printf("\nProduto devolvido!\n\n");
+        //adiciona uma unidade da vestimenta
+        //muda o status da locação de ativa para finalizada
+    }
+    else if (resp == '2') {
+        printf("\nRetornando...\n\n");
+    }
+    else {
+        printf("\nValor inválido!\n\n");
+    }
+    printf("Pressione ENTER para continuar ");
+    getchar();
+}
