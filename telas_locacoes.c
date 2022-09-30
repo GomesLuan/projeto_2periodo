@@ -7,7 +7,7 @@ char tela_locacoes(void) {
     printf("###################################################\n");
     printf("#           M E N U   D E   L O C A Ç Õ E S       #\n");
     printf("###################################################\n");
-    printf("#       1 - Contratar locação                     #\n");
+    printf("#       1 - Agendar locação                       #\n");
     printf("#       2 - Informações de locação                #\n");
     printf("#       3 - Alterar dados da locação              #\n");
     printf("#       4 - Cancelar locação                      #\n");
@@ -19,7 +19,7 @@ char tela_locacoes(void) {
     return resposta;
 }
 
-void tela_cadastro_locacao(char **num_id, char **cpf, char **nome_vest, char *tam_vest, char **data_inicio, char **data_fim) {
+void tela_cadastro_locacao(char **num_id, char **cpf, char **nome_vest, char **tam_vest, char **data_inicio, char **data_fim) {
     system("clear||cls");
     printf("###########################################################\n");
     printf("#       A G E N D A M E N T O   D E   L O C A Ç Ã O       #\n");
@@ -35,7 +35,7 @@ void tela_cadastro_locacao(char **num_id, char **cpf, char **nome_vest, char *ta
     scanf("%s", *nome_vest);
     getchar();
     printf("# Tamanho da vestimenta alugada (P/M/G): ");
-    scanf("%c", tam_vest);
+    scanf("%s", *tam_vest);
     getchar();
     printf("# Data de início da locação (dd/mm/aaaa): ");
     scanf("%s", *data_inicio);
