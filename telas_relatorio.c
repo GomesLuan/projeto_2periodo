@@ -9,14 +9,14 @@ char tela_relatorios(void) {
     system("clear||cls");
     char resposta;
     printf("###############################################\n");
-    printf("#             R E L A T O R I O S             #\n");
+    printf("#             R E L A T Ó R I O S             #\n");
     printf("###############################################\n");
-    printf("#       1 - Relatorio de clientes             #\n");
-    printf("#       2 - Relatorio de vestimentas          #\n");
-    printf("#       3 - Relatorio de locacoes             #\n");
+    printf("#       1 - Relatório de clientes             #\n");
+    printf("#       2 - Relatório de vestimentas          #\n");
+    printf("#       3 - Relatório de locações             #\n");
     printf("#       0 - Retornar ao menu principal        #\n");
     printf("###############################################\n\n");
-    printf("Escolha sua opcao: ");
+    printf("Escolha sua opção: ");
     scanf("%c", &resposta);
     getchar();
     return resposta;
@@ -40,7 +40,7 @@ void tela_relatorio_vestimentas(void) {
 
 void tela_relatorio_locacoes(void) {
     system("clear||cls");
-    printf("Lista de locacoes:\n\n");
+    printf("Lista de locações:\n\n");
     //Exibe lista de locações
     printf("Pressione ENTER para continuar ");
     getchar();

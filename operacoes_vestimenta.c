@@ -32,43 +32,43 @@ void alterar_vestimenta(void) {
     while (resp != '0') {
         resp = tela_alterar_vestimenta(vestimenta[1], vestimenta[2], vestimenta[3], vestimenta[4]);
         if (resp == '1') {
-            printf("\nPor favor informe o novo numero de unidades de tamanho P: ");
+            printf("\nPor favor informe o novo número de unidades de tamanho P: ");
             scanf("%s", novo_valor);
             getchar();
             //Alteração do número de unidades de tamanho P na lista
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '2') {
-            printf("\nPor favor informe o novo numero de unidades de tamanho M: ");
+            printf("\nPor favor informe o novo número de unidades de tamanho M: ");
             scanf("%s", novo_valor);
             getchar();
             //Alteração do número de unidades de tamanho M na lista
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '3') {
-            printf("\nPor favor informe o novo numero de unidades de tamanho G: ");
+            printf("\nPor favor informe o novo número de unidades de tamanho G: ");
             scanf("%s", novo_valor);
             getchar();
             //Alteração do número de unidades de tamanho G na lista
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '4') {
-            printf("\nPor favor informe o novo preco da locacao diaria: ");
+            printf("\nPor favor informe o novo preço da locacao diária: ");
             scanf("%s", novo_valor);
             getchar();
-            //Alteração do preco da locacao diaria na lista
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            //Alteração do preco da locação diária na lista
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp != '0') {
-            printf("\nValor invalido!\n\n");
+            printf("\nValor inválido!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
@@ -89,7 +89,7 @@ void remover_vestimenta(void) {
         printf("\nRetornando...\n\n");
     }
     else {
-        printf("\nValor invalido!\n\n");
+        printf("\nValor inválido!\n\n");
     }
     printf("Pressione ENTER para continuar ");
     getchar();

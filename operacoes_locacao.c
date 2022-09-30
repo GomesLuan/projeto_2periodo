@@ -14,7 +14,7 @@ void cadastrar_locacao(void) {
     char *data_fim = malloc(50* sizeof(char));
     tela_cadastro_locacao(&num_id, &cpf, &nome_vest, &tam_vest, &data_inicio, &data_fim); 
     //Adição dos dados à lista
-    printf("\nContrato realizado com sucesso!\n\n");
+    printf("\nAgendamento realizado com sucesso!\n\n");
     printf("Pressione ENTER para continuar ");
     getchar();
 }
@@ -35,11 +35,11 @@ void alterar_locacao(void) {
     while (resp != '0') {
         resp = tela_alterar_locacao(locacao[1], locacao[2], locacao[3], locacao[4], locacao[5]);
         if (resp == '1') {
-            printf("\nPor favor informe o novo CPF do cliente responsavel: ");
+            printf("\nPor favor informe o novo CPF do cliente responsável: ");
             scanf("%s", novo_valor);
             getchar();
             //mudar cpf
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
@@ -48,7 +48,7 @@ void alterar_locacao(void) {
             scanf("%s", novo_valor);
             getchar();
             //mudar nome de vestimenta
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
@@ -57,30 +57,30 @@ void alterar_locacao(void) {
             scanf("%s", novo_valor);
             getchar();
             //Alteração da data de inicio da locacao
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '4') {
-            printf("\nPor favor informe a nova data de inicio da locacao: ");
+            printf("\nPor favor informe a nova data de início da locação: ");
             scanf("%s", novo_valor);
             getchar();
             //Alteração da data de inicio da locacao
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '5') {
-            printf("\nPor favor informe a nova data de fim da locacao: ");
+            printf("\nPor favor informe a nova data de fim da locação: ");
             scanf("%s", novo_valor);
             getchar();
             //Alteração da data de fim da locacao
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp != '0') {
-            printf("\nValor invalido!\n\n");
+            printf("\nValor inválido!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
@@ -94,14 +94,14 @@ void remover_locacao(void) {
     //Busca das informações do contrato solicitado
     resp = tela_remover_locacao(locacao[0], locacao[1], locacao[2], locacao[3], locacao[4], locacao[5]);
     if (resp == '1') {
-        printf("\nContrato cancelado.\n\n");
+        printf("\nAgendamento cancelado.\n\n");
         //remove contrato da lista
     }
     else if (resp == '2') {
         printf("\nRetornando...\n\n");
     }
     else {
-        printf("\nValor invalido!\n\n");
+        printf("\nValor inválido!\n\n");
     }
     printf("Pressione ENTER para continuar ");
     getchar();

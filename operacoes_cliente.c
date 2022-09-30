@@ -38,7 +38,7 @@ void alterar_cliente(void) {
             scanf("%s", novo_valor);
             getchar();
             //Alteração do nome na lista
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
@@ -47,7 +47,7 @@ void alterar_cliente(void) {
             scanf("%s", novo_valor);
             getchar();
             //Alteração da data de nascimento na lista
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
@@ -56,7 +56,7 @@ void alterar_cliente(void) {
             scanf("%s", novo_valor);
             getchar();
             //Alteração do telefone na lista
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
@@ -65,12 +65,12 @@ void alterar_cliente(void) {
             scanf("%s", novo_valor);
             getchar();
             //Alteração do e-mail na lista
-            printf("\nAlteracao realizada com sucesso!\n\n");
+            printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp != '0') {
-            printf("\nValor invalido!\n\n");
+            printf("\nValor inválido!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
@@ -91,7 +91,7 @@ void remover_cliente(void) {
         printf("\nRetornando...\n\n");
     }
     else {
-        printf("\nValor invalido!\n\n");
+        printf("\nValor inválido!\n\n");
     }
     printf("Pressione ENTER para continuar ");
     getchar();

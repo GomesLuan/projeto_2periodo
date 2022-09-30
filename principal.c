@@ -33,7 +33,7 @@ int main(void) {
                     remover_cliente();
                 } 
                 else if (resposta_clientes != '0') {
-                    printf("\nResposta invalida!\n\n");
+                    printf("\nResposta inválida!\n\n");
                     printf("Pressione ENTER para continuar ");
                     getchar();
                 }
@@ -55,7 +55,7 @@ int main(void) {
                     remover_vestimenta();
                 } 
                 else if (resposta_vestimentas != '0') {
-                    printf("\nResposta invalida!\n\n");
+                    printf("\nResposta inválida!\n\n");
                     printf("Pressione ENTER para continuar ");
                     getchar();
                 }
@@ -77,7 +77,7 @@ int main(void) {
                     remover_locacao();
                 } 
                 else if (resposta_locacoes != '0') {
-                    printf("\nResposta invalida!\n\n");
+                    printf("\nResposta inválida!\n\n");
                     printf("Pressione ENTER para continuar ");
                     getchar();
                 }
@@ -96,7 +96,7 @@ int main(void) {
                     tela_relatorio_locacoes();
                 }
                 else if (resposta_relatorios != '0') {
-                    printf("\nResposta invalida!\n\n");
+                    printf("\nResposta inválida!\n\n");
                     printf("Pressione ENTER para continuar ");
                     getchar();
                 }
@@ -109,7 +109,7 @@ int main(void) {
             tela_orientacoes();
         }  
         else if (resposta_principal != '0') {
-            printf("\nResposta invalida!\n\n");
+            printf("\nResposta inválida!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
