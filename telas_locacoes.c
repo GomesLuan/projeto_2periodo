@@ -10,7 +10,9 @@ char tela_locacoes(void) {
     printf("#       1 - Agendar locação                       #\n");
     printf("#       2 - Informações de locação                #\n");
     printf("#       3 - Alterar dados da locação              #\n");
-    printf("#       4 - Cancelar locação                      #\n");
+    printf("#       4 - Cancelar agendamento                  #\n");
+    printf("#       5 - Receber produto alugado               #\n");
+    printf("#       6 - Devolver produto alugado              #\n");
     printf("#       0 - Retornar ao menu principal            #\n");
     printf("###################################################\n\n");
     printf("Escolha sua opção: ");
@@ -95,10 +97,33 @@ char tela_remover_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_ve
     printf("#       Data de início da locação: %s\n", data_inicio);
     printf("#       Data de fim da locação: %s\n", data_fim);
     printf("#\n");
-    printf("#       Tem certeza que deseja cancelar o contrato?\n");
+    printf("#       Tem certeza que deseja cancelar o agendamento?\n");
     printf("#       1 - Sim\n");
     printf("#       2 - Não \n");
     printf("#########################################################################\n\n");
+    printf("Escolha sua opção: ");
+    scanf("%c", &resposta);
+    getchar();
+    return resposta;
+}
+
+char tela_receber_produto(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim) {
+    system("clear||cls");
+    char resposta;
+    printf("#######################################################################\n");
+    printf("#             R E C E B I M E N T O   D E   P R O D U T O             #\n");
+    printf("#######################################################################\n");
+    printf("#       Número de idenficação da locação: %s\n", num_id);
+    printf("#       CPF do cliente responsável: %s\n", cpf);
+    printf("#       Nome da vestimenta alugada: %s\n", nome_vest);
+    printf("#       Tamanho da vestimenta alugada: %s\n", tam_vest);
+    printf("#       Data de início da locação: %s\n", data_inicio);
+    printf("#       Data de fim da locação: %s\n", data_fim);
+    printf("#\n");
+    printf("#       Deseja confirmar o recebimento do produto alugado?\n");
+    printf("#       1 - Sim\n");
+    printf("#       2 - Não \n");
+    printf("#######################################################################\n\n");
     printf("Escolha sua opção: ");
     scanf("%c", &resposta);
     getchar();
