@@ -24,24 +24,44 @@ char tela_relatorios(void) {
 
 void tela_relatorio_clientes(void) {
     system("clear||cls");
-    printf("Lista de clientes:\n\n");
+    char clientes;
     //Exibe lista de clientes
-    printf("Pressione ENTER para continuar ");
+    printf("###############################################\n");
+    printf("#       L I S T A  D E  C L I E N T E S       #\n");
+    printf("###############################################\n");
+    printf("#                                             #\n");
+    printf("#       0 - Retornar ao menu principal        #\n");
+    printf("###############################################\n\n");
+    printf("Escolha sua opção: ");
+    scanf("%c", &clientes);
     getchar();
-}
-
+    return clientes;}
 void tela_relatorio_vestimentas(void) {
     system("clear||cls");
-    printf("Lista de vestimentas:\n\n");
+    char vestimentas;
     //Exibe lista de vestimentas
-    printf("Pressione ENTER para continuar ");
+    printf("###############################################\n");
+    printf("#    L I S T A  D E  V E S T I M E N T A S    #\n");
+    printf("###############################################\n");
+    printf("#                                             #\n");
+    printf("#       0 - Retornar ao menu principal        #\n");
+    printf("###############################################\n\n");
+    printf("Escolha sua opção: ");
+    scanf("%c", &vestimentas);
     getchar();
-}
+    return vestimentas;}
 
 void tela_relatorio_locacoes(void) {
     system("clear||cls");
-    printf("Lista de locações:\n\n");
-    //Exibe lista de locações
-    printf("Pressione ENTER para continuar ");
+       char locacoes;
+    //Exibe lista de locacoes
+    printf("###############################################\n");
+    printf("#       L I S T A  D E  L O C A Ç Õ E S       #\n");
+    printf("###############################################\n");
+    printf("#                                             #\n");
+    printf("#       0 - Retornar ao menu principal        #\n");
+    printf("###############################################\n\n");
+    printf("Escolha sua opção: ");
+    scanf("%c", &locacoes);
     getchar();
-}
+    return locacoes;}
