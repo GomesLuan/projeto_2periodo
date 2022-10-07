@@ -6,12 +6,12 @@
 char cliente[5][50] = {"12345678909", "Fulano da Silva", "01/01/2000", "99999-9999", "fulano@gmail.com"};
 
 void cadastrar_cliente(void) {
-    char *cpf = malloc(50* sizeof(char));
-    char *nome = malloc(50* sizeof(char));
-    char *nasc = malloc(50* sizeof(char));
-    char *tel = malloc(50* sizeof(char));
-    char *email = malloc(50* sizeof(char));
-    tela_cadastro_cliente(&cpf, &nome, &nasc, &tel, &email); 
+    char cpf[12];
+    char nome[50];
+    char nasc[11];
+    char tel[16];
+    char email[50];
+    tela_cadastro_cliente(cpf, nome, nasc, tel, email); 
     //Adição dos dados à lista
     printf("\nCadastro realizado com sucesso!\n\n");
     printf("Pressione ENTER para continuar ");

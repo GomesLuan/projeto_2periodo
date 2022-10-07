@@ -6,13 +6,13 @@
 char vestimenta[6][50] = {"123456", "Fantasia do Batman", "3", "2", "5", "90.00"};
 
 void cadastrar_vestimenta(void) {
-    char *num_id = malloc(50* sizeof(char));
-    char *nome = malloc(50* sizeof(char));
-    char *num_p = malloc(50* sizeof(char));
-    char *num_m = malloc(50* sizeof(char));
-    char *num_g = malloc(50* sizeof(char));
-    char *preco = malloc(50* sizeof(char));
-    tela_cadastro_vestimenta(&num_id, &nome, &num_p, &num_m, &num_g, &preco);
+    char num_id[7];
+    char nome[50];
+    char num_p[3];
+    char num_m[3];
+    char num_g[3];
+    char preco[10];
+    tela_cadastro_vestimenta(num_id, nome, num_p, num_m, num_g, preco);
     //Adição dos dados à lista
     printf("\nCadastro realizado com sucesso!\n\n");
     printf("Pressione ENTER para continuar ");

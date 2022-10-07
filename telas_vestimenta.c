@@ -19,7 +19,7 @@ char tela_vestimentas(void) {
     return resposta;
 }
 
-void tela_cadastro_vestimenta(char **num_id, char **nome, char **num_p, char **num_m, char **num_g, char **preco) {
+void tela_cadastro_vestimenta(char num_id[7], char nome[50], char num_p[3], char num_m[3], char num_g[3], char preco[10]) {
     system("clear||cls");
     //Alocando espaço para a variável
     printf("########################################################\n");
@@ -27,21 +27,21 @@ void tela_cadastro_vestimenta(char **num_id, char **nome, char **num_p, char **n
     printf("########################################################\n");
     printf("# Por favor, informe os dados solicitados:\n");
     printf("# Número de identificação da vestimenta (6 dígitos): ");
-    scanf("%s", *num_id);
+    scanf("%s", num_id);
     printf("# Nome da vestimenta: ");
-    scanf("%s", *nome);
+    scanf("%s", nome);
     getchar();
     printf("# Número de unidades de tamanho P: ");
-    scanf("%s", *num_p);
+    scanf("%s", num_p);
     getchar();
     printf("# Número de unidades de tamanho M: ");
-    scanf("%s", *num_m);
+    scanf("%s", num_m);
     getchar();
     printf("# Número de unidades de tamanho G: ");
-    scanf("%s", *num_g);
+    scanf("%s", num_g);
     getchar();
     printf("# Preço da locação diária (R$): ");
-    scanf("%s", *preco);
+    scanf("%s", preco);
     getchar();
     printf("####################################################\n");
 }

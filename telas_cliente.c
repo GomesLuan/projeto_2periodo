@@ -19,26 +19,26 @@ char tela_clientes(void) {
     return resposta;
 }
 
-void tela_cadastro_cliente(char **cpf, char **nome, char **nasc, char **tel, char **email) {
+void tela_cadastro_cliente(char cpf[12], char nome[50], char nasc[11], char tel[16], char email[50]) {
     system("clear||cls");
     printf("####################################################\n");
     printf("#     C A D A S T R O   D E   C L I E N T E S      #\n");
     printf("####################################################\n");
     printf("# Por favor, informe os dados solicitados:\n");
     printf("# CPF (apenas números): ");
-    scanf("%s", *cpf);
+    scanf("%s", cpf);
     getchar();
     printf("# Nome: ");
-    scanf("%s", *nome);
+    scanf("%s", nome);
     getchar();
     printf("# Data de nascimento (dd/mm/aaaa): ");
-    scanf("%s", *nasc);
+    scanf("%s", nasc);
     getchar();
     printf("# Telefone para contato: ");
-    scanf("%s", *tel);
+    scanf("%s", tel);
     getchar();
     printf("# E-mail para contato: ");
-    scanf("%s", *email);
+    scanf("%s", email);
     getchar();
     printf("####################################################\n");
 }
