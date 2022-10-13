@@ -21,7 +21,7 @@ char tela_locacoes(void) {
     return resposta;
 }
 
-void tela_cadastro_locacao(char num_id[7], char cpf[12], char nome_vest[50], char tam_vest[2], char data_inicio[11], char data_fim[11]) {
+void tela_cadastro_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim) {
     system("clear||cls");
     printf("###########################################################\n");
     printf("#       A G E N D A M E N T O   D E   L O C A Ç Ã O       #\n");

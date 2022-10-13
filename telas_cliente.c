@@ -19,7 +19,7 @@ char tela_clientes(void) {
     return resposta;
 }
 
-void tela_cadastro_cliente(char cpf[12], char nome[50], char nasc[11], char tel[16], char email[50]) {
+void tela_cadastro_cliente(char *cpf, char *nome, char *nasc, char *tel, char *email) {
     system("clear||cls");
     printf("####################################################\n");
     printf("#     C A D A S T R O   D E   C L I E N T E S      #\n");
