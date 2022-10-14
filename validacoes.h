@@ -1,0 +1,1 @@
+int valida_cpf(char *cpf);
