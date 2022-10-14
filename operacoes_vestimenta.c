@@ -7,7 +7,7 @@ char vestimenta[6][50] = {"123456", "Fantasia do Batman", "3", "2", "5", "90.00"
 
 void cadastrar_vestimenta(void) {
     char *num_id = (char*) malloc(7*sizeof(char));
-    char *nome = (char*) malloc(50*sizeof(char));
+    char *nome = (char*) malloc(51*sizeof(char));
     char *num_p = (char*) malloc(3*sizeof(char));
     char *num_m = (char*) malloc(3*sizeof(char));
     char *num_g = (char*) malloc(3*sizeof(char));
@@ -34,7 +34,7 @@ void alterar_vestimenta(void) {
     while (resp != '0') {
         resp = tela_alterar_vestimenta(vestimenta[1], vestimenta[2], vestimenta[3], vestimenta[4], vestimenta[5]);
         if (resp == '1') {
-            char *novo_nome = malloc(50* sizeof(char));
+            char *novo_nome = malloc(51* sizeof(char));
             printf("\nPor favor informe o novo nome da vestimenta: ");
             scanf("%s", novo_nome);
             getchar();

@@ -30,7 +30,7 @@ void tela_cadastro_cliente(char *cpf, char *nome, char *nasc, char *tel, char *e
     scanf("%s", cpf);
     getchar();
     printf("# Nome: ");
-    scanf("%s", nome);
+    scanf("%[A-Z a-z 0-9 .,-_# áéíóúâôãõç ÁÉÍÓÚÂÔÃÕÇ]", nome);
     getchar();
     printf("# Data de nascimento (dd/mm/aaaa): ");
     scanf("%s", nasc);

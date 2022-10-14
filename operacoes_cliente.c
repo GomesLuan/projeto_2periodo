@@ -7,10 +7,10 @@ char cliente[5][50] = {"12345678909", "Fulano da Silva", "01/01/2000", "99999-99
 
 void cadastrar_cliente(void) {
     char *cpf = (char*) malloc(12*sizeof(char));
-    char *nome = (char*) malloc(50*sizeof(char));
+    char *nome = (char*) malloc(51*sizeof(char));
     char *nasc = (char*) malloc(11*sizeof(char));
     char *tel = (char*) malloc(20*sizeof(char));
-    char *email = (char*) malloc(50*sizeof(char));
+    char *email = (char*) malloc(51*sizeof(char));
     tela_cadastro_cliente(cpf, nome, nasc, tel, email); 
     //Adição dos dados à lista
     printf("\nCadastro realizado com sucesso!\n\n");
@@ -33,7 +33,7 @@ void alterar_cliente(void) {
     while (resp != '0') {
         resp = tela_alterar_cliente(cliente[1], cliente[2], cliente[3], cliente[4]);
         if (resp == '1') {
-            char *novo_nome = (char*) malloc(50* sizeof(char));
+            char *novo_nome = (char*) malloc(51* sizeof(char));
             printf("\nPor favor informe o novo nome: ");
             scanf("%s", novo_nome);
             getchar();
@@ -66,7 +66,7 @@ void alterar_cliente(void) {
             getchar();
         }
         else if (resp == '4') {
-            char *novo_email = (char*) malloc(50* sizeof(char));
+            char *novo_email = (char*) malloc(51* sizeof(char));
             printf("\nPor favor informe o novo e-mail: ");
             scanf("%s", novo_email);
             getchar();

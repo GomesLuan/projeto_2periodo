@@ -9,7 +9,7 @@ void cadastrar_locacao(void) {
     char *tam_vest = (char*) malloc(2*sizeof(char));
     char *num_id = (char*) malloc(7*sizeof(char));
     char *cpf = (char*) malloc(12*sizeof(char));
-    char *nome_vest = (char*) malloc(50*sizeof(char));
+    char *nome_vest = (char*) malloc(51*sizeof(char));
     char *data_inicio = (char*) malloc(11*sizeof(char));
     char *data_fim = (char*) malloc(11*sizeof(char));
     tela_cadastro_locacao(num_id, cpf, nome_vest, tam_vest, data_inicio, data_fim); 
@@ -45,7 +45,7 @@ void alterar_locacao(void) {
             getchar();
         }
         else if (resp == '2') {
-            char *novo_nome = malloc(50* sizeof(char));
+            char *novo_nome = malloc(51* sizeof(char));
             printf("\nPor favor informe o novo nome da vestimenta que deseja alugar: ");
             scanf("%s", novo_nome);
             getchar();
