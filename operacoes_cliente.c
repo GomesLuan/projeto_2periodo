@@ -9,7 +9,7 @@ void cadastrar_cliente(void) {
     char *cpf = (char*) malloc(12*sizeof(char));
     char *nome = (char*) malloc(51*sizeof(char));
     char *nasc = (char*) malloc(9*sizeof(char));
-    char *tel = (char*) malloc(20*sizeof(char));
+    char *tel = (char*) malloc(14*sizeof(char));
     char *email = (char*) malloc(51*sizeof(char));
     tela_cadastro_cliente(cpf, nome, nasc, tel, email); 
     //Adição dos dados à lista
@@ -55,8 +55,8 @@ void alterar_cliente(void) {
             getchar();
         }
         else if (resp == '3') {
-            char *novo_tel = (char*) malloc(20* sizeof(char));
-            printf("\nPor favor informe o novo telefone: ");
+            char *novo_tel = (char*) malloc(14* sizeof(char));
+            printf("\nPor favor informe o novo telefone (apenas números): ");
             scanf("%s", novo_tel);
             getchar();
             //Alteração do telefone na lista

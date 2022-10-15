@@ -35,7 +35,7 @@ void tela_cadastro_cliente(char *cpf, char *nome, char *nasc, char *tel, char *e
     printf("# Data de nascimento (ddmmaaaa): ");
     scanf("%s", nasc);
     getchar();
-    printf("# Telefone para contato: ");
+    printf("# Telefone para contato (apenas números): ");
     scanf("%s", tel);
     getchar();
     printf("# E-mail para contato: ");
