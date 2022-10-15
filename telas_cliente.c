@@ -32,7 +32,7 @@ void tela_cadastro_cliente(char *cpf, char *nome, char *nasc, char *tel, char *e
     printf("# Nome: ");
     scanf("%[A-Z a-z 0-9 .,-_# áéíóúâôãõç ÁÉÍÓÚÂÔÃÕÇ]", nome);
     getchar();
-    printf("# Data de nascimento (dd/mm/aaaa): ");
+    printf("# Data de nascimento (ddmmaaaa): ");
     scanf("%s", nasc);
     getchar();
     printf("# Telefone para contato: ");

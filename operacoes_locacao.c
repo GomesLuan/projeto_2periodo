@@ -35,7 +35,7 @@ void alterar_locacao(void) {
         resp = tela_alterar_locacao(locacao[1], locacao[2], locacao[3], locacao[4], locacao[5]);
         if (resp == '1') {
             char *novo_cpf = malloc(12* sizeof(char));
-            printf("\nPor favor informe o novo CPF do cliente responsável: ");
+            printf("\nPor favor informe o novo CPF do cliente responsável (apenas números): ");
             scanf("%s", novo_cpf);
             getchar();
             //mudar cpf
@@ -68,7 +68,7 @@ void alterar_locacao(void) {
         }
         else if (resp == '4') {
             char *novo_inicio = malloc(11* sizeof(char));
-            printf("\nPor favor informe a nova data de início da locação: ");
+            printf("\nPor favor informe a nova data de início da locação (ddmmaaaa): ");
             scanf("%s", novo_inicio);
             getchar();
             //Alteração da data de inicio da locacao
@@ -79,7 +79,7 @@ void alterar_locacao(void) {
         }
         else if (resp == '5') {
             char *novo_fim = malloc(11* sizeof(char));
-            printf("\nPor favor informe a nova data de fim da locação: ");
+            printf("\nPor favor informe a nova data de fim da locação (ddmmaaaa): ");
             scanf("%s", novo_fim);
             getchar();
             //Alteração da data de fim da locacao

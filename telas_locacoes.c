@@ -30,7 +30,7 @@ void tela_cadastro_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_v
     printf("# Número de identificação da locação (6 dígitos): ");
     scanf("%s", num_id);
     getchar();
-    printf("# CPF do cliente responsável: ");
+    printf("# CPF do cliente responsável (apenas números): ");
     scanf("%s", cpf);
     getchar();
     printf("# Nome da vestimenta alugada: ");
@@ -39,10 +39,10 @@ void tela_cadastro_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_v
     printf("# Tamanho da vestimenta alugada (P/M/G): ");
     scanf("%s", tam_vest);
     getchar();
-    printf("# Data de início da locação (dd/mm/aaaa): ");
+    printf("# Data de início da locação (ddmmaaaa): ");
     scanf("%s", data_inicio);
     getchar();
-    printf("# Data de fim da locação (dd/mm/aaaa): ");
+    printf("# Data de fim da locação (ddmmaaaa): ");
     scanf("%s", data_fim);
     getchar();
     printf("########################################################\n");

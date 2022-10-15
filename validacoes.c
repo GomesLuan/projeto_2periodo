@@ -55,3 +55,31 @@ int valida_nome(char *nome) {
     }
     return 1;
 }
+
+int valida_data(char *data) {
+    int *nums = (int*) malloc(8*sizeof(int));
+    for (int i=0; i<8; i++) {
+        if (data[i] < '0' || data[i] > '9') {
+            return 0;
+        }
+        nums[i] = data[i] - '0';
+    }
+    int dia = 10*nums[0] + nums[1];
+    int mes = 10*nums[2] + nums[3];
+    int ano = 1000*nums[4] + 100*nums[5] + 10*nums[6] + nums[7];
+    if (ano >= 0 && mes >= 1 && mes <= 12) {
+        if ((mes==4 || mes==6 || mes==9 || mes==11) && (dia>=1 && dia<=30)) {
+            return 1;
+        }
+        else if ((mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12) && (dia>=1 && dia<=31)) {
+            return 1;
+        }
+        else if (mes==2 && (dia>=1 && dia<=28)) {
+            return 1;
+        }
+        else if ((mes==2) && (dia==29) && (((ano%4 == 0) && (ano%100 != 0)) || (ano%400 == 0))) {
+            return 1;
+        }
+    }
+    return 0;
+}
