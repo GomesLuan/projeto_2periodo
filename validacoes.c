@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 int valida_cpf(char *cpf) {
     int soma = 0;
     int d1 = 0;
@@ -103,3 +103,29 @@ int valida_telefone(char *tel) {
     }
     return 1;
 }
+int valid_email(char *email) {
+ int arroba,ponto,verificador,i;
+int tam=strlen(email);
+   if(email[i] == '@'){
+    arroba=1;
+ }
+   if(arroba == 1);
+   if(email[i]=='.'){
+        ponto=1;
+   }
+ 
+ 
+if(arroba == 1 && ponto==1){
+    verificador=1;
+}else{
+    verificador=0;
+}
+ if(verificador==1){
+    printf("Valido");
+}else{
+    printf("Invalido");
+} 
+
+}  
+ 
+ 
