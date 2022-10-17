@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "validacoes.h"
+#include "telas_cliente.h"
 
 char tela_clientes(void) {
     system("clear||cls");
@@ -26,18 +27,10 @@ void tela_cadastro_cliente(char *cpf, char *nome, char *nasc, char *tel, char *e
     printf("#     C A D A S T R O   D E   C L I E N T E S      #\n");
     printf("####################################################\n");
     printf("# Por favor, informe os dados solicitados:\n");
-    printf("# CPF (apenas números): ");
-    scanf("%s", cpf);
-    getchar();
-    printf("# Nome: ");
-    scanf("%[A-Z a-z 0-9 .,-_# áéíóúâôãõç ÁÉÍÓÚÂÔÃÕÇ]", nome);
-    getchar();
-    printf("# Data de nascimento (ddmmaaaa): ");
-    scanf("%s", nasc);
-    getchar();
-    printf("# Telefone para contato (apenas números): ");
-    scanf("%s", tel);
-    getchar();
+    cad_cpf_cliente(cpf);
+    cad_nome_cliente(nome);
+    cad_nasc_cliente(nasc);
+    cad_tel_cliente(tel);
     printf("# E-mail para contato: ");
     scanf("%s", email);
     getchar();
@@ -98,4 +91,80 @@ char tela_remover_cliente(char *cpf, char *nome, char *nascimento, char *telefon
     scanf("%c", &resposta);
     getchar();
     return resposta;
+}
+
+void cad_cpf_cliente(char *cpf) {
+    int cpf_valido = 0;
+    do {
+    printf("# CPF (apenas números): ");
+    scanf("%s", cpf);
+    getchar();
+    cpf_valido = valida_cpf(cpf);
+    if (!cpf_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!cpf_valido);
+}
+
+void cad_nome_cliente(char *nome) {
+    int nome_valido = 0;
+    do {
+    printf("# Nome: ");
+    scanf("%[A-Z a-z 0-9 .,-_# áéíóúâôãõç ÁÉÍÓÚÂÔÃÕÇ]", nome);
+    getchar();
+    nome_valido = valida_nome(nome);
+    if (!nome_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!nome_valido);
+}
+
+void cad_nasc_cliente(char *nasc) {
+    int nasc_valido = 0;
+    do {
+    printf("# Data de nascimento (ddmmaaaa): ");
+    scanf("%s", nasc);
+    getchar();
+    nasc_valido = valida_data(nasc);
+    if (!nasc_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!nasc_valido);
+}
+
+void cad_tel_cliente(char *tel) {
+    int tel_valido = 0;
+    do {
+    printf("# Telefone para contato (apenas números): ");
+    scanf("%s", tel);
+    getchar();
+    tel_valido = valida_telefone(tel);
+    if (!tel_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!tel_valido);
 }

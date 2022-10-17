@@ -34,9 +34,7 @@ void alterar_cliente(void) {
         resp = tela_alterar_cliente(cliente[1], cliente[2], cliente[3], cliente[4]);
         if (resp == '1') {
             char *novo_nome = (char*) malloc(51* sizeof(char));
-            printf("\nPor favor informe o novo nome: ");
-            scanf("%s", novo_nome);
-            getchar();
+            cad_nome_cliente(novo_nome);
             //Alteração do nome na lista
             //desalocação da memória anterior
             printf("\nAlteração realizada com sucesso!\n\n");
@@ -45,9 +43,7 @@ void alterar_cliente(void) {
         }
         else if (resp == '2') {
             char *novo_nasc = (char*) malloc(9* sizeof(char));
-            printf("\nPor favor informe a nova data de nascimento (ddmmaaaa): ");
-            scanf("%s", novo_nasc);
-            getchar();
+            cad_nasc_cliente(novo_nasc);
             //Alteração da data de nascimento na lista
             //desalocação da memória anterior
             printf("\nAlteração realizada com sucesso!\n\n");
@@ -56,9 +52,7 @@ void alterar_cliente(void) {
         }
         else if (resp == '3') {
             char *novo_tel = (char*) malloc(14* sizeof(char));
-            printf("\nPor favor informe o novo telefone (apenas números): ");
-            scanf("%s", novo_tel);
-            getchar();
+            cad_tel_cliente(novo_tel);
             //Alteração do telefone na lista
             //desalocação da memória anterior
             printf("\nAlteração realizada com sucesso!\n\n");
