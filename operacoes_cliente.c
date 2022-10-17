@@ -61,9 +61,7 @@ void alterar_cliente(void) {
         }
         else if (resp == '4') {
             char *novo_email = (char*) malloc(51* sizeof(char));
-            printf("\nPor favor informe o novo e-mail: ");
-            scanf("%s", novo_email);
-            getchar();
+            cad_email_cliente(novo_email);
             //Alteração do e-mail na lista
             //desalocação da memória anterior
             printf("\nAlteração realizada com sucesso!\n\n");

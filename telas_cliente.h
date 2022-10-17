@@ -7,3 +7,4 @@ void cad_cpf_cliente(char *cpf);
 void cad_nome_cliente(char *nome);
 void cad_nasc_cliente(char *nasc);
 void cad_tel_cliente(char *tel);
+void cad_email_cliente(char *email);

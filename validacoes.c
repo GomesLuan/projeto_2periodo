@@ -43,7 +43,8 @@ int valida_cpf(char *cpf) {
 int valida_nome(char *nome) {
     int i = 0;
     while (nome[i] != '\0') {
-        if ((nome[i] >= '0' && nome[i] <= '9') || (nome[i] == '.') || (nome[i] == '-') || (nome[i] == ',') || (nome[i] == '_') || (nome[i] == '#')) {
+        if ((nome[i] >= '0' && nome[i] <= '9') || (nome[i] == '.') || (nome[i] == '-') || (nome[i] == ',') 
+        || (nome[i] == '_') || (nome[i] == '#')) {
             return 0;
         }
         if ((nome[i] == ' ') && (i != 0)) {
@@ -103,29 +104,36 @@ int valida_telefone(char *tel) {
     }
     return 1;
 }
-int valid_email(char *email) {
- int arroba,ponto,verificador,i;
-int tam=strlen(email);
-   if(email[i] == '@'){
-    arroba=1;
- }
-   if(arroba == 1);
-   if(email[i]=='.'){
-        ponto=1;
-   }
- 
- 
-if(arroba == 1 && ponto==1){
-    verificador=1;
-}else{
-    verificador=0;
-}
- if(verificador==1){
-    printf("Valido");
-}else{
-    printf("Invalido");
-} 
-
+int valida_email(char *email) {
+    int arroba = 0;
+    int ponto = 0;
+    int tam = strlen(email);
+    if (email[0] < 'a' || email[0] > 'z') {
+        return 0;
+    }
+    for (int i=0; i<tam; i++) {
+        if ((email[i] < 'a' || email[i] > 'z') && (email[i] < '0' || email[i] > '9') && email[i] != '.' 
+        && email[i] != '-' && email[i] != '_' && email[i] != '@') {
+            return 0;
+        }
+        if (email[i] == '@'){
+            arroba = 1;
+        }
+        if (arroba) {
+            if (email[i] == '-' || email[i] == '_') {
+                return 0;
+            }
+            else if(email[i] == '.'){
+                ponto = 1;
+            }
+        }
+        if (arroba && ponto) {
+            if (email[i] >= 'a' && email[i] <= 'z') {
+                return 1;
+            }
+        }  
+    }
+    return 0;
 }  
  
  

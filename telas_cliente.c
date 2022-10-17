@@ -31,9 +31,7 @@ void tela_cadastro_cliente(char *cpf, char *nome, char *nasc, char *tel, char *e
     cad_nome_cliente(nome);
     cad_nasc_cliente(nasc);
     cad_tel_cliente(tel);
-    printf("# E-mail para contato: ");
-    scanf("%s", email);
-    getchar();
+    cad_email_cliente(email);
     printf("####################################################\n");
 }
 
@@ -167,4 +165,23 @@ void cad_tel_cliente(char *tel) {
         printf("\x1b[2K");
     }
     } while (!tel_valido);
+}
+
+void cad_email_cliente(char *email) {
+    int email_valido = 0;
+    do {
+    printf("# E-mail para contato: ");
+    scanf("%s", email);
+    getchar();
+    email_valido = valida_email(email);
+    if (!email_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!email_valido);
 }
