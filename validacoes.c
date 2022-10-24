@@ -151,3 +151,14 @@ int valida_nome_vest(char *nome) {
     }
     return 1;
 }
+
+int valida_inteiro(char *num) {
+    int i = 0;
+    while (num[i] != '\0') {
+        if (num[i] < '0' || num[i] > '9') {
+            return 0;
+        }
+        i++;
+    }
+    return 1;
+}
