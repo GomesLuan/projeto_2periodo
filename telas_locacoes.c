@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "validacoes.h"
 
 char tela_locacoes(void) {
     system("clear||cls");

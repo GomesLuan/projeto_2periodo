@@ -174,7 +174,6 @@ int valida_inteiro(char *num) {
 
 int valida_float(char *din) {
     int i = 0;
-    int j = 0;
     int virgula = 0;
     while (din[i] != '\0') {
         if ((din[i] < '0' || din[i] > '9') && din[i] != '.' && din[i] != ',') {
@@ -189,6 +188,17 @@ int valida_float(char *din) {
         i++;
     }
     if (i == 0) {
+        return 0;
+    }
+    return 1;
+}
+
+int valida_tamanho_vest(char *tam) {
+    int len = strlen(tam);
+    if (len != 1) {
+        return 0;
+    }
+    if (tam[0] != 'P' && tam[0] != 'M' && tam[0] != 'G' && tam[0] != 'p' && tam[0] != 'm' && tam[0] != 'g') {
         return 0;
     }
     return 1;
