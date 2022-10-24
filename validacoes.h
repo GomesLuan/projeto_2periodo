@@ -5,3 +5,4 @@ int valida_telefone(char *tel);
 int valida_email(char *email);
 int valida_nome_vest(char *nome);
 int valida_inteiro(char *num);
+int valida_float(char *din);

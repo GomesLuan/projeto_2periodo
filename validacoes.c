@@ -54,6 +54,9 @@ int valida_nome_pessoa(char *nome) {
         }
         i++;
     }
+    if (i == 0) {
+        return 0;
+    }
     return 1;
 }
 
@@ -149,6 +152,9 @@ int valida_nome_vest(char *nome) {
         }
         i++;
     }
+    if (i == 0) {
+        return 0;
+    }
     return 1;
 }
 
@@ -159,6 +165,31 @@ int valida_inteiro(char *num) {
             return 0;
         }
         i++;
+    }
+    if (i == 0) {
+        return 0;
+    }
+    return 1;
+}
+
+int valida_float(char *din) {
+    int i = 0;
+    int j = 0;
+    int virgula = 0;
+    while (din[i] != '\0') {
+        if ((din[i] < '0' || din[i] > '9') && din[i] != '.' && din[i] != ',') {
+            return 0;
+        }
+        if (din[i] == '.' || din[i] == ',') {
+            if (virgula == 1) {
+                return 0;
+            }
+            virgula = 1;
+        }
+        i++;
+    }
+    if (i == 0) {
+        return 0;
     }
     return 1;
 }
