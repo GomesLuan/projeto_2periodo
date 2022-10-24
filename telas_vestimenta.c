@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "validacoes.h"
 
 char tela_vestimentas(void) {
     system("clear||cls");
@@ -28,6 +29,7 @@ void tela_cadastro_vestimenta(char *num_id, char *nome, char *num_p, char *num_m
     printf("# Por favor, informe os dados solicitados:\n");
     printf("# Número de identificação da vestimenta (6 dígitos): ");
     scanf("%s", num_id);
+    getchar();
     printf("# Nome da vestimenta: ");
     scanf("%s", nome);
     getchar();

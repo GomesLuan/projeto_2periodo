@@ -40,7 +40,7 @@ int valida_cpf(char *cpf) {
     return 1;
 }
 
-int valida_nome(char *nome) {
+int valida_nome_pessoa(char *nome) {
     int i = 0;
     while (nome[i] != '\0') {
         if ((nome[i] >= '0' && nome[i] <= '9') || (nome[i] == '.') || (nome[i] == '-') || (nome[i] == ',') 
@@ -135,5 +135,19 @@ int valida_email(char *email) {
     }
     return 0;
 }  
- 
- 
+
+int valida_nome_vest(char *nome) {
+    int i = 0;
+    while (nome[i] != '\0') {
+        if ((nome[i] == ',') || (nome[i] == '_') || (nome[i] == '#')) {
+            return 0;
+        }
+        if ((nome[i] == ' ') && (i != 0)) {
+            if (nome[i-1] == ' ') {
+                return 0;
+            }
+        }
+        i++;
+    }
+    return 1;
+}

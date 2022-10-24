@@ -116,7 +116,7 @@ void cad_nome_cliente(char *nome) {
     printf("# Nome: ");
     scanf("%[A-Z a-z 0-9 .,-_# áéíóúâôãõç ÁÉÍÓÚÂÔÃÕÇ]", nome);
     getchar();
-    nome_valido = valida_nome(nome);
+    nome_valido = valida_nome_pessoa(nome);
     if (!nome_valido) {
         printf("Valor inválido! ");
         getchar();
