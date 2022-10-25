@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "validacoes.h"
+#include "telas_vestimenta.h"
 
 char tela_vestimentas(void) {
     system("clear||cls");
@@ -20,31 +21,18 @@ char tela_vestimentas(void) {
     return resposta;
 }
 
-void tela_cadastro_vestimenta(char *num_id, char *nome, char *num_p, char *num_m, char *num_g, char *preco) {
+void tela_cadastro_vestimenta(char *nome, char *num_p, char *num_m, char *num_g, char *preco) {
     system("clear||cls");
     //Alocando espaço para a variável
     printf("########################################################\n");
     printf("#      C A D A S T R O   D E   V E S T I M E N T A     #\n");
     printf("########################################################\n");
     printf("# Por favor, informe os dados solicitados:\n");
-    printf("# Número de identificação da vestimenta (6 dígitos): ");
-    scanf("%s", num_id);
-    getchar();
-    printf("# Nome da vestimenta: ");
-    scanf("%s", nome);
-    getchar();
-    printf("# Número de unidades de tamanho P: ");
-    scanf("%s", num_p);
-    getchar();
-    printf("# Número de unidades de tamanho M: ");
-    scanf("%s", num_m);
-    getchar();
-    printf("# Número de unidades de tamanho G: ");
-    scanf("%s", num_g);
-    getchar();
-    printf("# Preço da locação diária (R$): ");
-    scanf("%s", preco);
-    getchar();
+    cad_nome_vest(nome);
+    cad_num_vest(num_p, 'P');
+    cad_num_vest(num_m, 'M');
+    cad_num_vest(num_g, 'G');
+    cad_preco_vest(preco);
     printf("####################################################\n");
 }
 
@@ -105,4 +93,61 @@ char tela_remover_vestimenta(char *num_id, char *nome, char *num_p, char *num_m,
     scanf("%c", &resposta);
     getchar();
     return resposta;
+}
+
+void cad_nome_vest(char *nome) {
+    int nome_valido = 0;
+    do {
+    printf("# Nome da vestimenta: ");
+    scanf("%[A-Z a-z 0-9 .,-_# áéíóúâôãõç ÁÉÍÓÚÂÔÃÕÇ]", nome);
+    getchar();
+    nome_valido = valida_nome_vest(nome);
+    if (!nome_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!nome_valido);
+}
+
+void cad_num_vest(char *num, char tam) {
+    int num_valido = 0;
+    do {
+    printf("# Número de vestimentas de tamanho %c: ", tam);
+    scanf("%s", num);
+    getchar();
+    num_valido = valida_inteiro(num);
+    if (!num_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!num_valido);
+}
+
+void cad_preco_vest(char *preco) {
+    int preco_valido = 0;
+    do {
+    printf("# Preço da locação diária (R$): ");
+    scanf("%s", preco);
+    getchar();
+    preco_valido = valida_float(preco);
+    if (!preco_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!preco_valido);
 }

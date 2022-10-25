@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "validacoes.h"
+#include "telas_locacoes.h"
 
 char tela_locacoes(void) {
     system("clear||cls");
@@ -22,30 +23,17 @@ char tela_locacoes(void) {
     return resposta;
 }
 
-void tela_cadastro_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim) {
+void tela_cadastro_locacao(char *cpf, char *id_vest, char *tam_vest, char *data_inicio, char *data_fim) {
     system("clear||cls");
     printf("###########################################################\n");
     printf("#       A G E N D A M E N T O   D E   L O C A Ç Ã O       #\n");
     printf("###########################################################\n");
     printf("# Por favor, informe os dados solicitados:\n");
-    printf("# Número de identificação da locação (6 dígitos): ");
-    scanf("%s", num_id);
-    getchar();
-    printf("# CPF do cliente responsável (apenas números): ");
-    scanf("%s", cpf);
-    getchar();
-    printf("# Nome da vestimenta alugada: ");
-    scanf("%s", nome_vest);
-    getchar();
-    printf("# Tamanho da vestimenta alugada (P/M/G): ");
-    scanf("%s", tam_vest);
-    getchar();
-    printf("# Data de início da locação (ddmmaaaa): ");
-    scanf("%s", data_inicio);
-    getchar();
-    printf("# Data de fim da locação (ddmmaaaa): ");
-    scanf("%s", data_fim);
-    getchar();
+    cad_cpf_locatario(cpf);
+    cad_id_vest(id_vest);
+    cad_tam_vest(tam_vest);
+    cad_data_inicio(data_inicio);
+    cad_data_fim(data_fim);
     printf("########################################################\n");
 }
 
@@ -152,4 +140,101 @@ char tela_devolver_produto(char *num_id, char *cpf, char *nome_vest, char *tam_v
     scanf("%c", &resposta);
     getchar();
     return resposta;
+}
+
+void cad_cpf_locatario(char *cpf) {
+    int cpf_valido = 0;
+    do {
+    printf("# CPF do locatário (apenas números): ");
+    scanf("%s", cpf);
+    getchar();
+    cpf_valido = valida_cpf(cpf);
+    //verifica se o cpf está cadastrado
+    if (!cpf_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!cpf_valido);
+}
+
+void cad_id_vest(char *id) {
+    int id_valido = 0;
+    do {
+    printf("# Código de identificação da vestimenta: ");
+    scanf("%s", id);
+    getchar();
+    id_valido = 1; //verifica se o id está cadastrado
+    if (!id_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!id_valido);
+}
+
+void cad_tam_vest(char *tam) {
+    int tam_valido = 0;
+    do {
+    printf("# Tamanho da vestimenta (P/M/G): ");
+    scanf("%s", tam);
+    getchar();
+    tam_valido = valida_tamanho_vest(tam);
+    if (!tam_valido) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!tam_valido);
+}
+
+void cad_data_inicio(char *data) {
+    int data_valida = 0;
+    do {
+    printf("# Data de início da locação (ddmmaaaa): ");
+    scanf("%s", data);
+    getchar();
+    data_valida = valida_data(data);
+    if (!data_valida) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!data_valida);
+}
+
+void cad_data_fim(char *data) {
+    int data_valida = 0;
+    do {
+    printf("# Data de fim da locação (ddmmaaaa): ");
+    scanf("%s", data);
+    getchar();
+    data_valida = valida_data(data);
+    //Verifica se a data é maior que a data inicial
+    if (!data_valida) {
+        printf("Valor inválido! ");
+        getchar();
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+        printf("\x1b[1F");
+        printf("\x1b[2K");
+    }
+    } while (!data_valida);
 }

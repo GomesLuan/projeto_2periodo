@@ -1,7 +1,12 @@
 char tela_locacoes(void);
-void tela_cadastro_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim);
+void tela_cadastro_locacao(char *cpf, char *id_vest, char *tam_vest, char *data_inicio, char *data_fim);
 void tela_info_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim);
 char tela_alterar_locacao(char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim);
 char tela_remover_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim);
 char tela_receber_produto(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim);
 char tela_devolver_produto(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim);
+void cad_cpf_locatario(char *cpf);
+void cad_id_vest(char *id);
+void cad_tam_vest(char *tam);
+void cad_data_inicio(char *data);
+void cad_data_fim(char *data);

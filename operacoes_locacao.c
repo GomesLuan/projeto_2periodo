@@ -7,12 +7,11 @@ char locacao[6][50] = {"123456", "12345678909", "Fantasia do Batman", "M", "01/0
 
 void cadastrar_locacao(void) {
     char *tam_vest = (char*) malloc(2*sizeof(char));
-    char *num_id = (char*) malloc(7*sizeof(char));
     char *cpf = (char*) malloc(12*sizeof(char));
-    char *nome_vest = (char*) malloc(51*sizeof(char));
+    char *id_vest = (char*) malloc(7*sizeof(char));
     char *data_inicio = (char*) malloc(11*sizeof(char));
     char *data_fim = (char*) malloc(11*sizeof(char));
-    tela_cadastro_locacao(num_id, cpf, nome_vest, tam_vest, data_inicio, data_fim); 
+    tela_cadastro_locacao(cpf, id_vest, tam_vest, data_inicio, data_fim); 
     //Adição dos dados à lista
     printf("\nAgendamento realizado com sucesso!\n\n");
     printf("Pressione ENTER para continuar ");
