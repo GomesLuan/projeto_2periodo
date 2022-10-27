@@ -1,18 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "telas_cliente.h"
 
 //Variável provisória
 char cliente[5][50] = {"12345678909", "Fulano da Silva", "01/01/2000", "99999-9999", "fulano@gmail.com"};
 
 void cadastrar_cliente(void) {
-    char *cpf = (char*) malloc(12*sizeof(char));
-    char *nome = (char*) malloc(51*sizeof(char));
-    char *nasc = (char*) malloc(9*sizeof(char));
-    char *tel = (char*) malloc(14*sizeof(char));
-    char *email = (char*) malloc(51*sizeof(char));
-    tela_cadastro_cliente(cpf, nome, nasc, tel, email); 
-    //Adição dos dados à lista
+    Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
+    tela_cadastro_cliente(cl); 
+    //Adição dos dados em arquivo
+    free(cl);
     printf("\nCadastro realizado com sucesso!\n\n");
     printf("Pressione ENTER para continuar ");
     getchar();
@@ -22,7 +20,14 @@ void info_cliente(void) {
     //char *cpf;
     //Input com o cpf do cliente
     //Busca das informações do cliente solicitado
-    tela_info_cliente(cliente[0], cliente[1], cliente[2], cliente[3], cliente[4]);
+    Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
+    strcpy(cl->cpf, "12345678909");
+    strcpy(cl->nome, "Fulano da Silva");
+    strcpy(cl->nasc, "01012001");
+    strcpy(cl->tel, "99999999");
+    strcpy(cl->email, "fulano@gmail.com");
+    tela_info_cliente(cl);
+    free(cl);
 }
 
 void alterar_cliente(void) {
@@ -30,40 +35,38 @@ void alterar_cliente(void) {
     char resp = '1';
     //Input com o cpf do cliente
     //Busca das informações do cliente solicitado
+    Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
+    strcpy(cl->cpf, "12345678909");
+    strcpy(cl->nome, "Fulano da Silva");
+    strcpy(cl->nasc, "01012001");
+    strcpy(cl->tel, "99999999");
+    strcpy(cl->email, "fulano@gmail.com");
     while (resp != '0') {
-        resp = tela_alterar_cliente(cliente[1], cliente[2], cliente[3], cliente[4]);
+        resp = tela_alterar_cliente(cl);
         if (resp == '1') {
-            char *novo_nome = (char*) malloc(51* sizeof(char));
-            cad_nome_cliente(novo_nome);
-            //Alteração do nome na lista
-            //desalocação da memória anterior
+            cad_nome_cliente(cl->nome);
+            //Alteração do nome no arquivo
             printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '2') {
-            char *novo_nasc = (char*) malloc(9* sizeof(char));
-            cad_nasc_cliente(novo_nasc);
-            //Alteração da data de nascimento na lista
-            //desalocação da memória anterior
+            cad_nasc_cliente(cl->nasc);
+            //Alteração da data de nascimento no arquivo
             printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '3') {
-            char *novo_tel = (char*) malloc(14* sizeof(char));
-            cad_tel_cliente(novo_tel);
-            //Alteração do telefone na lista
-            //desalocação da memória anterior
+            cad_tel_cliente(cl->tel);
+            //Alteração do telefone no arquivo
             printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '4') {
-            char *novo_email = (char*) malloc(51* sizeof(char));
-            cad_email_cliente(novo_email);
-            //Alteração do e-mail na lista
-            //desalocação da memória anterior
+            cad_email_cliente(cl->email);
+            //Alteração do e-mail no arquivo
             printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
@@ -74,6 +77,7 @@ void alterar_cliente(void) {
             getchar();
         }
     }
+    free(cl);
 }
 
 void remover_cliente(void) {
@@ -81,11 +85,17 @@ void remover_cliente(void) {
     char resp = '2';
     //Input com o cpf do cliente
     //Busca das informações do cliente solicitado
-    resp = tela_remover_cliente(cliente[0], cliente[1], cliente[2], cliente[3], cliente[4]);
+    Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
+    strcpy(cl->cpf, "12345678909");
+    strcpy(cl->nome, "Fulano da Silva");
+    strcpy(cl->nasc, "01012001");
+    strcpy(cl->tel, "99999999");
+    strcpy(cl->email, "fulano@gmail.com");
+    resp = tela_remover_cliente(cl);
+    free(cl);
     if (resp == '1') {
         printf("\nCliente removido.\n\n");
-        //remove cliente da lista
-        //desaloca memória
+        //remove cliente do arquivo
     }
     else if (resp == '2') {
         printf("\nRetornando...\n\n");

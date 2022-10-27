@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "validacoes.h"
 #include "telas_cliente.h"
+#include "operacoes_cliente.h"
 
 char tela_clientes(void) {
     system("clear||cls");
@@ -21,46 +22,46 @@ char tela_clientes(void) {
     return resposta;
 }
 
-void tela_cadastro_cliente(char *cpf, char *nome, char *nasc, char *tel, char *email) {
+void tela_cadastro_cliente(Cliente *cl) {
     system("clear||cls");
     printf("####################################################\n");
     printf("#     C A D A S T R O   D E   C L I E N T E S      #\n");
     printf("####################################################\n");
     printf("# Por favor, informe os dados solicitados:\n");
-    cad_cpf_cliente(cpf);
-    cad_nome_cliente(nome);
-    cad_nasc_cliente(nasc);
-    cad_tel_cliente(tel);
-    cad_email_cliente(email);
+    cad_cpf_cliente(cl->cpf);
+    cad_nome_cliente(cl->nome);
+    cad_nasc_cliente(cl->nasc);
+    cad_tel_cliente(cl->nome);
+    cad_email_cliente(cl->email);
     printf("####################################################\n");
 }
 
-void tela_info_cliente(char *cpf, char *nome, char *nascimento, char *telefone, char *email) {
+void tela_info_cliente(Cliente *cl) {
     system("clear||cls");
     printf("###########################################################\n");
     printf("#       I N F O R M A Ç Õ E S   D E   C L I E N T E       #\n");
     printf("###########################################################\n");
-    printf("#       CPF: %s\n", cpf);
-    printf("#       Nome: %s\n", nome);
-    printf("#       Data de nascimento: %s\n", nascimento);
-    printf("#       Telefone: %s\n", telefone);
-    printf("#       E-Mail: %s\n", email);
+    printf("#       CPF: %s\n", cl->cpf);
+    printf("#       Nome: %s\n", cl->nome);
+    printf("#       Data de nascimento: %s\n", cl->nasc);
+    printf("#       Telefone: %s\n", cl->tel);
+    printf("#       E-Mail: %s\n", cl->email);
     printf("###########################################################\n\n");
     printf("Pressione ENTER para continuar ");
     getchar();
 }
 
-char tela_alterar_cliente(char *nome, char *nascimento, char *telefone, char *email) {
+char tela_alterar_cliente(Cliente *cl) {
     system("clear||cls");
     char resposta;
     printf("#########################################################\n");
     printf("#    A L T E R A R   D A D O S   D E   C L I E N T E    #\n");
     printf("#########################################################\n");
     printf("#       Qual informação gostaria de alterar?\n");
-    printf("#       1 - Nome (%s)\n", nome);
-    printf("#       2 - Data de nascimento (%s)\n", nascimento);
-    printf("#       3 - Telefone (%s)\n", telefone);
-    printf("#       4 - E-mail (%s)\n", email);
+    printf("#       1 - Nome (%s)\n", cl->nome);
+    printf("#       2 - Data de nascimento (%s)\n", cl->nasc);
+    printf("#       3 - Telefone (%s)\n", cl->tel);
+    printf("#       4 - E-mail (%s)\n", cl->email);
     printf("#       0 - Retornar ao menu de clientes\n");
     printf("#########################################################\n\n");
     printf("Escolha sua opção: ");
@@ -69,17 +70,17 @@ char tela_alterar_cliente(char *nome, char *nascimento, char *telefone, char *em
     return resposta;
 }
 
-char tela_remover_cliente(char *cpf, char *nome, char *nascimento, char *telefone, char *email) {
+char tela_remover_cliente(Cliente *cl) {
     system("clear||cls");
     char resposta;
     printf("#############################################################\n");
     printf("#            R E M O Ç Ã O   D E   C L I E N T E            #\n");
     printf("#############################################################\n");
-    printf("#       CPF: %s\n", cpf);
-    printf("#       Nome: %s\n", nome);
-    printf("#       Data de nascimento: %s\n", nascimento);
-    printf("#       Telefone: %s\n", telefone);
-    printf("#       E-Mail: %s\n", email);
+    printf("#       CPF: %s\n", cl->cpf);
+    printf("#       Nome: %s\n", cl->nome);
+    printf("#       Data de nascimento: %s\n", cl->nasc);
+    printf("#       Telefone: %s\n", cl->tel);
+    printf("#       E-Mail: %s\n", cl->email);
     printf("#\n");
     printf("#       Tem certeza que deseja remover este cliente?\n");
     printf("#       1 - Sim\n");
@@ -91,7 +92,7 @@ char tela_remover_cliente(char *cpf, char *nome, char *nascimento, char *telefon
     return resposta;
 }
 
-void cad_cpf_cliente(char *cpf) {
+void cad_cpf_cliente(char cpf[12]) {
     int cpf_valido = 0;
     do {
     printf("# CPF (apenas números): ");
@@ -110,7 +111,7 @@ void cad_cpf_cliente(char *cpf) {
     } while (!cpf_valido);
 }
 
-void cad_nome_cliente(char *nome) {
+void cad_nome_cliente(char nome[81]) {
     int nome_valido = 0;
     do {
     printf("# Nome: ");
@@ -129,7 +130,7 @@ void cad_nome_cliente(char *nome) {
     } while (!nome_valido);
 }
 
-void cad_nasc_cliente(char *nasc) {
+void cad_nasc_cliente(char nasc[9]) {
     int nasc_valido = 0;
     do {
     printf("# Data de nascimento (ddmmaaaa): ");
@@ -148,7 +149,7 @@ void cad_nasc_cliente(char *nasc) {
     } while (!nasc_valido);
 }
 
-void cad_tel_cliente(char *tel) {
+void cad_tel_cliente(char tel[14]) {
     int tel_valido = 0;
     do {
     printf("# Telefone para contato (apenas números): ");
@@ -167,7 +168,7 @@ void cad_tel_cliente(char *tel) {
     } while (!tel_valido);
 }
 
-void cad_email_cliente(char *email) {
+void cad_email_cliente(char email[81]) {
     int email_valido = 0;
     do {
     printf("# E-mail para contato: ");

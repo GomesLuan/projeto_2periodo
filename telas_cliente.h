@@ -1,8 +1,15 @@
+typedef struct cliente {
+    char cpf[12];
+    char nome[81];
+    char nasc[9];
+    char tel[14];
+    char email[81];
+} Cliente;
 char tela_clientes(void);
-void tela_cadastro_cliente(char *cpf, char *nome, char *nasc, char *tel, char *email);
-void tela_info_cliente(char *cpf, char *nome, char *nascimento, char *telefone, char *email);
-char tela_alterar_cliente(char *nome, char *nascimento, char *telefone, char *email);
-char tela_remover_cliente(char *cpf, char *nome, char *nascimento, char *telefone, char *email);
+void tela_cadastro_cliente(Cliente *cl);
+void tela_info_cliente(Cliente *cl);
+char tela_alterar_cliente(Cliente *cl);
+char tela_remover_cliente(Cliente *cl);
 void cad_cpf_cliente(char *cpf);
 void cad_nome_cliente(char *nome);
 void cad_nasc_cliente(char *nasc);

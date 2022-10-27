@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-int valida_cpf(char *cpf) {
+int valida_cpf(char cpf[12]) {
     int soma = 0;
     int d1 = 0;
     int d2 = 0;
@@ -40,7 +40,7 @@ int valida_cpf(char *cpf) {
     return 1;
 }
 
-int valida_nome_pessoa(char *nome) {
+int valida_nome_pessoa(char nome[81]) {
     int i = 0;
     while (nome[i] != '\0') {
         if ((nome[i] >= '0' && nome[i] <= '9') || (nome[i] == '.') || (nome[i] == '-') || (nome[i] == ',') 
@@ -60,7 +60,7 @@ int valida_nome_pessoa(char *nome) {
     return 1;
 }
 
-int valida_data(char *data) {
+int valida_data(char data[9]) {
     int *nums = (int*) malloc(8*sizeof(int));
     for (int i=0; i<8; i++) {
         if (data[i] < '0' || data[i] > '9') {
@@ -94,7 +94,7 @@ int valida_data(char *data) {
     return 0;
 }
 
-int valida_telefone(char *tel) {
+int valida_telefone(char tel[14]) {
     int i = 0;
     while (tel[i] != '\0') {
         if (tel[i] < '0' || tel[i] > '9') {
@@ -107,7 +107,7 @@ int valida_telefone(char *tel) {
     }
     return 1;
 }
-int valida_email(char *email) {
+int valida_email(char email[81]) {
     int arroba = 0;
     int ponto = 0;
     int tam = strlen(email);

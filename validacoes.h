@@ -1,8 +1,8 @@
-int valida_cpf(char *cpf);
-int valida_nome_pessoa(char *nome);
-int valida_data(char *data);
-int valida_telefone(char *tel);
-int valida_email(char *email);
+int valida_cpf(char cpf[12]);
+int valida_nome_pessoa(char nome[81]);
+int valida_data(char data[9]);
+int valida_telefone(char tel[14]);
+int valida_email(char email[81]); 
 int valida_nome_vest(char *nome);
 int valida_inteiro(char *num);
 int valida_float(char *din);
