@@ -1,0 +1,1 @@
+char *gera_codigo_barras();

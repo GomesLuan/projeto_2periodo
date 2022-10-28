@@ -2,6 +2,7 @@
 #include "operacoes_cliente.h"
 #include "operacoes_vestimenta.h"
 #include "operacoes_locacao.h"
+#include "operacoes_gerais.h"
 #include "telas_relatorio.h"
 #include "telas_cliente.h"
 #include "telas_gerais.h"
