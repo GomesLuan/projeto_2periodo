@@ -36,8 +36,32 @@ int converte_str_para_int(char* string) {
         num += pow(10, i)*(string[tam-i-1] - '0');
     }
     if (num%10 != (string[tam-1] - '0')) {
-        //Para resolver bug que acontece na função pow() em alguns casos
+        //Para resolver um bug que acontece na função pow() em alguns casos
         num += 1;
+    }
+    return num;
+}
+
+float converte_str_para_float(char* string) {
+    float num = 0;
+    int tam_int = 0;
+    int ponto = 0;
+    int i = 0;
+    do {
+        if (string[i] == '.' || string[i] == ',') {
+            ponto = 1;
+        }
+        else if (ponto == 0) {
+            tam_int += 1;
+        }
+        else {
+            num += pow(10, tam_int-i)*(string[i] - '0');
+        }
+        i++;
+    }
+    while (string[i] != '\0');
+    for (int j=tam_int-1; j>=0; j--) {
+        num += pow(10, j)*(string[tam_int-j-1] - '0');
     }
     return num;
 }
