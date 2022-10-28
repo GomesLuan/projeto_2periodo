@@ -3,9 +3,6 @@
 #include <string.h>
 #include "telas_cliente.h"
 
-//Variável provisória
-char cliente[5][50] = {"12345678909", "Fulano da Silva", "01/01/2000", "99999-9999", "fulano@gmail.com"};
-
 void cadastrar_cliente(void) {
     Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
     tela_cadastro_cliente(cl); 

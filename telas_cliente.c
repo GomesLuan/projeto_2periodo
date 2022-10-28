@@ -92,7 +92,7 @@ char tela_remover_cliente(Cliente *cl) {
     return resposta;
 }
 
-void cad_cpf_cliente(char cpf[12]) {
+void cad_cpf_cliente(char *cpf) {
     int cpf_valido = 0;
     do {
     printf("# CPF (apenas números): ");
@@ -111,7 +111,7 @@ void cad_cpf_cliente(char cpf[12]) {
     } while (!cpf_valido);
 }
 
-void cad_nome_cliente(char nome[81]) {
+void cad_nome_cliente(char *nome) {
     int nome_valido = 0;
     do {
     printf("# Nome: ");
@@ -130,7 +130,7 @@ void cad_nome_cliente(char nome[81]) {
     } while (!nome_valido);
 }
 
-void cad_nasc_cliente(char nasc[9]) {
+void cad_nasc_cliente(char *nasc) {
     int nasc_valido = 0;
     do {
     printf("# Data de nascimento (ddmmaaaa): ");
@@ -149,7 +149,7 @@ void cad_nasc_cliente(char nasc[9]) {
     } while (!nasc_valido);
 }
 
-void cad_tel_cliente(char tel[14]) {
+void cad_tel_cliente(char *tel) {
     int tel_valido = 0;
     do {
     printf("# Telefone para contato (apenas números): ");
@@ -168,7 +168,7 @@ void cad_tel_cliente(char tel[14]) {
     } while (!tel_valido);
 }
 
-void cad_email_cliente(char email[81]) {
+void cad_email_cliente(char *email) {
     int email_valido = 0;
     do {
     printf("# E-mail para contato: ");
