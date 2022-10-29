@@ -31,7 +31,7 @@ void tela_cadastro_cliente(Cliente *cl) {
     cad_cpf_cliente(cl->cpf);
     cad_nome_cliente(cl->nome);
     cad_nasc_cliente(cl->nasc);
-    cad_tel_cliente(cl->nome);
+    cad_tel_cliente(cl->tel);
     cad_email_cliente(cl->email);
     printf("####################################################\n");
 }

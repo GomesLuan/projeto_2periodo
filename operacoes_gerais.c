@@ -4,8 +4,7 @@
 #include <string.h>
 #include <math.h>
 
-char *gera_codigo_barras() {
-    char *codigo = (char*) malloc(14*sizeof(char));
+void gera_codigo_barras(char *codigo) {
     int *digitos = (int*) malloc(12*sizeof(int));
     int num, soma2, verif;
     int soma1 = 0;
@@ -26,7 +25,6 @@ char *gera_codigo_barras() {
     codigo[12] = verif + '0';
     codigo[13] = '\0';
     free(digitos);
-    return codigo;
 }
 
 int converte_str_para_int(char* string) {

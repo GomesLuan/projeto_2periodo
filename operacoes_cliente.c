@@ -7,10 +7,15 @@ void cadastrar_cliente(void) {
     Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
     tela_cadastro_cliente(cl); 
     //Adição dos dados em arquivo
-    free(cl);
     printf("\nCadastro realizado com sucesso!\n\n");
+    printf("CPF: %s\n", cl->cpf);
+    printf("Nome: %s\n", cl->nome);
+    printf("Data de nascimento: %s\n", cl->nasc);
+    printf("Telefone: %s\n", cl->tel);
+    printf("E-Mail: %s\n\n", cl->email);
     printf("Pressione ENTER para continuar ");
     getchar();
+    free(cl);
 }
 
 void info_cliente(void) {
