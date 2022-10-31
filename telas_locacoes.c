@@ -23,48 +23,48 @@ char tela_locacoes(void) {
     return resposta;
 }
 
-void tela_cadastro_locacao(char *cpf, char *id_vest, char *tam_vest, char *data_inicio, char *data_fim) {
+void tela_cadastro_locacao(Locacao *loc) {
     system("clear||cls");
     printf("###########################################################\n");
     printf("#       A G E N D A M E N T O   D E   L O C A Ç Ã O       #\n");
     printf("###########################################################\n");
     printf("# Por favor, informe os dados solicitados:\n");
-    cad_cpf_locatario(cpf);
-    cad_id_vest(id_vest);
-    cad_tam_vest(tam_vest);
-    cad_data_inicio(data_inicio);
-    cad_data_fim(data_fim);
+    cad_cpf_locatario(loc->cpf);
+    cad_id_vest(loc->id_vest);
+    cad_tam_vest(&loc->tam_vest);
+    cad_data_inicio(loc->data_inicio);
+    cad_data_fim(loc->data_fim);
     printf("########################################################\n");
 }
 
-void tela_info_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim) {
+void tela_info_locacao(Locacao *loc) {
     system("clear||cls");
     printf("#################################################################\n");
     printf("#       I N F O R M A Ç Õ E S   D E   L O C A Ç Ã O             #\n");
     printf("#################################################################\n");
-    printf("#       Numero de identificação: %s\n", num_id);
-    printf("#       CPF do cliente responsável: %s\n", cpf);
-    printf("#       Nome da vestimenta: %s\n", nome_vest);
-    printf("#       Tamanho da vestimenta: %s\n", tam_vest);
-    printf("#       Data de início: %s\n", data_inicio);
-    printf("#       Data de fim: %s\n", data_fim);
+    printf("#       Numero de identificação: %ld\n", loc->id_loc);
+    printf("#       CPF do cliente responsável: %s\n", loc->cpf);
+    printf("#       Código do produto alugado: %s\n", loc->id_vest);
+    printf("#       Tamanho da vestimenta: %c\n", loc->tam_vest);
+    printf("#       Data de início: %s\n", loc->data_inicio);
+    printf("#       Data de fim: %s\n", loc->data_fim);
     printf("#################################################################\n\n");
     printf("Pressione ENTER para continuar ");
     getchar();
 }
 
-char tela_alterar_locacao(char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim) {
+char tela_alterar_locacao(Locacao *loc) {
     system("clear||cls");
     char resposta;
     printf("##############################################################\n");
     printf("#       A L T E R A R   D A D O S   D E   L O C A ÇÃ O       #\n");
     printf("##############################################################\n");
     printf("#       Qual informação gostaria de alterar?\n");
-    printf("#       1 - CPF do cliente responsável: (%s)\n", cpf);
-    printf("#       2 - Nome da vestimenta alugada: (%s)\n", nome_vest);
-    printf("#       3 - Tamanho da vestimenta alugada: (%s)\n", tam_vest);
-    printf("#       4 - Data de início da locação: (%s)\n", data_inicio);
-    printf("#       5 - Data de fim da locação: (%s)\n", data_fim);
+    printf("#       1 - CPF do cliente responsável: (%s)\n", loc->cpf);
+    printf("#       2 - Código do produto alugado: (%s)\n", loc->id_vest);
+    printf("#       3 - Tamanho da vestimenta alugada: (%c)\n", loc->tam_vest);
+    printf("#       4 - Data de início da locação: (%s)\n", loc->data_inicio);
+    printf("#       5 - Data de fim da locação: (%s)\n", loc->data_fim);
     printf("#       0 - Retornar ao menu de locação\n");
     printf("#########################################################\n\n");
     printf("Escolha sua opção: ");
@@ -73,18 +73,18 @@ char tela_alterar_locacao(char *cpf, char *nome_vest, char *tam_vest, char *data
     return resposta;
 }
 
-char tela_remover_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim) {
+char tela_remover_locacao(Locacao *loc) {
     system("clear||cls");
     char resposta;
     printf("#########################################################################\n");
     printf("#             C A N C E L A M E N T O   D E   L O C A Ç Ã O             #\n");
     printf("#########################################################################\n");
-    printf("#       Número de idenficação da locação: %s\n", num_id);
-    printf("#       CPF do cliente responsável: %s\n", cpf);
-    printf("#       Nome da vestimenta alugada: %s\n", nome_vest);
-    printf("#       Tamanho da vestimenta alugada: %s\n", tam_vest);
-    printf("#       Data de início da locação: %s\n", data_inicio);
-    printf("#       Data de fim da locação: %s\n", data_fim);
+    printf("#       Número de idenficação da locação: %ld\n", loc->id_loc);
+    printf("#       CPF do cliente responsável: %s\n", loc->cpf);
+    printf("#       Código do produto alugado: %s\n", loc->id_vest);
+    printf("#       Tamanho da vestimenta alugada: %c\n", loc->tam_vest);
+    printf("#       Data de início da locação: %s\n", loc->data_inicio);
+    printf("#       Data de fim da locação: %s\n", loc->data_fim);
     printf("#\n");
     printf("#       Tem certeza que deseja cancelar este agendamento?\n");
     printf("#       1 - Sim\n");
@@ -96,18 +96,18 @@ char tela_remover_locacao(char *num_id, char *cpf, char *nome_vest, char *tam_ve
     return resposta;
 }
 
-char tela_receber_produto(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim) {
+char tela_receber_produto(Locacao *loc) {
     system("clear||cls");
     char resposta;
     printf("#######################################################################\n");
     printf("#             R E C E B I M E N T O   D E   P R O D U T O             #\n");
     printf("#######################################################################\n");
-    printf("#       Número de idenficação da locação: %s\n", num_id);
-    printf("#       CPF do cliente responsável: %s\n", cpf);
-    printf("#       Nome da vestimenta alugada: %s\n", nome_vest);
-    printf("#       Tamanho da vestimenta alugada: %s\n", tam_vest);
-    printf("#       Data de início da locação: %s\n", data_inicio);
-    printf("#       Data de fim da locação: %s\n", data_fim);
+    printf("#       Número de idenficação da locação: %ld\n", loc->id_loc);
+    printf("#       CPF do cliente responsável: %s\n", loc->cpf);
+    printf("#       Código do produto alugado: %s\n", loc->id_vest);
+    printf("#       Tamanho da vestimenta alugada: %c\n", loc->tam_vest);
+    printf("#       Data de início da locação: %s\n", loc->data_inicio);
+    printf("#       Data de fim da locação: %s\n", loc->data_fim);
     printf("#\n");
     printf("#       Deseja confirmar o recebimento do produto desta locação?\n");
     printf("#       1 - Sim\n");
@@ -119,18 +119,18 @@ char tela_receber_produto(char *num_id, char *cpf, char *nome_vest, char *tam_ve
     return resposta;
 }
 
-char tela_devolver_produto(char *num_id, char *cpf, char *nome_vest, char *tam_vest, char *data_inicio, char *data_fim) {
+char tela_devolver_produto(Locacao *loc) {
     system("clear||cls");
     char resposta;
     printf("####################################################################\n");
     printf("#             D E V O L U Ç Ã O   D E   P R O D U T O              #\n");
     printf("####################################################################\n");
-    printf("#       Número de idenficação da locação: %s\n", num_id);
-    printf("#       CPF do cliente responsável: %s\n", cpf);
-    printf("#       Nome da vestimenta alugada: %s\n", nome_vest);
-    printf("#       Tamanho da vestimenta alugada: %s\n", tam_vest);
-    printf("#       Data de início da locação: %s\n", data_inicio);
-    printf("#       Data de fim da locação: %s\n", data_fim);
+    printf("#       Número de idenficação da locação: %ld\n", loc->id_loc);
+    printf("#       CPF do cliente responsável: %s\n", loc->cpf);
+    printf("#       Código do produto alugado: %s\n", loc->id_vest);
+    printf("#       Tamanho da vestimenta alugada: %c\n", loc->tam_vest);
+    printf("#       Data de início da locação: %s\n", loc->data_inicio);
+    printf("#       Data de fim da locação: %s\n", loc->data_fim);
     printf("#\n");
     printf("#       Deseja confirmar a devolução do produto desta locação?\n");
     printf("#       1 - Sim\n");
@@ -187,7 +187,7 @@ void cad_tam_vest(char *tam) {
     printf("# Tamanho da vestimenta (P/M/G): ");
     scanf("%s", tam);
     getchar();
-    tam_valido = valida_tamanho_vest(tam);
+    tam_valido = valida_tamanho_vest(*tam);
     if (!tam_valido) {
         printf("Valor inválido! ");
         getchar();

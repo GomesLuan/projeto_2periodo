@@ -6,4 +6,4 @@ int valida_email(char email[81]);
 int valida_nome_vest(char *nome);
 int valida_inteiro(char *num);
 int valida_float(char *din);
-int valida_tamanho_vest(char *tam);
+int valida_tamanho_vest(char tam);

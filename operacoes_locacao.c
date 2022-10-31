@@ -1,28 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #include "telas_locacoes.h"
 
-//Variável provisória
-char locacao[6][50] = {"123456", "12345678909", "Fantasia do Batman", "M", "01/01/2023", "03/01/2023"};
-
 void cadastrar_locacao(void) {
-    char *tam_vest = (char*) malloc(2*sizeof(char));
-    char *cpf = (char*) malloc(12*sizeof(char));
-    char *id_vest = (char*) malloc(7*sizeof(char));
-    char *data_inicio = (char*) malloc(11*sizeof(char));
-    char *data_fim = (char*) malloc(11*sizeof(char));
-    tela_cadastro_locacao(cpf, id_vest, tam_vest, data_inicio, data_fim); 
-    //Adição dos dados à lista
+    Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
+    tela_cadastro_locacao(loc); 
+    loc->id_loc = time(0);
+    //Adição dos dados ao arquivo
     printf("\nAgendamento realizado com sucesso!\n\n");
+    printf("Código da locação: %ld\n", loc->id_loc);
+    printf("CPF do cliente locatário: %s\n", loc->cpf);
+    printf("Código da vestimenta alugada: %s\n", loc->id_vest);
+    printf("Tamanho da vestimenta alugada: %c\n", loc->tam_vest);
+    printf("Data de início da locação: %s\n", loc->data_inicio);
+    printf("Data de fim da locação: %s\n\n", loc->data_fim);
     printf("Pressione ENTER para continuar ");
     getchar();
+    free(loc);
 }
 
 void info_locacao(void) {
     //char *num;
     //Input com o numero de identificação do aluguel
     //Busca das informações do aluguel solicitada
-    tela_info_locacao(locacao[0], locacao[1], locacao[2], locacao[3], locacao[4], locacao[5]);
+    Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
+    loc->id_loc = 1667231055;
+    strcpy(loc->cpf, "12345678909");
+    strcpy(loc->id_vest, "1564798136123");
+    loc->tam_vest = 'M';
+    strcpy(loc->data_inicio, "01012022");
+    strcpy(loc->data_fim, "03012002");
+    tela_info_locacao(loc);
+    free(loc);
 }
 
 void alterar_locacao(void) {
@@ -30,59 +41,46 @@ void alterar_locacao(void) {
     char resp = '1';
     //Input com o numero de identificação do aluguel
     //Busca das informações do aluguel solicitada
+    Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
+    loc->id_loc = 1667231055;
+    strcpy(loc->cpf, "12345678909");
+    strcpy(loc->id_vest, "1564798136123");
+    loc->tam_vest = 'M';
+    strcpy(loc->data_inicio, "01012022");
+    strcpy(loc->data_fim, "03012002");
     while (resp != '0') {
-        resp = tela_alterar_locacao(locacao[1], locacao[2], locacao[3], locacao[4], locacao[5]);
+        resp = tela_alterar_locacao(loc);
         if (resp == '1') {
-            char *novo_cpf = malloc(12* sizeof(char));
-            printf("\nPor favor informe o novo CPF do cliente responsável (apenas números): ");
-            scanf("%s", novo_cpf);
-            getchar();
-            //mudar cpf
-            //desalocar memoria
+            cad_cpf_locatario(loc->cpf);
+            //mudar cpf no arquivo
             printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '2') {
-            char *novo_nome = malloc(51* sizeof(char));
-            printf("\nPor favor informe o novo nome da vestimenta que deseja alugar: ");
-            scanf("%s", novo_nome);
-            getchar();
-            //mudar nome de vestimenta
-            //desalocar memoria
+            cad_id_vest(loc->id_vest);
+            //mudar id da vestimenta no arquivo
             printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '3') {
-            char *novo_tam = malloc(2* sizeof(char));
-            printf("\nPor favor informe o novo tamanho da vestimenta que deseja alugar: ");
-            scanf("%s", novo_tam);
-            getchar();
-            //Alteração do tamanho da vestimenta
-            //desalocar memoria
+            cad_tam_vest(&loc->tam_vest);
+            //Alteração do tamanho da vestimenta no arquivo
             printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '4') {
-            char *novo_inicio = malloc(11* sizeof(char));
-            printf("\nPor favor informe a nova data de início da locação (ddmmaaaa): ");
-            scanf("%s", novo_inicio);
-            getchar();
-            //Alteração da data de inicio da locacao
-            //desalocar memoria
+            cad_data_inicio(loc->data_inicio);
+            //Alteração da data de inicio da locacao no arquivo
             printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
         }
         else if (resp == '5') {
-            char *novo_fim = malloc(11* sizeof(char));
-            printf("\nPor favor informe a nova data de fim da locação (ddmmaaaa): ");
-            scanf("%s", novo_fim);
-            getchar();
-            //Alteração da data de fim da locacao
-            //desalocar memoria
+            cad_data_fim(loc->data_fim);
+            //Alteração da data de fim da locacao no arquivo
             printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
             getchar();
@@ -93,6 +91,7 @@ void alterar_locacao(void) {
             getchar();
         }
     }
+    free(loc);
 }
 
 void remover_locacao(void) {
@@ -100,11 +99,17 @@ void remover_locacao(void) {
     char resp = '2';
     //Input com o numero de identificação do contrato
     //Busca das informações do contrato solicitado
-    resp = tela_remover_locacao(locacao[0], locacao[1], locacao[2], locacao[3], locacao[4], locacao[5]);
+    Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
+    loc->id_loc = 1667231055;
+    strcpy(loc->cpf, "12345678909");
+    strcpy(loc->id_vest, "1564798136123");
+    loc->tam_vest = 'M';
+    strcpy(loc->data_inicio, "01012022");
+    strcpy(loc->data_fim, "03012002");
+    resp = tela_remover_locacao(loc);
     if (resp == '1') {
         printf("\nAgendamento cancelado.\n\n");
-        //remove contrato da lista
-        //desalocar memoria
+        //remove locação do arquivo
     }
     else if (resp == '2') {
         printf("\nRetornando...\n\n");
@@ -122,7 +127,14 @@ void receber_produto_alugado(void) {
     //Input com o numero de identificação do contrato
     //Busca das informações do contrato solicitado
     //Teste se o contrato está pendente
-    resp = tela_receber_produto(locacao[0], locacao[1], locacao[2], locacao[3], locacao[4], locacao[5]);
+    Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
+    loc->id_loc = 1667231055;
+    strcpy(loc->cpf, "12345678909");
+    strcpy(loc->id_vest, "1564798136123");
+    loc->tam_vest = 'M';
+    strcpy(loc->data_inicio, "01012022");
+    strcpy(loc->data_fim, "03012002");
+    resp = tela_receber_produto(loc);
     if (resp == '1') {
         printf("\nProduto recebido!\n\n");
         //muda o status da locação de pendente para ativa
@@ -144,7 +156,14 @@ void devolver_produto_alugado(void) {
     //Input com o numero de identificação do contrato
     //Busca das informações do contrato solicitado
     //Teste se o contrato está ativo
-    resp = tela_devolver_produto(locacao[0], locacao[1], locacao[2], locacao[3], locacao[4], locacao[5]);
+    Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
+    loc->id_loc = 1667231055;
+    strcpy(loc->cpf, "12345678909");
+    strcpy(loc->id_vest, "1564798136123");
+    loc->tam_vest = 'M';
+    strcpy(loc->data_inicio, "01012022");
+    strcpy(loc->data_fim, "03012002");
+    resp = tela_devolver_produto(loc);
     if (resp == '1') {
         printf("\nProduto devolvido!\n\n");
         //adiciona uma unidade da vestimenta

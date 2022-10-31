@@ -193,12 +193,8 @@ int valida_float(char *din) {
     return 1;
 }
 
-int valida_tamanho_vest(char *tam) {
-    int len = strlen(tam);
-    if (len != 1) {
-        return 0;
-    }
-    if (tam[0] != 'P' && tam[0] != 'M' && tam[0] != 'G' && tam[0] != 'p' && tam[0] != 'm' && tam[0] != 'g') {
+int valida_tamanho_vest(char tam) {
+    if (tam != 'P' && tam != 'M' && tam != 'G' && tam != 'p' && tam != 'm' && tam != 'g') {
         return 0;
     }
     return 1;
