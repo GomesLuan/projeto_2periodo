@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 int valida_cpf(char cpf[12]) {
     int soma = 0;
     int d1 = 0;
@@ -198,4 +199,42 @@ int valida_tamanho_vest(char tam) {
         return 0;
     }
     return 1;
+}
+
+///////////
+//Função adaptada de Vinicius Maia com base no algoritmo do professor Flavius Gorgonio
+//////////
+int verifica_data_maior(char *data1, char *data2) {
+    int *nums1 = (int*) malloc(8*sizeof(int));
+    int *nums2 = (int*) malloc(8*sizeof(int));
+    for (int i=0; i<8; i++) {
+        nums1[i] = data1[i] - '0';
+        nums2[i] = data2[i] - '0';
+    }
+    int dia1 = 10*nums1[0] + nums1[1];
+    int mes1 = 10*nums1[2] + nums1[3];
+    int ano1 = 1000*nums1[4] + 100*nums1[5] + 10*nums1[6] + nums1[7];
+    int dia2 = 10*nums2[0] + nums2[1];
+    int mes2 = 10*nums2[2] + nums2[3];
+    int ano2 = 1000*nums2[4] + 100*nums2[5] + 10*nums2[6] + nums2[7];   
+    if (ano1 < ano2) {
+        return 0;
+    }
+    else if (ano1 > ano2){
+        return 1;
+    }
+    else {
+        if (mes1 < mes2) {
+            return 0;
+        }
+        else if (mes1 > mes2) {
+            return 1;
+        }
+        else {
+            if (dia1 <= dia2) {
+                return 0;
+            }
+            return 1;
+        }
+    }
 }

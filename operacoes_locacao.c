@@ -47,7 +47,7 @@ void alterar_locacao(void) {
     strcpy(loc->id_vest, "1564798136123");
     loc->tam_vest = 'M';
     strcpy(loc->data_inicio, "01012022");
-    strcpy(loc->data_fim, "03012002");
+    strcpy(loc->data_fim, "03012022");
     while (resp != '0') {
         resp = tela_alterar_locacao(loc);
         if (resp == '1') {
@@ -79,7 +79,7 @@ void alterar_locacao(void) {
             getchar();
         }
         else if (resp == '5') {
-            cad_data_fim(loc->data_fim);
+            cad_data_fim(loc->data_fim, loc->data_inicio);
             //Alteração da data de fim da locacao no arquivo
             printf("\nAlteração realizada com sucesso!\n\n");
             printf("Pressione ENTER para continuar ");
@@ -119,6 +119,7 @@ void remover_locacao(void) {
     }
     printf("Pressione ENTER para continuar ");
     getchar();
+    free(loc);
 }
 
 void receber_produto_alugado(void) {
@@ -148,6 +149,7 @@ void receber_produto_alugado(void) {
     }
     printf("Pressione ENTER para continuar ");
     getchar();
+    free(loc);
 }
 
 void devolver_produto_alugado(void) {
@@ -177,4 +179,5 @@ void devolver_produto_alugado(void) {
     }
     printf("Pressione ENTER para continuar ");
     getchar();
+    free(loc);
 }

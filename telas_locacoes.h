@@ -17,4 +17,4 @@ void cad_cpf_locatario(char *cpf);
 void cad_id_vest(char *id);
 void cad_tam_vest(char *tam);
 void cad_data_inicio(char *data);
-void cad_data_fim(char *data);
+void cad_data_fim(char *data_fim, char *data_inicio);

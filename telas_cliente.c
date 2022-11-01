@@ -95,94 +95,94 @@ char tela_remover_cliente(Cliente *cl) {
 void cad_cpf_cliente(char *cpf) {
     int cpf_valido = 0;
     do {
-    printf("# CPF (apenas números): ");
-    scanf("%s", cpf);
-    getchar();
-    cpf_valido = valida_cpf(cpf);
-    if (!cpf_valido) {
-        printf("Valor inválido! ");
+        printf("# CPF (apenas números): ");
+        scanf("%s", cpf);
         getchar();
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-    }
+        cpf_valido = valida_cpf(cpf);
+        if (!cpf_valido) {
+            printf("Valor inválido! ");
+            getchar();
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+        }
     } while (!cpf_valido);
 }
 
 void cad_nome_cliente(char *nome) {
     int nome_valido = 0;
     do {
-    printf("# Nome: ");
-    scanf("%[A-Z a-z 0-9 .,-_# áéíóúâôãõç ÁÉÍÓÚÂÔÃÕÇ]", nome);
-    getchar();
-    nome_valido = valida_nome_pessoa(nome);
-    if (!nome_valido) {
-        printf("Valor inválido! ");
+        printf("# Nome: ");
+        scanf("%[A-Z a-z 0-9 .,-_# áéíóúâôãõç ÁÉÍÓÚÂÔÃÕÇ]", nome);
         getchar();
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-    }
+        nome_valido = valida_nome_pessoa(nome);
+        if (!nome_valido) {
+            printf("Valor inválido! ");
+            getchar();
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+        }
     } while (!nome_valido);
 }
 
 void cad_nasc_cliente(char *nasc) {
     int nasc_valido = 0;
     do {
-    printf("# Data de nascimento (ddmmaaaa): ");
-    scanf("%s", nasc);
-    getchar();
-    nasc_valido = valida_data(nasc);
-    if (!nasc_valido) {
-        printf("Valor inválido! ");
+        printf("# Data de nascimento (ddmmaaaa): ");
+        scanf("%s", nasc);
         getchar();
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-    }
+        nasc_valido = valida_data(nasc);
+        if (!nasc_valido) {
+            printf("Valor inválido! ");
+            getchar();
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+        }
     } while (!nasc_valido);
 }
 
 void cad_tel_cliente(char *tel) {
     int tel_valido = 0;
     do {
-    printf("# Telefone para contato (apenas números): ");
-    scanf("%s", tel);
-    getchar();
-    tel_valido = valida_telefone(tel);
-    if (!tel_valido) {
-        printf("Valor inválido! ");
+        printf("# Telefone para contato (apenas números): ");
+        scanf("%s", tel);
         getchar();
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-    }
+        tel_valido = valida_telefone(tel);
+        if (!tel_valido) {
+            printf("Valor inválido! ");
+            getchar();
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+        }
     } while (!tel_valido);
 }
 
 void cad_email_cliente(char *email) {
     int email_valido = 0;
     do {
-    printf("# E-mail para contato: ");
-    scanf("%s", email);
-    getchar();
-    email_valido = valida_email(email);
-    if (!email_valido) {
-        printf("Valor inválido! ");
+        printf("# E-mail para contato: ");
+        scanf("%s", email);
         getchar();
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-    }
+        email_valido = valida_email(email);
+        if (!email_valido) {
+            printf("Valor inválido! ");
+            getchar();
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+        }
     } while (!email_valido);
 }

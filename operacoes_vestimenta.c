@@ -109,7 +109,6 @@ void remover_vestimenta(void) {
     vest->num_g = 3;
     vest->preco = 50.00;
     resp = tela_remover_vestimenta(vest);
-    free(vest);
     if (resp == '1') {
         printf("\nVestimenta removida.\n\n");
         //remove vestimenta do arquivo
@@ -122,4 +121,5 @@ void remover_vestimenta(void) {
     }
     printf("Pressione ENTER para continuar ");
     getchar();
+    free(vest);
 }

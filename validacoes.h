@@ -7,3 +7,4 @@ int valida_nome_vest(char *nome);
 int valida_inteiro(char *num);
 int valida_float(char *din);
 int valida_tamanho_vest(char tam);
+int verifica_data_maior(char *data1, char *data2);

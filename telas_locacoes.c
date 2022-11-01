@@ -33,7 +33,7 @@ void tela_cadastro_locacao(Locacao *loc) {
     cad_id_vest(loc->id_vest);
     cad_tam_vest(&loc->tam_vest);
     cad_data_inicio(loc->data_inicio);
-    cad_data_fim(loc->data_fim);
+    cad_data_fim(loc->data_fim, loc->data_inicio);
     printf("########################################################\n");
 }
 
@@ -145,96 +145,101 @@ char tela_devolver_produto(Locacao *loc) {
 void cad_cpf_locatario(char *cpf) {
     int cpf_valido = 0;
     do {
-    printf("# CPF do locatário (apenas números): ");
-    scanf("%s", cpf);
-    getchar();
-    cpf_valido = valida_cpf(cpf);
-    //verifica se o cpf está cadastrado
-    if (!cpf_valido) {
-        printf("Valor inválido! ");
+        printf("# CPF do locatário (apenas números): ");
+        scanf("%s", cpf);
         getchar();
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-    }
+        cpf_valido = valida_cpf(cpf);
+        //verifica se o cpf está cadastrado
+        if (!cpf_valido) {
+            printf("Valor inválido! ");
+            getchar();
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+        }
     } while (!cpf_valido);
 }
 
 void cad_id_vest(char *id) {
     int id_valido = 0;
     do {
-    printf("# Código de identificação da vestimenta: ");
-    scanf("%s", id);
-    getchar();
-    id_valido = 1; //verifica se o id está cadastrado
-    if (!id_valido) {
-        printf("Valor inválido! ");
+        printf("# Código de identificação da vestimenta: ");
+        scanf("%s", id);
         getchar();
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-    }
+        id_valido = 1; //verifica se o id está cadastrado
+        if (!id_valido) {
+            printf("Valor inválido! ");
+            getchar();
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+        }
     } while (!id_valido);
 }
 
 void cad_tam_vest(char *tam) {
     int tam_valido = 0;
     do {
-    printf("# Tamanho da vestimenta (P/M/G): ");
-    scanf("%s", tam);
-    getchar();
-    tam_valido = valida_tamanho_vest(*tam);
-    if (!tam_valido) {
-        printf("Valor inválido! ");
+        printf("# Tamanho da vestimenta (P/M/G): ");
+        scanf("%s", tam);
         getchar();
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-    }
+        tam_valido = valida_tamanho_vest(*tam);
+        if (!tam_valido) {
+            printf("Valor inválido! ");
+            getchar();
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+        }
     } while (!tam_valido);
 }
 
 void cad_data_inicio(char *data) {
     int data_valida = 0;
     do {
-    printf("# Data de início da locação (ddmmaaaa): ");
-    scanf("%s", data);
-    getchar();
-    data_valida = valida_data(data);
-    if (!data_valida) {
-        printf("Valor inválido! ");
+        printf("# Data de início da locação (ddmmaaaa): ");
+        scanf("%s", data);
         getchar();
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-    }
+        data_valida = valida_data(data);
+        if (!data_valida) {
+            printf("Valor inválido! ");
+            getchar();
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+        }
     } while (!data_valida);
 }
 
-void cad_data_fim(char *data) {
-    int data_valida = 0;
+void cad_data_fim(char *data_fim, char *data_inicio) {
+    int data_valida;
+    int data_maior;
     do {
-    printf("# Data de fim da locação (ddmmaaaa): ");
-    scanf("%s", data);
-    getchar();
-    data_valida = valida_data(data);
-    //Verifica se a data é maior que a data inicial
-    if (!data_valida) {
-        printf("Valor inválido! ");
+        data_valida = 0;
+        data_maior = 0;
+        printf("# Data de fim da locação (ddmmaaaa): ");
+        scanf("%s", data_fim);
         getchar();
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-        printf("\x1b[1F");
-        printf("\x1b[2K");
-    }
-    } while (!data_valida);
+        data_valida = valida_data(data_fim);
+        if (data_valida) {
+            data_maior = verifica_data_maior(data_fim, data_inicio);
+        }
+        if (!data_valida || !data_maior) {
+            printf("Valor inválido! ");
+            getchar();
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+            printf("\x1b[1F");
+            printf("\x1b[2K");
+        }
+    } while (!data_valida || !data_maior);
 }

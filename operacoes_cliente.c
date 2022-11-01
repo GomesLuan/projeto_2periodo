@@ -94,7 +94,6 @@ void remover_cliente(void) {
     strcpy(cl->tel, "99999999");
     strcpy(cl->email, "fulano@gmail.com");
     resp = tela_remover_cliente(cl);
-    free(cl);
     if (resp == '1') {
         printf("\nCliente removido.\n\n");
         //remove cliente do arquivo
@@ -107,4 +106,5 @@ void remover_cliente(void) {
     }
     printf("Pressione ENTER para continuar ");
     getchar();
+    free(cl);
 }
