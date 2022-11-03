@@ -4,6 +4,14 @@
 #include "telas_cliente.h"
 #include "operacoes_cliente.h"
 
+typedef struct cliente {
+    char cpf[12];
+    char nome[81];
+    char nasc[9];
+    char tel[14];
+    char email[81];
+} Cliente;
+
 char tela_clientes(void) {
     system("clear||cls");
     char resposta;
