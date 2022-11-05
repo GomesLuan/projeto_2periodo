@@ -141,6 +141,7 @@ Cliente *busca_cliente(char *cpf) {
     Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
     arq = fopen("clientes.dat", "rb");
     if (arq == NULL) {
+        fclose(arq);
         return NULL;
     }
     else {

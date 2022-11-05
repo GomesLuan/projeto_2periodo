@@ -157,6 +157,7 @@ Vestimenta *busca_vestimenta(char *id) {
     Vestimenta *vest = (Vestimenta*) malloc(sizeof(Vestimenta));
     arq = fopen("vestimentas.dat", "rb");
     if (arq == NULL) {
+        fclose(arq);
         return NULL;
     }
     else {

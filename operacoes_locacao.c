@@ -3,12 +3,24 @@
 #include <string.h>
 #include <time.h>
 #include "telas_locacoes.h"
+#include "operacoes_locacao.h"
+#include "operacoes_gerais.h"
+
+typedef struct locacao {
+    long id_loc;
+    char cpf[12];
+    char id_vest[14];
+    char tam_vest;
+    char data_inicio[9];
+    char data_fim[9];
+} Locacao;
 
 void cadastrar_locacao(void) {
     Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
     tela_cadastro_locacao(loc); 
     loc->id_loc = time(0);
-    //Adição dos dados ao arquivo
+    //Verifica se o id ja existe
+    grava_locacao(loc);
     printf("\nAgendamento realizado com sucesso!\n\n");
     printf("Código da locação: %ld\n", loc->id_loc);
     printf("CPF do cliente locatário: %s\n", loc->cpf);
@@ -22,18 +34,22 @@ void cadastrar_locacao(void) {
 }
 
 void info_locacao(void) {
-    //char *num;
-    //Input com o numero de identificação do aluguel
-    //Busca das informações do aluguel solicitada
-    Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
-    loc->id_loc = 1667231055;
-    strcpy(loc->cpf, "12345678909");
-    strcpy(loc->id_vest, "1564798136123");
-    loc->tam_vest = 'M';
-    strcpy(loc->data_inicio, "01012022");
-    strcpy(loc->data_fim, "03012002");
-    tela_info_locacao(loc);
+    char *id_str = (char*) malloc(11*sizeof(char));
+    printf("Informe o código da locação: ");
+    scanf("%s", id_str);
+    getchar();
+    long id = converte_str_para_int(id_str);
+    Locacao *loc = busca_locacao(id);
+    if (loc != NULL) {
+        tela_info_locacao(loc);
+    }
+    else {
+        printf("\nNão foi encontrada nenhuma locação com este código.\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
+    }
     free(loc);
+    free(id_str);
 }
 
 void alterar_locacao(void) {
@@ -180,4 +196,39 @@ void devolver_produto_alugado(void) {
     printf("Pressione ENTER para continuar ");
     getchar();
     free(loc);
+}
+
+void grava_locacao(Locacao *loc) {
+    FILE* arq;
+    arq = fopen("locacoes.dat", "ab");
+    if (arq == NULL) {
+        printf("Erro ao abrir arquivo!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
+    }
+    else {
+        fwrite(loc, sizeof(Locacao), 1, arq);
+    }
+    fclose(arq);
+}
+
+Locacao *busca_locacao(long id) {
+    FILE* arq;
+    Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
+    arq = fopen("locacoes.dat", "rb");
+    if (arq == NULL) {
+        fclose(arq);
+        return NULL;
+    }
+    else {
+        while (!feof(arq)) {
+            fread(loc, sizeof(Locacao), 1, arq);
+            if (loc->id_loc == id) {
+                fclose(arq);
+                return loc;
+            }
+        }
+    }
+    fclose(arq);
+    return NULL;
 }

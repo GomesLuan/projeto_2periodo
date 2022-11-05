@@ -33,7 +33,7 @@ int converte_str_para_int(char* string) {
     for (int i=tam-1; i>=0; i--) {
         num += pow(10, i)*(string[tam-i-1] - '0');
     }
-    if (num%10 != (string[tam-1] - '0')) {
+    while (num%10 != (string[tam-1] - '0')) {
         //Para resolver um bug que acontece na função pow() em alguns casos
         num += 1;
     }

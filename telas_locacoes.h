@@ -1,11 +1,4 @@
-typedef struct locacao {
-    long id_loc;
-    char cpf[12];
-    char id_vest[14];
-    char tam_vest;
-    char data_inicio[9];
-    char data_fim[9];
-} Locacao;
+typedef struct locacao Locacao;
 char tela_locacoes(void);
 void tela_cadastro_locacao(Locacao *loc);
 void tela_info_locacao(Locacao *loc);
