@@ -4,6 +4,15 @@
 #include "telas_vestimenta.h"
 #include "operacoes_gerais.h"
 
+typedef struct vestimenta {
+    char id[14];
+    char nome[81];
+    int num_p;
+    int num_m;
+    int num_g;
+    float preco;
+} Vestimenta; 
+
 char tela_vestimentas(void) {
     system("clear||cls");
     char resposta;

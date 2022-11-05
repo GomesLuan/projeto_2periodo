@@ -1,11 +1,4 @@
-typedef struct vestimenta {
-    char id[14];
-    char nome[81];
-    int num_p;
-    int num_m;
-    int num_g;
-    float preco;
-} Vestimenta;
+typedef struct vestimenta Vestimenta;
 char tela_vestimentas(void);
 void tela_cadastro_vestimenta(Vestimenta *vest);
 void tela_info_vestimenta(Vestimenta *vest);
