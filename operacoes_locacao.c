@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "validacoes.h"
 #include "telas_locacoes.h"
 #include "operacoes_locacao.h"
 #include "operacoes_gerais.h"
@@ -18,8 +19,11 @@ typedef struct locacao {
 void cadastrar_locacao(void) {
     Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
     tela_cadastro_locacao(loc); 
-    loc->id_loc = time(0);
-    //Verifica se o id ja existe
+    int id_ja_existe = 1;
+    do {
+        loc->id_loc = time(0);
+        id_ja_existe = verifica_exist_loc(loc->id_loc);
+    } while (id_ja_existe == 1);
     grava_locacao(loc);
     printf("\nAgendamento realizado com sucesso!\n\n");
     printf("Código da locação: %ld\n", loc->id_loc);

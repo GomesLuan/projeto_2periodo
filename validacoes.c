@@ -1,6 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "operacoes_cliente.h"
+#include "operacoes_locacao.h"
+#include "operacoes_vestimenta.h"
+
+typedef struct cliente {
+    char cpf[12];
+    char nome[81];
+    char nasc[9];
+    char tel[14];
+    char email[81];
+} Cliente;
+
+typedef struct vestimenta {
+    char id[14];
+    char nome[81];
+    int num_p;
+    int num_m;
+    int num_g;
+    float preco;
+} Vestimenta; 
+
+typedef struct locacao {
+    long id_loc;
+    char cpf[12];
+    char id_vest[14];
+    char tam_vest;
+    char data_inicio[9];
+    char data_fim[9];
+} Locacao;
 
 int valida_cpf(char cpf[12]) {
     int soma = 0;
@@ -237,4 +266,34 @@ int verifica_data_maior(char *data1, char *data2) {
             return 1;
         }
     }
+}
+
+int verifica_exist_cliente(char *cpf) {
+    Cliente *cl = busca_cliente(cpf);
+    if (cl == NULL) {
+        free(cl);
+        return 0;
+    }
+    free(cl);
+    return 1;
+}
+
+int verifica_exist_vest(char *id) {
+    Vestimenta *vest = busca_vestimenta(id);
+    if (vest == NULL) {
+        free(vest);
+        return 0;
+    }
+    free(vest);
+    return 1;
+}
+
+int verifica_exist_loc(long id) {
+    Locacao *loc = busca_locacao(id);
+    if (loc == NULL) {
+        free(loc);
+        return 0;
+    }
+    free(loc);
+    return 1;
 }

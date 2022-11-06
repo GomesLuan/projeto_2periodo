@@ -102,13 +102,22 @@ char tela_remover_cliente(Cliente *cl) {
 
 void cad_cpf_cliente(char *cpf) {
     int cpf_valido = 0;
+    int cpf_ja_existe = 1;
     do {
         printf("# CPF (apenas números): ");
         scanf("%s", cpf);
         getchar();
         cpf_valido = valida_cpf(cpf);
-        if (!cpf_valido) {
-            printf("Valor inválido! ");
+        if (cpf_valido) {
+            cpf_ja_existe = verifica_exist_cliente(cpf);
+        }
+        if (!cpf_valido || cpf_ja_existe) {
+            if (!cpf_valido) {
+                printf("# Valor inválido! ");
+            }
+            else {
+                printf("# Este CPF já está cadastrado.");
+            }
             getchar();
             printf("\x1b[2K");
             printf("\x1b[1F");
@@ -116,7 +125,7 @@ void cad_cpf_cliente(char *cpf) {
             printf("\x1b[1F");
             printf("\x1b[2K");
         }
-    } while (!cpf_valido);
+    } while (!cpf_valido || cpf_ja_existe);
 }
 
 void cad_nome_cliente(char *nome) {

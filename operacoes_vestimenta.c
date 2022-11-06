@@ -4,6 +4,7 @@
 #include "telas_vestimenta.h"
 #include "operacoes_vestimenta.h"
 #include "operacoes_gerais.h"
+#include "validacoes.h"
 
 typedef struct vestimenta {
     char id[14];
@@ -16,10 +17,12 @@ typedef struct vestimenta {
 
 void cadastrar_vestimenta(void) {
     Vestimenta *vest = (Vestimenta*) malloc(sizeof(Vestimenta));
-    //int existe_id = 0
     tela_cadastro_vestimenta(vest);
-    gera_codigo_barras(vest->id);
-    //verifica se o id gerado já está cadastrado
+    int id_ja_existe = 1;
+    do {
+        gera_codigo_barras(vest->id);
+        id_ja_existe = verifica_exist_vest(vest->id);
+    } while (id_ja_existe == 1);
     grava_vestimenta(vest);
     printf("\nCadastro realizado com sucesso!\n\n");
     printf("Número de identificação: %s\n", vest->id);

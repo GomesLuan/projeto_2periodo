@@ -153,14 +153,22 @@ char tela_devolver_produto(Locacao *loc) {
 
 void cad_cpf_locatario(char *cpf) {
     int cpf_valido = 0;
+    int cpf_cadastrado = 0;
     do {
         printf("# CPF do locatário (apenas números): ");
         scanf("%s", cpf);
         getchar();
         cpf_valido = valida_cpf(cpf);
-        //verifica se o cpf está cadastrado
-        if (!cpf_valido) {
-            printf("Valor inválido! ");
+        if (cpf_valido) {
+            cpf_cadastrado = verifica_exist_cliente(cpf);
+        }
+        if (!cpf_valido || !cpf_cadastrado) {
+            if (!cpf_valido) {
+                printf("# Valor inválido! ");
+            }
+            else {
+                printf("# Este CPF não está cadastrado.");
+            }
             getchar();
             printf("\x1b[2K");
             printf("\x1b[1F");
@@ -168,18 +176,18 @@ void cad_cpf_locatario(char *cpf) {
             printf("\x1b[1F");
             printf("\x1b[2K");
         }
-    } while (!cpf_valido);
+    } while (!cpf_valido || !cpf_cadastrado);
 }
 
 void cad_id_vest(char *id) {
-    int id_valido = 0;
+    int id_cadastrado = 0;
     do {
         printf("# Código de identificação da vestimenta: ");
         scanf("%s", id);
         getchar();
-        id_valido = 1; //verifica se o id está cadastrado
-        if (!id_valido) {
-            printf("Valor inválido! ");
+        id_cadastrado = verifica_exist_vest(id);
+        if (!id_cadastrado) {
+            printf("# Não há nenhuma vestimenta cadastrada com este código.");
             getchar();
             printf("\x1b[2K");
             printf("\x1b[1F");
@@ -187,7 +195,7 @@ void cad_id_vest(char *id) {
             printf("\x1b[1F");
             printf("\x1b[2K");
         }
-    } while (!id_valido);
+    } while (!id_cadastrado);
 }
 
 void cad_tam_vest(char *tam) {

@@ -1,3 +1,6 @@
+typedef struct cliente Cliente;
+typedef struct vestimenta Vestimenta;
+typedef struct locacao Locacao;
 int valida_cpf(char cpf[12]);
 int valida_nome_pessoa(char nome[81]);
 int valida_data(char data[9]);
@@ -8,3 +11,6 @@ int valida_inteiro(char *num);
 int valida_float(char *din);
 int valida_tamanho_vest(char tam);
 int verifica_data_maior(char *data1, char *data2);
+int verifica_exist_cliente(char *cpf);
+int verifica_exist_vest(char *id);
+int verifica_exist_loc(long id);
