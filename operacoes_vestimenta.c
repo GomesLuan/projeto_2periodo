@@ -13,6 +13,7 @@ typedef struct vestimenta {
     int num_m;
     int num_g;
     float preco;
+    char status;
 } Vestimenta; 
 
 void cadastrar_vestimenta(void) {

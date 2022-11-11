@@ -14,6 +14,7 @@ typedef struct locacao {
     char tam_vest;
     char data_inicio[9];
     char data_fim[9];
+    char status;
 } Locacao;
 
 void cadastrar_locacao(void) {
