@@ -31,10 +31,10 @@ void cadastrar_cliente(void) {
 
 void info_cliente(void) {
     char *cpf = (char*) malloc(12*sizeof(char));
-    printf("Informe o cpf do cliente (apenas números): ");
+    printf("\nInforme o cpf do cliente (apenas números): ");
     scanf("%s", cpf);
     getchar();
-    Cliente *cl = busca_cliente(cpf);
+    Cliente *cl = busca_cliente(cpf, 0);
     if (cl != NULL) {
         tela_info_cliente(cl);
     }
@@ -53,8 +53,7 @@ void alterar_cliente(void) {
     printf("\nInforme o cpf do cliente (apenas números): ");
     scanf("%s", cpf);
     getchar();
-    Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
-    cl = busca_cliente(cpf);
+    Cliente *cl = busca_cliente(cpf, 0);
     if (cl != NULL) {
         while (resp != '0') {
             resp = tela_alterar_cliente(cl);
@@ -99,33 +98,38 @@ void alterar_cliente(void) {
         getchar();
     }
     free(cl);
+    free(cpf);
 }
 
 void remover_cliente(void) {
-    //char *cpf;
     char resp = '2';
-    //Input com o cpf do cliente
-    //Busca das informações do cliente solicitado
-    Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
-    strcpy(cl->cpf, "12345678909");
-    strcpy(cl->nome, "Fulano da Silva");
-    strcpy(cl->nasc, "01012001");
-    strcpy(cl->tel, "99999999");
-    strcpy(cl->email, "fulano@gmail.com");
-    resp = tela_remover_cliente(cl);
-    if (resp == '1') {
-        printf("\nCliente removido.\n\n");
-        //remove cliente do arquivo
-    }
-    else if (resp == '2') {
-        printf("\nRetornando...\n\n");
+    char *cpf = (char*) malloc(12*sizeof(char));
+    printf("\nInforme o cpf do cliente (apenas números): ");
+    scanf("%s", cpf);
+    getchar();
+    Cliente *cl = busca_cliente(cpf, 0);
+    if (cl != NULL) {
+        resp = tela_remover_cliente(cl);
+        if (resp == '1') {
+            printf("\nCliente removido.\n\n");
+            exclui_cliente(cpf);
+        }
+        else if (resp == '2') {
+            printf("\nRetornando...\n\n");
+        }
+        else {
+            printf("\nValor inválido!\n\n");
+        }
+        printf("Pressione ENTER para continuar ");
+        getchar();
     }
     else {
-        printf("\nValor inválido!\n\n");
+        printf("\nCliente não encontrado!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
     }
-    printf("Pressione ENTER para continuar ");
-    getchar();
     free(cl);
+    free(cpf);
 }
 
 void grava_cliente(Cliente *cl) {
@@ -142,7 +146,7 @@ void grava_cliente(Cliente *cl) {
     fclose(arq);
 }
 
-Cliente *busca_cliente(char *cpf) {
+Cliente *busca_cliente(char *cpf, int inclui_excluido) {
     FILE* arq;
     Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
     arq = fopen("clientes.dat", "rb");
@@ -153,7 +157,7 @@ Cliente *busca_cliente(char *cpf) {
     else {
         while (!feof(arq)) {
             fread(cl, sizeof(Cliente), 1, arq);
-            if (!strcmp(cl->cpf, cpf)) {
+            if (!strcmp(cl->cpf, cpf) && (cl->status != 'x' || inclui_excluido)) {
                 fclose(arq);
                 return cl;
             }
@@ -175,15 +179,48 @@ void edita_cliente(Cliente *cl_lido) {
     }
     while (!feof(arq)) {
         fread(cl_arq, sizeof(Cliente), 1, arq);
-        if (!strcmp(cl_lido->cpf, cl_arq->cpf)) {
+        if (!strcmp(cl_lido->cpf, cl_arq->cpf) && cl_arq->status != 'x') {
             encontrado = 1;
             fseek(arq, -1*sizeof(Cliente), SEEK_CUR);
             fwrite(cl_lido, sizeof(Cliente), 1, arq);
             fclose(arq);
+            free(cl_arq);
             break;
         }
     }
     fclose(arq);
+    free(cl_arq);
+    if (!encontrado) {
+        printf("Cliente não encontrado!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
+    }
+}
+
+void exclui_cliente(char *cpf) {
+    FILE* arq;
+    Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
+    arq = fopen("clientes.dat", "r+b");
+    int encontrado = 0;
+    if (arq == NULL) {
+        printf("Erro ao abrir arquivo!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
+    }
+    while (!feof(arq)) {
+        fread(cl, sizeof(Cliente), 1, arq);
+        if (!strcmp(cpf, cl->cpf) && cl->status != 'x') {
+            encontrado = 1;
+            cl->status = 'x';
+            fseek(arq, -1*sizeof(Cliente), SEEK_CUR);
+            fwrite(cl, sizeof(Cliente), 1, arq);
+            fclose(arq);
+            free(cl);
+            break;
+        }
+    }
+    fclose(arq);
+    free(cl);
     if (!encontrado) {
         printf("Cliente não encontrado!\n\n");
         printf("Pressione ENTER para continuar ");

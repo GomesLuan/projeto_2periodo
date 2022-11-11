@@ -11,6 +11,7 @@ typedef struct cliente {
     char nasc[9];
     char tel[14];
     char email[81];
+    char status;
 } Cliente;
 
 typedef struct vestimenta {

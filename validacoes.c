@@ -11,6 +11,7 @@ typedef struct cliente {
     char nasc[9];
     char tel[14];
     char email[81];
+    char status;
 } Cliente;
 
 typedef struct vestimenta {
@@ -269,7 +270,7 @@ int verifica_data_maior(char *data1, char *data2) {
 }
 
 int verifica_exist_cliente(char *cpf) {
-    Cliente *cl = busca_cliente(cpf);
+    Cliente *cl = busca_cliente(cpf, 1);
     if (cl == NULL) {
         free(cl);
         return 0;
