@@ -10,11 +10,13 @@ typedef struct cliente {
     char nasc[9];
     char tel[14];
     char email[81];
+    char status;
 } Cliente;
 
 void cadastrar_cliente(void) {
     Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
     tela_cadastro_cliente(cl); 
+    cl->status = 'c';
     grava_cliente(cl);
     printf("\nCadastro realizado com sucesso!\n\n");
     printf("CPF: %s\n", cl->cpf);
@@ -46,51 +48,55 @@ void info_cliente(void) {
 }
 
 void alterar_cliente(void) {
-    //char *cpf;
     char resp = '1';
-    //Input com o cpf do cliente
-    //Busca das informações do cliente solicitado
+    char *cpf = (char*) malloc(12*sizeof(char));
+    printf("\nInforme o cpf do cliente (apenas números): ");
+    scanf("%s", cpf);
+    getchar();
     Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
-    strcpy(cl->cpf, "12345678909");
-    strcpy(cl->nome, "Fulano da Silva");
-    strcpy(cl->nasc, "01012001");
-    strcpy(cl->tel, "99999999");
-    strcpy(cl->email, "fulano@gmail.com");
-    while (resp != '0') {
-        resp = tela_alterar_cliente(cl);
-        if (resp == '1') {
-            cad_nome_cliente(cl->nome);
-            //Alteração do nome no arquivo
-            printf("\nAlteração realizada com sucesso!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
+    cl = busca_cliente(cpf);
+    if (cl != NULL) {
+        while (resp != '0') {
+            resp = tela_alterar_cliente(cl);
+            if (resp == '1') {
+                cad_nome_cliente(cl->nome);
+                edita_cliente(cl);
+                printf("\nAlteração realizada com sucesso!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
+            else if (resp == '2') {
+                cad_nasc_cliente(cl->nasc);
+                edita_cliente(cl);
+                printf("\nAlteração realizada com sucesso!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
+            else if (resp == '3') {
+                cad_tel_cliente(cl->tel);
+                edita_cliente(cl);
+                printf("\nAlteração realizada com sucesso!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
+            else if (resp == '4') {
+                cad_email_cliente(cl->email);
+                edita_cliente(cl);
+                printf("\nAlteração realizada com sucesso!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
+            else if (resp != '0') {
+                printf("\nValor inválido!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
         }
-        else if (resp == '2') {
-            cad_nasc_cliente(cl->nasc);
-            //Alteração da data de nascimento no arquivo
-            printf("\nAlteração realizada com sucesso!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
-        }
-        else if (resp == '3') {
-            cad_tel_cliente(cl->tel);
-            //Alteração do telefone no arquivo
-            printf("\nAlteração realizada com sucesso!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
-        }
-        else if (resp == '4') {
-            cad_email_cliente(cl->email);
-            //Alteração do e-mail no arquivo
-            printf("\nAlteração realizada com sucesso!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
-        }
-        else if (resp != '0') {
-            printf("\nValor inválido!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
-        }
+    }
+    else {
+        printf("\nCliente não encontrado!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
     }
     free(cl);
 }
@@ -155,4 +161,32 @@ Cliente *busca_cliente(char *cpf) {
     }
     fclose(arq);
     return NULL;
+}
+
+void edita_cliente(Cliente *cl_lido) {
+    FILE* arq;
+    Cliente *cl_arq = (Cliente*) malloc(sizeof(Cliente));
+    arq = fopen("clientes.dat", "r+b");
+    int encontrado = 0;
+    if (arq == NULL) {
+        printf("Erro ao abrir arquivo!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
+    }
+    while (!feof(arq)) {
+        fread(cl_arq, sizeof(Cliente), 1, arq);
+        if (!strcmp(cl_lido->cpf, cl_arq->cpf)) {
+            encontrado = 1;
+            fseek(arq, -1*sizeof(Cliente), SEEK_CUR);
+            fwrite(cl_lido, sizeof(Cliente), 1, arq);
+            fclose(arq);
+            break;
+        }
+    }
+    fclose(arq);
+    if (!encontrado) {
+        printf("Cliente não encontrado!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
+    }
 }
