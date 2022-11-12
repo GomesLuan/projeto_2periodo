@@ -1,4 +1,6 @@
 typedef struct locacao Locacao;
+typedef struct cliente Cliente;
+typedef struct vestimenta Vestimenta;
 char tela_locacoes(void);
 void tela_cadastro_locacao(Locacao *loc);
 void tela_info_locacao(Locacao *loc);

@@ -24,6 +24,7 @@ void cadastrar_vestimenta(void) {
         gera_codigo_barras(vest->id);
         id_ja_existe = verifica_exist_vest(vest->id);
     } while (id_ja_existe == 1);
+    vest->status = 'c';
     grava_vestimenta(vest);
     printf("\nCadastro realizado com sucesso!\n\n");
     printf("Número de identificação: %s\n", vest->id);
@@ -39,11 +40,10 @@ void cadastrar_vestimenta(void) {
 
 void info_vestimenta(void) {
     char *num_id = (char*) malloc(14*sizeof(char));
-    printf("Informe o código de barras da vestimenta: ");
+    printf("\nInforme o código de barras da vestimenta: ");
     scanf("%s", num_id);
     getchar();
-    //Busca das informações da vestimenta solicitada
-    Vestimenta *vest = busca_vestimenta(num_id);
+    Vestimenta *vest = busca_vestimenta(num_id, 0);
     if (vest != NULL) {
         tela_info_vestimenta(vest);
     }
@@ -57,88 +57,92 @@ void info_vestimenta(void) {
 }
 
 void alterar_vestimenta(void) {
-    //char *num_id;
     char resp = '1';
-    //Input com o número de identificação da vestimenta
-    //Busca das informações da vestimenta solicitada
-    Vestimenta *vest = (Vestimenta*) malloc(sizeof(Vestimenta));
-    strcpy(vest->id, "1564798136123");
-    strcpy(vest->nome, "Camiseta verde");
-    vest->num_p = 4;
-    vest->num_m = 2;
-    vest->num_g = 3;
-    vest->preco = 50.00;
-    while (resp != '0') {
-        resp = tela_alterar_vestimenta(vest);
-        if (resp == '1') {
-            cad_nome_vest(vest->nome);
-            //Alteração do nome da vestimenta no arquivo
-            printf("\nAlteração realizada com sucesso!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
+    char *id = (char*) malloc(14*sizeof(char));
+    printf("\nInforme o código da vestimenta: ");
+    scanf("%s", id);
+    getchar();
+    Vestimenta *vest = busca_vestimenta(id, 0);
+    if (vest != NULL) {
+        while (resp != '0') {
+            resp = tela_alterar_vestimenta(vest);
+            if (resp == '1') {
+                cad_nome_vest(vest->nome);
+                edita_vestimenta(vest);
+                printf("\nAlteração realizada com sucesso!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
+            else if (resp == '2') {
+                cad_num_vest(&vest->num_p, 'P');
+                edita_vestimenta(vest);
+                printf("\nAlteração realizada com sucesso!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
+            else if (resp == '3') {
+                cad_num_vest(&vest->num_m, 'M');
+                edita_vestimenta(vest);
+                printf("\nAlteração realizada com sucesso!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
+            else if (resp == '4') {
+                cad_num_vest(&vest->num_g, 'G');
+                edita_vestimenta(vest);
+                printf("\nAlteração realizada com sucesso!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
+            else if (resp == '5') {
+                cad_preco_vest(&vest->preco);
+                edita_vestimenta(vest);
+                printf("\nAlteração realizada com sucesso!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
+            else if (resp != '0') {
+                printf("\nValor inválido!\n\n");
+                printf("Pressione ENTER para continuar ");
+                getchar();
+            }
         }
-        else if (resp == '2') {
-            cad_num_vest(&vest->num_p, 'P');
-            //Alteração do número de unidades de tamanho P no arquivo
-            printf("\nAlteração realizada com sucesso!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
-        }
-        else if (resp == '3') {
-            cad_num_vest(&vest->num_m, 'M');
-            //Alteração do número de unidades de tamanho M no arquivo
-            printf("\nAlteração realizada com sucesso!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
-        }
-        else if (resp == '4') {
-            cad_num_vest(&vest->num_g, 'G');
-            //Alteração do número de unidades de tamanho G no arquivo
-            printf("\nAlteração realizada com sucesso!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
-        }
-        else if (resp == '5') {
-            cad_preco_vest(&vest->preco);
-            //Alteração do preco da locação diária no arquivo
-            printf("\nAlteração realizada com sucesso!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
-        }
-        else if (resp != '0') {
-            printf("\nValor inválido!\n\n");
-            printf("Pressione ENTER para continuar ");
-            getchar();
-        }
+    }
+    else {
+        printf("\nNão foi encontrada nenhuma vestimenta com este código.\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
     }
     free(vest);
 }
 
 void remover_vestimenta(void) {
-    //char *num_id;
     char resp = '2';
-    //Input com o nome de identificação da vestimenta
-    //Busca das informações da vestimenta solicitada
-    Vestimenta *vest = (Vestimenta*) malloc(sizeof(Vestimenta));
-    strcpy(vest->id, "1564798136123");
-    strcpy(vest->nome, "Camiseta verde");
-    vest->num_p = 4;
-    vest->num_m = 2;
-    vest->num_g = 3;
-    vest->preco = 50.00;
-    resp = tela_remover_vestimenta(vest);
-    if (resp == '1') {
-        printf("\nVestimenta removida.\n\n");
-        //remove vestimenta do arquivo
-    }
-    else if (resp == '2') {
-        printf("\nRetornando...\n\n");
+    char *id = (char*) malloc(14*sizeof(char));
+    printf("\nInforme o código da vestimenta: ");
+    scanf("%s", id);
+    getchar();
+    Vestimenta *vest = busca_vestimenta(id, 0);
+    if (vest != NULL) {
+        resp = tela_remover_vestimenta(vest);
+        if (resp == '1') {
+            printf("\nVestimenta removida.\n\n");
+            exclui_vestimenta(id);
+        }
+        else if (resp == '2') {
+            printf("\nRetornando...\n\n");
+        }
+        else {
+            printf("\nValor inválido!\n\n");
+        }
+        printf("Pressione ENTER para continuar ");
+        getchar();
     }
     else {
-        printf("\nValor inválido!\n\n");
+        printf("\nNão foi encontrada nenhuma vestimenta com este código.\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
     }
-    printf("Pressione ENTER para continuar ");
-    getchar();
     free(vest);
 }
 
@@ -156,7 +160,7 @@ void grava_vestimenta(Vestimenta *vest) {
     fclose(arq);
 }
 
-Vestimenta *busca_vestimenta(char *id) {
+Vestimenta *busca_vestimenta(char *id, int incluir_excluido) {
     FILE* arq;
     Vestimenta *vest = (Vestimenta*) malloc(sizeof(Vestimenta));
     arq = fopen("vestimentas.dat", "rb");
@@ -167,7 +171,7 @@ Vestimenta *busca_vestimenta(char *id) {
     else {
         while (!feof(arq)) {
             fread(vest, sizeof(Vestimenta), 1, arq);
-            if (!strcmp(vest->id, id)) {
+            if (!strcmp(vest->id, id) && (vest->status != 'x' || incluir_excluido)) {
                 fclose(arq);
                 return vest;
             }
@@ -175,4 +179,65 @@ Vestimenta *busca_vestimenta(char *id) {
     }
     fclose(arq);
     return NULL;
+}
+
+void edita_vestimenta(Vestimenta *vest_lida) {
+    FILE* arq;
+    Vestimenta *vest_arq = (Vestimenta*) malloc(sizeof(Vestimenta));
+    arq = fopen("vestimentas.dat", "r+b");
+    int encontrado = 0;
+    if (arq == NULL) {
+        printf("Erro ao abrir arquivo!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
+    }
+    while (!feof(arq)) {
+        fread(vest_arq, sizeof(Vestimenta), 1, arq);
+        if (!strcmp(vest_lida->id, vest_arq->id) && vest_arq->status != 'x') {
+            encontrado = 1;
+            fseek(arq, -1*sizeof(Vestimenta), SEEK_CUR);
+            fwrite(vest_lida, sizeof(Vestimenta), 1, arq);
+            fclose(arq);
+            free(vest_arq);
+            break;
+        }
+    }
+    fclose(arq);
+    free(vest_arq);
+    if (!encontrado) {
+        printf("Vestimenta não encontrada!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
+    }
+}
+
+void exclui_vestimenta(char *id) {
+    FILE* arq;
+    Vestimenta *vest = (Vestimenta*) malloc(sizeof(Vestimenta));
+    arq = fopen("vestimentas.dat", "r+b");
+    int encontrado = 0;
+    if (arq == NULL) {
+        printf("Erro ao abrir arquivo!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
+    }
+    while (!feof(arq)) {
+        fread(vest, sizeof(Vestimenta), 1, arq);
+        if (!strcmp(id, vest->id) && vest->status != 'x') {
+            encontrado = 1;
+            vest->status = 'x';
+            fseek(arq, -1*sizeof(Vestimenta), SEEK_CUR);
+            fwrite(vest, sizeof(Vestimenta), 1, arq);
+            fclose(arq);
+            free(vest);
+            break;
+        }
+    }
+    fclose(arq);
+    free(vest);
+    if (!encontrado) {
+        printf("Vestimenta não encontrada!\n\n");
+        printf("Pressione ENTER para continuar ");
+        getchar();
+    }
 }

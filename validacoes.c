@@ -282,7 +282,7 @@ int verifica_exist_cliente(char *cpf) {
 }
 
 int verifica_exist_vest(char *id) {
-    Vestimenta *vest = busca_vestimenta(id);
+    Vestimenta *vest = busca_vestimenta(id, 1);
     if (vest == NULL) {
         free(vest);
         return 0;

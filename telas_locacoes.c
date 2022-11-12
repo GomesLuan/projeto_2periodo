@@ -2,6 +2,27 @@
 #include <stdlib.h>
 #include "validacoes.h"
 #include "telas_locacoes.h"
+#include "operacoes_cliente.h"
+#include "operacoes_vestimenta.h"
+
+typedef struct cliente {
+    char cpf[12];
+    char nome[81];
+    char nasc[9];
+    char tel[14];
+    char email[81];
+    char status;
+} Cliente;
+
+typedef struct vestimenta {
+    char id[14];
+    char nome[81];
+    int num_p;
+    int num_m;
+    int num_g;
+    float preco;
+    char status;
+} Vestimenta; 
 
 typedef struct locacao {
     long id_loc;
@@ -161,7 +182,11 @@ void cad_cpf_locatario(char *cpf) {
         getchar();
         cpf_valido = valida_cpf(cpf);
         if (cpf_valido) {
-            cpf_cadastrado = verifica_exist_cliente(cpf);
+            Cliente *cl = busca_cliente(cpf, 0);
+            if (cl != NULL) {
+                cpf_cadastrado = 1;
+            }
+            free(cl);
         }
         if (!cpf_valido || !cpf_cadastrado) {
             if (!cpf_valido) {
@@ -186,7 +211,11 @@ void cad_id_vest(char *id) {
         printf("# Código de identificação da vestimenta: ");
         scanf("%s", id);
         getchar();
-        id_cadastrado = verifica_exist_vest(id);
+        Vestimenta *vest = busca_vestimenta(id, 0);
+        if (vest != NULL) {
+            id_cadastrado = 1;
+        }
+        free(vest);
         if (!id_cadastrado) {
             printf("# Não há nenhuma vestimenta cadastrada com este código.");
             getchar();
