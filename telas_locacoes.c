@@ -232,7 +232,7 @@ void cad_tam_vest(char *tam) {
     int tam_valido = 0;
     do {
         printf("# Tamanho da vestimenta (P/M/G): ");
-        scanf("%s", tam);
+        scanf("%c", tam);
         getchar();
         tam_valido = valida_tamanho_vest(*tam);
         if (!tam_valido) {

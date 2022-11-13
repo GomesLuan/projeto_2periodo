@@ -6,4 +6,6 @@ void remover_locacao(void);
 void receber_produto_alugado(void);
 void devolver_produto_alugado(void);
 void grava_locacao(Locacao *loc);
-Locacao *busca_locacao(long id);
+Locacao *busca_locacao(long id, int incluir_excluido);
+void edita_locacao(Locacao *loc_lida);
+void exclui_locacao(long id);

@@ -292,7 +292,7 @@ int verifica_exist_vest(char *id) {
 }
 
 int verifica_exist_loc(long id) {
-    Locacao *loc = busca_locacao(id);
+    Locacao *loc = busca_locacao(id, 1);
     if (loc == NULL) {
         free(loc);
         return 0;
