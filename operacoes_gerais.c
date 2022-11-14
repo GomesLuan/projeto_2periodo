@@ -63,3 +63,21 @@ float converte_str_para_float(char* string) {
     }
     return num;
 }
+
+int exclusao_fisica(){
+  char name[] = "clientes.dat" && "vestimenta.dat" && "locacoes.dat";
+  FILE *file = fopen(name, "r");
+
+  if (file)
+  {
+    printf("Leitura de arquivo realizada\n");
+    fclose(file);
+    printf("\nVoltando...: %d\n", remove(file));
+  }
+  else{
+    printf("Arquivo não encontrado\n");
+    printf("\nVoltando...: %d\n", remove(file));
+  }
+  
+  return 0;   
+}
