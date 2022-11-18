@@ -84,7 +84,7 @@ void alterar_locacao(void) {
                 getchar();
             }
             else if (resp == '3') {
-                cad_tam_vest(&loc->tam_vest);
+                cad_tam_vest(&loc->tam_vest, loc->id_vest);
                 edita_locacao(loc);
                 printf("\nAlteração realizada com sucesso!\n\n");
                 printf("Pressione ENTER para continuar ");

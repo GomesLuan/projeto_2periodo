@@ -62,7 +62,7 @@ void tela_cadastro_locacao(Locacao *loc) {
     printf("# Por favor, informe os dados solicitados:\n");
     cad_cpf_locatario(loc->cpf);
     cad_id_vest(loc->id_vest);
-    cad_tam_vest(&loc->tam_vest);
+    cad_tam_vest(&loc->tam_vest, loc->id_vest);
     cad_data_inicio(loc->data_inicio);
     cad_data_fim(loc->data_fim, loc->data_inicio);
     printf("########################################################\n");
@@ -228,15 +228,24 @@ void cad_id_vest(char *id) {
     } while (!id_cadastrado);
 }
 
-void cad_tam_vest(char *tam) {
+void cad_tam_vest(char *tam, char* id_vest) {
+    int disponivel = 0;
     int tam_valido = 0;
     do {
         printf("# Tamanho da vestimenta (P/M/G): ");
         scanf("%c", tam);
         getchar();
         tam_valido = valida_tamanho_vest(*tam);
-        if (!tam_valido) {
-            printf("Valor inválido! ");
+        if (tam_valido) {
+            disponivel = disponibilidade_vest(id_vest, *tam);
+        }
+        if (!tam_valido || !disponivel) {
+            if (!tam_valido) {
+                printf("Valor inválido! ");
+            }
+            else {
+                printf("Não há vestimentas desse tamanho disponíveis ");
+            }
             getchar();
             printf("\x1b[2K");
             printf("\x1b[1F");
@@ -244,7 +253,7 @@ void cad_tam_vest(char *tam) {
             printf("\x1b[1F");
             printf("\x1b[2K");
         }
-    } while (!tam_valido);
+    } while (!tam_valido || !disponivel);
 }
 
 void cad_data_inicio(char *data) {

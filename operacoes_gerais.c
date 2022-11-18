@@ -64,6 +64,7 @@ float converte_str_para_float(char* string) {
     return num;
 }
 
+/*
 int exclusao_fisica(){
   char name[] = "clientes.dat" && "vestimenta.dat" && "locacoes.dat";
   FILE *file = fopen(name, "r");
@@ -81,3 +82,4 @@ int exclusao_fisica(){
   
   return 0;   
 }
+*/
