@@ -114,6 +114,7 @@ void alterar_vestimenta(void) {
         getchar();
     }
     free(vest);
+    free(id);
 }
 
 void remover_vestimenta(void) {
@@ -144,6 +145,7 @@ void remover_vestimenta(void) {
         getchar();
     }
     free(vest);
+    free(id);
 }
 
 void grava_vestimenta(Vestimenta *vest) {

@@ -235,8 +235,8 @@ int valida_tamanho_vest(char tam) {
 
 ///////////
 //Função adaptada de Vinicius Maia com base no algoritmo do professor Flavius Gorgonio
-//////////
-int verifica_data_maior(char *data1, char *data2) {
+///////////
+int verifica_data_maior(char *data1, char *data2, int inclui_igual) {
     int *nums1 = (int*) malloc(8*sizeof(int));
     int *nums2 = (int*) malloc(8*sizeof(int));
     for (int i=0; i<8; i++) {
@@ -263,7 +263,10 @@ int verifica_data_maior(char *data1, char *data2) {
             return 1;
         }
         else {
-            if (dia1 <= dia2) {
+            if (dia1 < dia2) {
+                return 0;
+            }
+            else if (dia1 == dia2 && !inclui_igual) {
                 return 0;
             }
             return 1;

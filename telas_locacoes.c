@@ -286,7 +286,7 @@ void cad_data_fim(char *data_fim, char *data_inicio) {
         getchar();
         data_valida = valida_data(data_fim);
         if (data_valida) {
-            data_maior = verifica_data_maior(data_fim, data_inicio);
+            data_maior = verifica_data_maior(data_fim, data_inicio, 0);
         }
         if (!data_valida || !data_maior) {
             printf("Valor inválido! ");

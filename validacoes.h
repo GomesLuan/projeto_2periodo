@@ -10,7 +10,7 @@ int valida_nome_vest(char *nome);
 int valida_inteiro(char *num);
 int valida_float(char *din);
 int valida_tamanho_vest(char tam);
-int verifica_data_maior(char *data1, char *data2);
+int verifica_data_maior(char *data1, char *data2, int inclui_igual);
 int verifica_exist_cliente(char *cpf);
 int verifica_exist_vest(char *id);
 int verifica_exist_loc(long id);
