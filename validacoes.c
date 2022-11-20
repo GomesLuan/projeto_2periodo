@@ -300,3 +300,21 @@ int verifica_exist_loc(long id) {
     free(loc);
     return 1;
 }
+
+int disponibilidade_vest(char *id_vest, char tam_vest) {
+    Vestimenta *vest = busca_vestimenta(id_vest, 0);
+    if ((tam_vest == 'P' || tam_vest == 'p') && vest->num_p > 0) {
+        free(vest);
+        return 1;
+    }
+    else if ((tam_vest == 'M' || tam_vest == 'm') && vest->num_m > 0) {
+        free(vest);
+        return 1;
+    }
+    else if ((tam_vest == 'G' || tam_vest == 'g') && vest->num_g > 0) {
+        free(vest);
+        return 1;
+    }
+    free(vest);
+    return 0;
+}

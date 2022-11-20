@@ -6,6 +6,7 @@
 #include "telas_locacoes.h"
 #include "operacoes_locacao.h"
 #include "operacoes_gerais.h"
+#include "operacoes_vestimenta.h"
 
 typedef struct locacao {
     long id_loc;
@@ -27,6 +28,7 @@ void cadastrar_locacao(void) {
     } while (id_ja_existe == 1);
     loc->status = 'p'; //pendente
     grava_locacao(loc);
+    retira_vestimenta(loc->id_vest, loc->tam_vest);
     printf("\nAgendamento realizado com sucesso!\n\n");
     printf("Código da locação: %ld\n", loc->id_loc);
     printf("CPF do cliente locatário: %s\n", loc->cpf);

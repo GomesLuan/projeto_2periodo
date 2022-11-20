@@ -14,3 +14,4 @@ int verifica_data_maior(char *data1, char *data2);
 int verifica_exist_cliente(char *cpf);
 int verifica_exist_vest(char *id);
 int verifica_exist_loc(long id);
+int disponibilidade_vest(char *id_vest, char tam_vest);
