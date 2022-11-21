@@ -193,33 +193,38 @@ void receber_produto_alugado(void) {
 }
 
 void devolver_produto_alugado(void) {
-    //char *num;
-    char resp = '2';
-    //Input com o numero de identificação do contrato
-    //Busca das informações do contrato solicitado
-    //Teste se o contrato está ativo
-    Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
-    loc->id_loc = 1667231055;
-    strcpy(loc->cpf, "12345678909");
-    strcpy(loc->id_vest, "1564798136123");
-    loc->tam_vest = 'M';
-    strcpy(loc->data_inicio, "01012022");
-    strcpy(loc->data_fim, "03012002");
-    resp = tela_devolver_produto(loc);
-    if (resp == '1') {
-        printf("\nProduto devolvido!\n\n");
-        //adiciona uma unidade da vestimenta
-        //muda o status da locação de ativa para finalizada
+    char resp = '1';
+    char *id_str = (char*) malloc(14*sizeof(char));
+    printf("\nInforme o código da locação: ");
+    scanf("%s", id_str);
+    getchar();
+    long id = converte_str_para_int(id_str);
+    Locacao *loc = busca_locacao(id, 0);
+    if (loc == NULL || loc->status != 'a') {
+        printf("\nA locação não existe ou não está ativa. \n\n");
     }
-    else if (resp == '2') {
-        printf("\nRetornando...\n\n");
+    else if (loc != NULL && loc->status == 'a') {
+        resp = tela_devolver_produto(loc);
+        if (resp == '1') {
+            printf("\nProduto devolvido!\n\n");
+            loc->status = 'f';
+            edita_locacao(loc);
+            adiciona_vestimenta(loc->id_vest, loc->tam_vest);
+        }
+        else if (resp == '2') {
+            printf("\nRetornando...\n\n");
+        }
+        else {
+            printf("\nValor inválido!\n\n");
+        }
     }
     else {
-        printf("\nValor inválido!\n\n");
+        printf("\nAinda não está no período de início da locação.\n\n");
     }
     printf("Pressione ENTER para continuar ");
     getchar();
     free(loc);
+    free(id_str);
 }
 
 void grava_locacao(Locacao *loc) {

@@ -258,3 +258,18 @@ void retira_vestimenta(char *id_vest, char tam_vest) {
     edita_vestimenta(vest);
     free(vest);
 }
+
+void adiciona_vestimenta(char *id_vest, char tam_vest) {
+    Vestimenta *vest = busca_vestimenta(id_vest, 0);
+    if (tam_vest == 'P' || tam_vest == 'p') {
+        vest->num_p += 1;
+    }
+    else if (tam_vest == 'M' || tam_vest == 'm') {
+        vest->num_m += 1;
+    }
+    else if (tam_vest == 'G' || tam_vest == 'g') {
+        vest->num_g += 1;
+    }
+    edita_vestimenta(vest);
+    free(vest);
+}
