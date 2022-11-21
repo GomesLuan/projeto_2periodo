@@ -6,3 +6,9 @@ O projeto se trata de um programa escrito na linguagem C capaz de simular os dad
 Equipe:
 Luan Victor de Araujo Gomes,
 Laety Maniery de Araújo Batista
+
+Para executar o programa siga os passos:
+
+1. gcc -c -Wall *.c
+2. gcc -o main *.o -lm
+3. ./main
