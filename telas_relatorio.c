@@ -38,14 +38,16 @@ typedef struct locacao {
 char tela_relatorios(void) {
     system("clear||cls");
     char resposta;
-    printf("###############################################\n");
-    printf("#             R E L A T Ó R I O S             #\n");
-    printf("###############################################\n");
-    printf("#       1 - Relatório de clientes             #\n");
-    printf("#       2 - Relatório de vestimentas          #\n");
-    printf("#       3 - Relatório de locações             #\n");
-    printf("#       0 - Retornar ao menu principal        #\n");
-    printf("###############################################\n\n");
+    printf("####################################################\n");
+    printf("#               R E L A T Ó R I O S                #\n");
+    printf("####################################################\n");
+    printf("#       1 - Relatório de clientes                  #\n");
+    printf("#       2 - Relatório de vestimentas               #\n");
+    printf("#       3 - Relatório de locações pendentes        #\n");
+    printf("#       4 - Relatório de locações ativas           #\n");
+    printf("#       5 - Relatório de locações finalizadas      #\n");
+    printf("#       0 - Retornar ao menu principal             #\n");
+    printf("####################################################\n\n");
     printf("Escolha sua opção: ");
     scanf("%c", &resposta);
     getchar();
@@ -98,7 +100,7 @@ void tela_relatorio_vestimentas(void) {
     getchar();
 }
 
-void tela_relatorio_locacoes(void) {
+void tela_relatorio_locacoes(char status) {
     system("clear||cls");
     printf("###############################################\n");
     printf("#       L I S T A  D E  L O C A Ç Õ E S       #\n");
@@ -109,9 +111,13 @@ void tela_relatorio_locacoes(void) {
     if (arq != NULL) {
         fread(loc, sizeof(Locacao), 1, arq);
         while (!feof(arq)) {
-            if (loc->status != 'x') {
-                exibe_locacao(loc);
+            if (loc->status == status) {
+                Cliente *cl = busca_cliente(loc->cpf, 1);
+                Vestimenta *vest = busca_vestimenta(loc->id_vest, 1);
+                exibe_locacao(loc, cl, vest);
                 printf("###############################################\n");  
+                free(cl);
+                free(vest);
             }
             fread(loc, sizeof(Locacao), 1, arq);
         }
@@ -138,10 +144,12 @@ void exibe_vestimenta(Vestimenta *vest) {
     printf("# Preço diário do aluguel: %.2f\n", vest->preco);
 }
 
-void exibe_locacao(Locacao *loc) {
+void exibe_locacao(Locacao *loc, Cliente *cl, Vestimenta *vest) {
     printf("# Código da locação: %ld\n", loc->id_loc);
     printf("# CPF do locatário: %s\n", loc->cpf);
+    printf("# Nome do locatário: %s\n", cl->nome);
     printf("# Código da vestimenta alugada: %s\n", loc->id_vest);
+    printf("# Nome da vestimenta alugada: %s\n", vest->nome);
     printf("# Tamanho da vestimenta alugada: %c\n", loc->tam_vest);
     printf("# Data de início da locação: %s\n", loc->data_inicio);
     printf("# Data de fim da locação: %s\n", loc->data_fim);

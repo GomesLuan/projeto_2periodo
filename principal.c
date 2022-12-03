@@ -100,7 +100,13 @@ int main(void) {
                     tela_relatorio_vestimentas();
                 }
                 else if (resposta_relatorios == '3') {
-                    tela_relatorio_locacoes();
+                    tela_relatorio_locacoes('p');
+                }
+                else if (resposta_relatorios == '4') {
+                    tela_relatorio_locacoes('a');
+                }
+                else if (resposta_relatorios == '5') {
+                    tela_relatorio_locacoes('f');
                 }
                 else if (resposta_relatorios != '0') {
                     printf("\nResposta inválida!\n\n");
