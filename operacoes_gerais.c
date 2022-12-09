@@ -70,19 +70,9 @@ float converte_str_para_float(char* string) {
 //Função adaptada de Smichak, disponível em https://stackoverflow.com/questions/10917491/building-a-date-string-in-c
 ///////////
 void gera_data_hoje(char *data) {
-    char *tempo = (char*) malloc(20*sizeof(char));
     time_t agora = time(NULL);
     struct tm *t = localtime(&agora);
-    strftime(tempo, sizeof(tempo)-1, "%d %m %Y %H:%M", t);
-    data[0] = tempo[0];
-    data[1] = tempo[1];
-    data[2] = tempo[3];
-    data[3] = tempo[4];
-    data[4] = tempo[6];
-    data[5] = tempo[7];
-    data[6] = tempo[8];
-    data[7] = tempo[9];
-    free(tempo);
+    strftime(data, 9*sizeof(char), "%d%m%Y", t);
 }
 
 void ordena_datas(char *data1, char *data2) {

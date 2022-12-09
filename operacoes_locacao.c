@@ -214,15 +214,15 @@ void devolver_produto_alugado(void) {
         if (resp == '1') {
             printf("\nProduto devolvido!\n\n");
             loc->status = 'f';
-            edita_locacao(loc);
-            adiciona_vestimenta(loc->id_vest, loc->tam_vest);
             char *hoje = (char*) malloc(9*sizeof(char));
             gera_data_hoje(hoje);
             int data_maior = verifica_data_maior(hoje, loc->data_fim, 0);
             if (data_maior) {
                 loc->multa = 1.25*diferenca_datas(hoje, loc->data_fim)*get_preco_vest(loc->id_vest);  
-                printf("Multa de atraso (R$): %.2f", loc->multa);
+                printf("Multa de atraso (R$): %.2f\n\n", loc->multa);
             }
+            edita_locacao(loc);
+            adiciona_vestimenta(loc->id_vest, loc->tam_vest);
             free(hoje);
         }
         else if (resp == '2') {

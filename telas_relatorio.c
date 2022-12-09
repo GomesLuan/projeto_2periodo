@@ -155,4 +155,6 @@ void exibe_locacao(Locacao *loc, Cliente *cl, Vestimenta *vest) {
     printf("# Tamanho da vestimenta alugada: %c\n", loc->tam_vest);
     printf("# Data de início da locação: %s\n", loc->data_inicio);
     printf("# Data de fim da locação: %s\n", loc->data_fim);
+    printf("# Valor da locação (R$): %.2f\n", loc->valor);
+    printf("# Valor da multa (R$): %.2f\n", loc->multa);
 }
