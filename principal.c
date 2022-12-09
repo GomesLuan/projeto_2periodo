@@ -11,6 +11,14 @@
 
 int main(void) {
     //Inicio do programa
+    char data1[9], data2[9];
+    printf("Data 1: ");
+    scanf("%s", data1);
+    printf("Data 2: ");
+    scanf("%s", data2);
+    int dif = diferenca_datas(data1, data2);
+    printf("%d", dif);
+    /*
     char resposta_principal = '1';
     while (resposta_principal != '0') {
         resposta_principal = tela_principal();
@@ -127,5 +135,6 @@ int main(void) {
             getchar();
         }
     }
+    */
     return 0;
 }

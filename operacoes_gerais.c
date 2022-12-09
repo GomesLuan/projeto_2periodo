@@ -3,6 +3,8 @@
 #include <time.h>
 #include <string.h>
 #include <math.h>
+#include "validacoes.h"
+#include "operacoes_gerais.h"
 
 void gera_codigo_barras(char *codigo) {
     int *digitos = (int*) malloc(12*sizeof(int));
@@ -81,4 +83,78 @@ void gera_data_hoje(char *data) {
     data[6] = tempo[8];
     data[7] = tempo[9];
     free(tempo);
+}
+
+void ordena_datas(char *data1, char *data2) {
+    int desordenado = verifica_data_maior(data1, data2, 0);
+    if (desordenado) {
+        char *temp = (char*) malloc(9*sizeof(char));
+        strcpy(temp, data1);
+        strcpy(data1, data2);
+        strcpy(data2, temp);
+        free(temp);
+    }
+}
+
+void altera_formato_data(char *data1, char *data2, int *dia1, int *mes1, int *ano1, int *dia2, int *mes2, int *ano2) {
+    int *nums1 = (int*) malloc(8*sizeof(int));
+    int *nums2 = (int*) malloc(8*sizeof(int));
+    for (int i=0; i<8; i++) {
+        nums1[i] = data1[i] - '0';
+        nums2[i] = data2[i] - '0';
+    }
+    *dia1 = 10*nums1[0] + nums1[1];
+    *mes1 = 10*nums1[2] + nums1[3];
+    *ano1 = 1000*nums1[4] + 100*nums1[5] + 10*nums1[6] + nums1[7];
+    *dia2 = 10*nums2[0] + nums2[1];
+    *mes2 = 10*nums2[2] + nums2[3];
+    *ano2 = 1000*nums2[4] + 100*nums2[5] + 10*nums2[6] + nums2[7];   
+    free(nums1);
+    free(nums2);
+}
+
+int diferenca_datas(char *data1, char *data2) {
+    int num_dias[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int dif = 0; 
+    int dia1, mes1, ano1, dia2, mes2, ano2;
+    ordena_datas(data1, data2);
+    altera_formato_data(data1, data2, &dia1, &mes1, &ano1, &dia2, &mes2, &ano2);
+    if (ano1 == ano2) {
+        if (mes1 == mes2) {
+            dif = dia2 - dia1;
+            return dif;
+        }
+        else {
+            dif += num_dias[mes1-1] - dia1 + dia2;
+            for (int i=mes1; i<mes2-1; i++) {
+                dif += num_dias[i];
+            }
+            if (bissexto(ano1) && ((mes1 == 2 || mes2 == 2) || (mes1 < 2 && mes2 > 2))) {
+                dif += 1;
+            }
+        }
+    }
+    else {
+        dif += num_dias[mes1-1] - dia1;
+        for (int i=mes1; i<12; i++) {
+            dif += num_dias[i];
+        }
+        if (bissexto(ano1) && mes1 <= 2) {
+                dif += 1;
+        }
+        dif += dia2;
+        for (int i=0; i<mes2-1; i++) {
+            dif += num_dias[i];
+        }
+        if (bissexto(ano2) && mes2 > 2) {
+                dif += 1;
+        }
+        for (int i=ano1+1; i<ano2; i++) {
+            dif += 365;
+            if (bissexto(i)) {
+                dif += 1;
+            }
+        }
+    }
+    return dif;
 }

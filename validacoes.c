@@ -4,6 +4,7 @@
 #include "operacoes_cliente.h"
 #include "operacoes_locacao.h"
 #include "operacoes_vestimenta.h"
+#include "operacoes_gerais.h"
 
 typedef struct cliente {
     char cpf[12];
@@ -237,18 +238,8 @@ int valida_tamanho_vest(char tam) {
 //Função adaptada de Vinicius Maia com base no algoritmo do professor Flavius Gorgonio
 ///////////
 int verifica_data_maior(char *data1, char *data2, int inclui_igual) {
-    int *nums1 = (int*) malloc(8*sizeof(int));
-    int *nums2 = (int*) malloc(8*sizeof(int));
-    for (int i=0; i<8; i++) {
-        nums1[i] = data1[i] - '0';
-        nums2[i] = data2[i] - '0';
-    }
-    int dia1 = 10*nums1[0] + nums1[1];
-    int mes1 = 10*nums1[2] + nums1[3];
-    int ano1 = 1000*nums1[4] + 100*nums1[5] + 10*nums1[6] + nums1[7];
-    int dia2 = 10*nums2[0] + nums2[1];
-    int mes2 = 10*nums2[2] + nums2[3];
-    int ano2 = 1000*nums2[4] + 100*nums2[5] + 10*nums2[6] + nums2[7];   
+    int dia1, mes1, ano1, dia2, mes2, ano2;
+    altera_formato_data(data1, data2, &dia1, &mes1, &ano1, &dia2, &mes2, &ano2);
     if (ano1 < ano2) {
         return 0;
     }
