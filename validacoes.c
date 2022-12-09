@@ -274,6 +274,23 @@ int verifica_data_maior(char *data1, char *data2, int inclui_igual) {
     }
 }
 
+///////////
+//Criado por Vinicius Maia com base no algoritmo do professor Flavius Gorgonio
+//////////
+int bissexto (int ano){ 
+    if ((ano % 4 == 0) && (ano % 100 != 0)){
+        return 1;
+    }
+
+    else if (ano % 400 == 0){
+        return 1;
+    }
+
+    else{
+        return 0;
+    }
+}
+
 int verifica_exist_cliente(char *cpf) {
     Cliente *cl = busca_cliente(cpf, 1);
     if (cl == NULL) {
