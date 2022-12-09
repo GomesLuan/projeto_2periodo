@@ -32,6 +32,8 @@ typedef struct locacao {
     char tam_vest;
     char data_inicio[9];
     char data_fim[9];
+    float valor;
+    float multa;
     char status;
 } Locacao;
 

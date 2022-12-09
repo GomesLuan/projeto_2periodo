@@ -15,6 +15,8 @@ typedef struct locacao {
     char tam_vest;
     char data_inicio[9];
     char data_fim[9];
+    float valor;
+    float multa;
     char status;
 } Locacao;
 
@@ -26,6 +28,8 @@ void cadastrar_locacao(void) {
         loc->id_loc = time(0);
         id_ja_existe = verifica_exist_loc(loc->id_loc);
     } while (id_ja_existe == 1);
+    loc->valor = get_preco_vest(loc->id_vest)*diferenca_datas(loc->data_inicio, loc->data_fim);
+    loc->multa = 0;
     loc->status = 'p'; //pendente
     grava_locacao(loc);
     retira_vestimenta(loc->id_vest, loc->tam_vest);
@@ -35,7 +39,9 @@ void cadastrar_locacao(void) {
     printf("Código da vestimenta alugada: %s\n", loc->id_vest);
     printf("Tamanho da vestimenta alugada: %c\n", loc->tam_vest);
     printf("Data de início da locação: %s\n", loc->data_inicio);
-    printf("Data de fim da locação: %s\n\n", loc->data_fim);
+    printf("Data de fim da locação: %s\n", loc->data_fim);
+    printf("Valor da locação (R$): %.2f\n", loc->valor);
+    printf("Multa de atraso (R$): %.2f\n\n", loc->multa);
     printf("Pressione ENTER para continuar ");
     getchar();
     free(loc);
@@ -210,6 +216,14 @@ void devolver_produto_alugado(void) {
             loc->status = 'f';
             edita_locacao(loc);
             adiciona_vestimenta(loc->id_vest, loc->tam_vest);
+            char *hoje = (char*) malloc(9*sizeof(char));
+            gera_data_hoje(hoje);
+            int data_maior = verifica_data_maior(hoje, loc->data_fim, 0);
+            if (data_maior) {
+                loc->multa = 1.25*diferenca_datas(hoje, loc->data_fim)*get_preco_vest(loc->id_vest);  
+                printf("Multa de atraso (R$): %.2f", loc->multa);
+            }
+            free(hoje);
         }
         else if (resp == '2') {
             printf("\nRetornando...\n\n");

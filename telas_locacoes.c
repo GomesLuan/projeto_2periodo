@@ -31,6 +31,8 @@ typedef struct locacao {
     char tam_vest;
     char data_inicio[9];
     char data_fim[9];
+    float valor;
+    float multa;
     char status;
 } Locacao;
 
@@ -79,6 +81,8 @@ void tela_info_locacao(Locacao *loc) {
     printf("#       Tamanho da vestimenta: %c\n", loc->tam_vest);
     printf("#       Data de início: %s\n", loc->data_inicio);
     printf("#       Data de fim: %s\n", loc->data_fim);
+    printf("#       Valor da locação (R$): %.2f\n", loc->valor);
+    printf("#       Valor da multa (R$): %.2f\n", loc->multa);
     printf("#################################################################\n\n");
     printf("Pressione ENTER para continuar ");
     getchar();
@@ -116,6 +120,8 @@ char tela_remover_locacao(Locacao *loc) {
     printf("#       Tamanho da vestimenta alugada: %c\n", loc->tam_vest);
     printf("#       Data de início da locação: %s\n", loc->data_inicio);
     printf("#       Data de fim da locação: %s\n", loc->data_fim);
+    printf("#       Valor da locação (R$): %.2f\n", loc->valor);
+    printf("#       Valor da multa (R$): %.2f\n", loc->multa);
     printf("#\n");
     printf("#       Tem certeza que deseja cancelar este agendamento?\n");
     printf("#       1 - Sim\n");
@@ -139,6 +145,8 @@ char tela_receber_produto(Locacao *loc) {
     printf("#       Tamanho da vestimenta alugada: %c\n", loc->tam_vest);
     printf("#       Data de início da locação: %s\n", loc->data_inicio);
     printf("#       Data de fim da locação: %s\n", loc->data_fim);
+    printf("#       Valor da locação (R$): %.2f\n", loc->valor);
+    printf("#       Valor da multa (R$): %.2f\n", loc->multa);
     printf("#\n");
     printf("#       Deseja confirmar o recebimento do produto desta locação?\n");
     printf("#       1 - Sim\n");
@@ -162,6 +170,8 @@ char tela_devolver_produto(Locacao *loc) {
     printf("#       Tamanho da vestimenta alugada: %c\n", loc->tam_vest);
     printf("#       Data de início da locação: %s\n", loc->data_inicio);
     printf("#       Data de fim da locação: %s\n", loc->data_fim);
+    printf("#       Valor da locação (R$): %.2f\n", loc->valor);
+    printf("#       Valor da multa (R$): %.2f\n", loc->multa);
     printf("#\n");
     printf("#       Deseja confirmar a devolução do produto desta locação?\n");
     printf("#       1 - Sim\n");

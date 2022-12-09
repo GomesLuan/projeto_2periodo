@@ -9,3 +9,4 @@ void edita_vestimenta(Vestimenta *vest_lida);
 void exclui_vestimenta(char *id);
 void retira_vestimenta(char *id_vest, char tam_vest);
 void adiciona_vestimenta(char *id_vest, char tam_vest);
+int get_preco_vest(char *id_vest);

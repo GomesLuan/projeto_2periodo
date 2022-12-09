@@ -273,3 +273,8 @@ void adiciona_vestimenta(char *id_vest, char tam_vest) {
     edita_vestimenta(vest);
     free(vest);
 }
+
+int get_preco_vest(char *id_vest) {
+    Vestimenta *vest = busca_vestimenta(id_vest, 0);
+    return vest->preco;
+}
