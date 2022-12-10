@@ -11,6 +11,7 @@ typedef struct cliente {
     char tel[14];
     char email[81];
     char status;
+    Cliente *prox;
 } Cliente;
 
 void cadastrar_cliente(void) {

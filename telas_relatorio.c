@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "telas_gerais.h"
 #include "telas_relatorio.h"
 #include "operacoes_cliente.h"
@@ -13,6 +14,7 @@ typedef struct cliente {
     char tel[14];
     char email[81];
     char status;
+    Cliente *prox;
 } Cliente;
 
 typedef struct vestimenta {
@@ -40,41 +42,55 @@ typedef struct locacao {
 char tela_relatorios(void) {
     system("clear||cls");
     char resposta;
-    printf("####################################################\n");
-    printf("#               R E L A T Ó R I O S                #\n");
-    printf("####################################################\n");
-    printf("#       1 - Relatório de clientes                  #\n");
-    printf("#       2 - Relatório de vestimentas               #\n");
-    printf("#       3 - Relatório de locações pendentes        #\n");
-    printf("#       4 - Relatório de locações ativas           #\n");
-    printf("#       5 - Relatório de locações finalizadas      #\n");
-    printf("#       0 - Retornar ao menu principal             #\n");
-    printf("####################################################\n\n");
+    printf("###########################################################\n");
+    printf("#                   R E L A T Ó R I O S                   #\n");
+    printf("###########################################################\n");
+    printf("#       1 - Relatório de clientes por ordem de cadastro   #\n");
+    printf("#       2 - Relatório de clientes por ordem alfabética    #\n");
+    printf("#       3 - Relatório de vestimentas                      #\n");
+    printf("#       4 - Relatório de locações pendentes               #\n");
+    printf("#       5 - Relatório de locações ativas                  #\n");
+    printf("#       6 - Relatório de locações finalizadas             #\n");
+    printf("#       0 - Retornar ao menu principal                    #\n");
+    printf("###########################################################\n\n");
     printf("Escolha sua opção: ");
     scanf("%c", &resposta);
     getchar();
     return resposta;
 }
 
-void tela_relatorio_clientes(void) {
+void tela_relatorio_clientes(char ordem) {
     system("clear||cls");
     printf("###############################################\n");
     printf("#       L I S T A  D E  C L I E N T E S       #\n");
     printf("###############################################\n");
-    FILE* arq;
-    Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
-    arq = fopen("clientes.dat", "rb");
-    if (arq != NULL) {
-        fread(cl, sizeof(Cliente), 1, arq);
-        while (!feof(arq)) {
-            if (cl->status != 'x') {
-                exibe_cliente(cl);
-                printf("###############################################\n");  
-            }
+    if (ordem == 'c') {
+        FILE* arq;
+        Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
+        arq = fopen("clientes.dat", "rb");
+        if (arq != NULL) {
             fread(cl, sizeof(Cliente), 1, arq);
+            while (!feof(arq)) {
+                if (cl->status != 'x') {
+                    exibe_cliente(cl);
+                    printf("###############################################\n");  
+                }
+                fread(cl, sizeof(Cliente), 1, arq);
+            }
+        }
+        fclose(arq);
+    }
+    else if (ordem == 'a') {
+        Cliente *cl = ordena_cliente();
+        Cliente *temp = cl;
+        while (cl != NULL) {
+            exibe_cliente(cl);
+            printf("###############################################\n");  
+            cl = temp->prox;
+            free(temp);
+            temp = cl;
         }
     }
-    fclose(arq);
     printf("\nPressione ENTER para continuar ");
     getchar();
 }
@@ -157,4 +173,74 @@ void exibe_locacao(Locacao *loc, Cliente *cl, Vestimenta *vest) {
     printf("# Data de fim da locação: %s\n", loc->data_fim);
     printf("# Valor da locação (R$): %.2f\n", loc->valor);
     printf("# Valor da multa (R$): %.2f\n", loc->multa);
+}
+
+Cliente *ordena_cliente(void) {
+    Cliente *lista = NULL;
+    Cliente *novo_cl = (Cliente*) malloc(sizeof(Cliente));
+    FILE* arq;
+    arq = fopen("clientes.dat", "rb");
+    if (arq != NULL) {     
+        fread(novo_cl, sizeof(Cliente), 1, arq);
+        while (!feof(arq)) {
+            if (novo_cl->status != 'x') {
+                if (lista == NULL) {
+                    lista = novo_cl;
+                    lista->prox = NULL;
+                }
+                else if (lista->prox == NULL) {
+                    if (strcmp(lista->nome, novo_cl->nome) <= 0) {
+                        lista->prox = novo_cl;
+                    }
+                    else {
+                        novo_cl->prox = lista;
+                        lista = novo_cl;
+                    }
+                }
+                else {
+                    lista = posiciona_cliente(lista, novo_cl);
+                }
+            }
+            else {
+                free(novo_cl);
+            }
+            novo_cl = (Cliente*) malloc(sizeof(Cliente));
+            fread(novo_cl, sizeof(Cliente), 1, arq);
+        }
+        free(novo_cl);
+        fclose(arq);
+        return lista;
+    }
+    else {
+        free(novo_cl);
+        fclose(arq);
+        return NULL;
+    }
+}
+
+Cliente *posiciona_cliente(Cliente *lista, Cliente *novo_cl) {
+    Cliente *anter = lista;
+    Cliente *atual = lista->prox;
+    int posicionou = 0;
+    while (!posicionou) {
+        if (strcmp(novo_cl->nome, lista->nome) <= 0) {
+            novo_cl->prox = lista;
+            lista = novo_cl;
+            posicionou = 1;
+        }
+        else if (atual == NULL) {
+            anter->prox = novo_cl;
+            posicionou = 1;
+        }
+        else if ((strcmp(anter->nome, novo_cl->nome) <= 0) && (strcmp(novo_cl->nome, atual->nome) <= 0)) {
+            anter->prox = novo_cl;
+            novo_cl->prox = atual;
+            posicionou = 1;
+        }
+        else {
+            anter = atual;
+            atual = anter->prox;
+        }
+    }
+    return lista;
 }

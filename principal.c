@@ -94,18 +94,21 @@ int main(void) {
             while (resposta_relatorios != '0') {
                 resposta_relatorios = tela_relatorios();
                 if (resposta_relatorios == '1') {
-                    tela_relatorio_clientes();
+                    tela_relatorio_clientes('c');
                 }
                 else if (resposta_relatorios == '2') {
-                    tela_relatorio_vestimentas();
+                    tela_relatorio_clientes('a');
                 }
                 else if (resposta_relatorios == '3') {
-                    tela_relatorio_locacoes('p');
+                    tela_relatorio_vestimentas();
                 }
                 else if (resposta_relatorios == '4') {
-                    tela_relatorio_locacoes('a');
+                    tela_relatorio_locacoes('p');
                 }
                 else if (resposta_relatorios == '5') {
+                    tela_relatorio_locacoes('a');
+                }
+                else if (resposta_relatorios == '6') {
                     tela_relatorio_locacoes('f');
                 }
                 else if (resposta_relatorios != '0') {
