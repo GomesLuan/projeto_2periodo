@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "telas_vestimenta.h"
 #include "operacoes_vestimenta.h"
 #include "operacoes_gerais.h"
@@ -165,21 +166,23 @@ void grava_vestimenta(Vestimenta *vest) {
 Vestimenta *busca_vestimenta(char *id, int incluir_excluido) {
     FILE* arq;
     Vestimenta *vest = (Vestimenta*) malloc(sizeof(Vestimenta));
-    arq = fopen("vestimentas.dat", "rb");
-    if (arq == NULL) {
-        fclose(arq);
-        return NULL;
-    }
-    else {
-        while (!feof(arq)) {
-            fread(vest, sizeof(Vestimenta), 1, arq);
-            if (!strcmp(vest->id, id) && (vest->status != 'x' || incluir_excluido)) {
-                fclose(arq);
-                return vest;
+    if (access("vestimentas.dat", F_OK) != -1) {
+        arq = fopen("vestimentas.dat", "rb");
+        if (arq == NULL) {
+            fclose(arq);
+            return NULL;
+        }
+        else {
+            while (!feof(arq)) {
+                fread(vest, sizeof(Vestimenta), 1, arq);
+                if (!strcmp(vest->id, id) && (vest->status != 'x' || incluir_excluido)) {
+                    fclose(arq);
+                    return vest;
+                }
             }
         }
+        fclose(arq);
     }
-    fclose(arq);
     return NULL;
 }
 

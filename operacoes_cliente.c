@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "telas_cliente.h"
 #include "operacoes_cliente.h"
 
@@ -150,21 +151,23 @@ void grava_cliente(Cliente *cl) {
 Cliente *busca_cliente(char *cpf, int inclui_excluido) {
     FILE* arq;
     Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
-    arq = fopen("clientes.dat", "rb");
-    if (arq == NULL) {
-        fclose(arq);
-        return NULL;
-    }
-    else {
-        while (!feof(arq)) {
-            fread(cl, sizeof(Cliente), 1, arq);
-            if (!strcmp(cl->cpf, cpf) && (cl->status != 'x' || inclui_excluido)) {
-                fclose(arq);
-                return cl;
+    if (access("clientes.dat", F_OK) != -1) {
+        arq = fopen("clientes.dat", "rb");
+        if (arq == NULL) {
+            fclose(arq);
+            return NULL;
+        }
+        else {
+            while (!feof(arq)) {
+                fread(cl, sizeof(Cliente), 1, arq);
+                if (!strcmp(cl->cpf, cpf) && (cl->status != 'x' || inclui_excluido)) {
+                    fclose(arq);
+                    return cl;
+                }
             }
         }
+        fclose(arq);
     }
-    fclose(arq);
     return NULL;
 }
 

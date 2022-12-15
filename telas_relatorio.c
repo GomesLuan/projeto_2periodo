@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "telas_gerais.h"
 #include "telas_relatorio.h"
 #include "operacoes_cliente.h"
@@ -67,18 +68,20 @@ void tela_relatorio_clientes(char ordem) {
     if (ordem == 'c') {
         FILE* arq;
         Cliente *cl = (Cliente*) malloc(sizeof(Cliente));
-        arq = fopen("clientes.dat", "rb");
-        if (arq != NULL) {
-            fread(cl, sizeof(Cliente), 1, arq);
-            while (!feof(arq)) {
-                if (cl->status != 'x') {
-                    exibe_cliente(cl);
-                    printf("###############################################\n");  
-                }
+        if (access("clientes.dat", F_OK) != -1) {
+            arq = fopen("clientes.dat", "rb");
+            if (arq != NULL) {
                 fread(cl, sizeof(Cliente), 1, arq);
+                while (!feof(arq)) {
+                    if (cl->status != 'x') {
+                        exibe_cliente(cl);
+                        printf("###############################################\n");  
+                    }
+                    fread(cl, sizeof(Cliente), 1, arq);
+                }
             }
+            fclose(arq);
         }
-        fclose(arq);
     }
     else if (ordem == 'a') {
         Cliente *cl = ordena_cliente();
@@ -102,18 +105,20 @@ void tela_relatorio_vestimentas(void) {
     printf("###############################################\n");
     FILE* arq;
     Vestimenta *vest = (Vestimenta*) malloc(sizeof(Vestimenta));
-    arq = fopen("vestimentas.dat", "rb");
-    if (arq != NULL) {
-        fread(vest, sizeof(Vestimenta), 1, arq);
-        while (!feof(arq)) {
-            if (vest->status != 'x') {
-                exibe_vestimenta(vest);
-                printf("###############################################\n");  
-            }
+    if (access("vestimentas.dat", F_OK) != -1) {
+        arq = fopen("vestimentas.dat", "rb");
+        if (arq != NULL) {
             fread(vest, sizeof(Vestimenta), 1, arq);
+            while (!feof(arq)) {
+                if (vest->status != 'x') {
+                    exibe_vestimenta(vest);
+                    printf("###############################################\n");  
+                }
+                fread(vest, sizeof(Vestimenta), 1, arq);
+            }
         }
+        fclose(arq);
     }
-    fclose(arq);
     printf("\nPressione ENTER para continuar ");
     getchar();
 }
@@ -125,22 +130,24 @@ void tela_relatorio_locacoes(char status) {
     printf("###############################################\n");
     FILE* arq;
     Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
-    arq = fopen("locacoes.dat", "rb");
-    if (arq != NULL) {
-        fread(loc, sizeof(Locacao), 1, arq);
-        while (!feof(arq)) {
-            if (loc->status == status) {
-                Cliente *cl = busca_cliente(loc->cpf, 1);
-                Vestimenta *vest = busca_vestimenta(loc->id_vest, 1);
-                exibe_locacao(loc, cl, vest);
-                printf("###############################################\n");  
-                free(cl);
-                free(vest);
-            }
+    if (access("locacoes.dat", F_OK) != -1) {
+        arq = fopen("locacoes.dat", "rb");
+        if (arq != NULL) {
             fread(loc, sizeof(Locacao), 1, arq);
+            while (!feof(arq)) {
+                if (loc->status == status) {
+                    Cliente *cl = busca_cliente(loc->cpf, 1);
+                    Vestimenta *vest = busca_vestimenta(loc->id_vest, 1);
+                    exibe_locacao(loc, cl, vest);
+                    printf("###############################################\n");  
+                    free(cl);
+                    free(vest);
+                }
+                fread(loc, sizeof(Locacao), 1, arq);
+            }
         }
+        fclose(arq);
     }
-    fclose(arq);
     printf("\nPressione ENTER para continuar ");
     getchar();
 }
@@ -179,41 +186,47 @@ Cliente *ordena_cliente(void) {
     Cliente *lista = NULL;
     Cliente *novo_cl = (Cliente*) malloc(sizeof(Cliente));
     FILE* arq;
-    arq = fopen("clientes.dat", "rb");
-    if (arq != NULL) {     
-        fread(novo_cl, sizeof(Cliente), 1, arq);
-        while (!feof(arq)) {
-            if (novo_cl->status != 'x') {
-                if (lista == NULL) {
-                    lista = novo_cl;
-                    lista->prox = NULL;
-                }
-                else if (lista->prox == NULL) {
-                    if (strcmp(lista->nome, novo_cl->nome) <= 0) {
-                        lista->prox = novo_cl;
+    if (access("clientes.dat", F_OK) != -1) {
+        arq = fopen("clientes.dat", "rb");
+        if (arq != NULL) {     
+            fread(novo_cl, sizeof(Cliente), 1, arq);
+            while (!feof(arq)) {
+                if (novo_cl->status != 'x') {
+                    if (lista == NULL) {
+                        lista = novo_cl;
+                        lista->prox = NULL;
+                    }
+                    else if (lista->prox == NULL) {
+                        if (strcmp(lista->nome, novo_cl->nome) <= 0) {
+                            lista->prox = novo_cl;
+                        }
+                        else {
+                            novo_cl->prox = lista;
+                            lista = novo_cl;
+                        }
                     }
                     else {
-                        novo_cl->prox = lista;
-                        lista = novo_cl;
+                        lista = posiciona_cliente(lista, novo_cl);
                     }
                 }
                 else {
-                    lista = posiciona_cliente(lista, novo_cl);
+                    free(novo_cl);
                 }
+                novo_cl = (Cliente*) malloc(sizeof(Cliente));
+                fread(novo_cl, sizeof(Cliente), 1, arq);
             }
-            else {
-                free(novo_cl);
-            }
-            novo_cl = (Cliente*) malloc(sizeof(Cliente));
-            fread(novo_cl, sizeof(Cliente), 1, arq);
+            free(novo_cl);
+            fclose(arq);
+            return lista;
         }
-        free(novo_cl);
-        fclose(arq);
-        return lista;
+        else {
+            free(novo_cl);
+            fclose(arq);
+            return NULL;
+        }
     }
     else {
         free(novo_cl);
-        fclose(arq);
         return NULL;
     }
 }

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include <time.h>
 #include "validacoes.h"
 #include "telas_locacoes.h"
@@ -258,21 +259,23 @@ void grava_locacao(Locacao *loc) {
 Locacao *busca_locacao(long id, int incluir_excluido) {
     FILE* arq;
     Locacao *loc = (Locacao*) malloc(sizeof(Locacao));
-    arq = fopen("locacoes.dat", "rb");
-    if (arq == NULL) {
-        fclose(arq);
-        return NULL;
-    }
-    else {
-        while (!feof(arq)) {
-            fread(loc, sizeof(Locacao), 1, arq);
-            if (loc->id_loc == id && (loc->status != 'x' || incluir_excluido)) {
-                fclose(arq);
-                return loc;
+    if (access("locacoes.dat", F_OK) != -1) {
+        arq = fopen("locacoes.dat", "rb");
+        if (arq == NULL) {
+            fclose(arq);
+            return NULL;
+        }
+        else {
+            while (!feof(arq)) {
+                fread(loc, sizeof(Locacao), 1, arq);
+                if (loc->id_loc == id && (loc->status != 'x' || incluir_excluido)) {
+                    fclose(arq);
+                    return loc;
+                }
             }
         }
+        fclose(arq);
     }
-    fclose(arq);
     return NULL;
 }
 
