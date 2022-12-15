@@ -29,8 +29,8 @@ void tela_informacoes(void) {
     printf("# Programa desenvolvido inteiramente em C com o intuito de facilitar a        #\n");
     printf("# administração e gerência de uma locadora de roupas e fantasias.             #\n");
     printf("# Identificando os produtos disponíveis, os valores dos aluguéis, o tempo, a  #\n");
-    printf("# identidade de quem alugou e quantas vezes determinada peça foi alugada,     #\n");
-    printf("# sendo uma ferramenta útil e eficaz.                                         #\n");
+    printf("# identidade de quem alugou entre outros fatores, sendo uma ferramenta útil   #\n");
+    printf("# e eficaz.                                                                   #\n");
     printf("#                                                                             #\n");
     printf("# Programa desenvolvido por:                                                  #\n");
     printf("#                                                                             #\n");
