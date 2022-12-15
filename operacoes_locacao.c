@@ -295,8 +295,6 @@ void edita_locacao(Locacao *loc_lida) {
             encontrado = 1;
             fseek(arq, -1*sizeof(Locacao), SEEK_CUR);
             fwrite(loc_lida, sizeof(Locacao), 1, arq);
-            fclose(arq);
-            free(loc_arq);
             break;
         }
     }
@@ -326,8 +324,6 @@ void exclui_locacao(long id) {
             loc->status = 'x';
             fseek(arq, -1*sizeof(Locacao), SEEK_CUR);
             fwrite(loc, sizeof(Locacao), 1, arq);
-            fclose(arq);
-            free(loc);
             break;
         }
     }

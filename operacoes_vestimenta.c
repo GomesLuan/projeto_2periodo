@@ -202,8 +202,6 @@ void edita_vestimenta(Vestimenta *vest_lida) {
             encontrado = 1;
             fseek(arq, -1*sizeof(Vestimenta), SEEK_CUR);
             fwrite(vest_lida, sizeof(Vestimenta), 1, arq);
-            fclose(arq);
-            free(vest_arq);
             break;
         }
     }
@@ -233,8 +231,6 @@ void exclui_vestimenta(char *id) {
             vest->status = 'x';
             fseek(arq, -1*sizeof(Vestimenta), SEEK_CUR);
             fwrite(vest, sizeof(Vestimenta), 1, arq);
-            fclose(arq);
-            free(vest);
             break;
         }
     }
@@ -279,5 +275,7 @@ void adiciona_vestimenta(char *id_vest, char tam_vest) {
 
 int get_preco_vest(char *id_vest) {
     Vestimenta *vest = busca_vestimenta(id_vest, 0);
-    return vest->preco;
+    float preco = vest->preco;
+    free(vest);
+    return preco;
 }

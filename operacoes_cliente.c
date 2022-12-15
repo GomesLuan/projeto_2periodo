@@ -187,8 +187,6 @@ void edita_cliente(Cliente *cl_lido) {
             encontrado = 1;
             fseek(arq, -1*sizeof(Cliente), SEEK_CUR);
             fwrite(cl_lido, sizeof(Cliente), 1, arq);
-            fclose(arq);
-            free(cl_arq);
             break;
         }
     }
@@ -218,8 +216,6 @@ void exclui_cliente(char *cpf) {
             cl->status = 'x';
             fseek(arq, -1*sizeof(Cliente), SEEK_CUR);
             fwrite(cl, sizeof(Cliente), 1, arq);
-            fclose(arq);
-            free(cl);
             break;
         }
     }
